@@ -7,7 +7,7 @@ public class TestCode {
 
 	@Test
 	public void test() {
-		fail("Not yet implemented");
+		fail("Impemented Now");
 	}
 
 }
