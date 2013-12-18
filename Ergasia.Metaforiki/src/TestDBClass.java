@@ -20,7 +20,7 @@ public class TestDBClass {
 			
 			/*Statement stm = conn.createStatement();
 			
-			String sql = "select * from lessons2";
+			String sql = "select * from foo";
 			
 			ResultSet rs = stm.executeQuery(sql);
 			
