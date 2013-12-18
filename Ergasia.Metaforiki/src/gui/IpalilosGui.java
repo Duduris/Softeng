@@ -87,7 +87,7 @@ public class IpalilosGui extends JFrame {
 		
 		JPanel panel = new JPanel();
 		tabbedPane.addTab("Kataxorisi Paketou", null, panel, null);
-		panel.setLayout(new MigLayout("", "[110.00px][65px][93px][65px]", "[23px][20px][26px][33px][25px][28px][22px][101px][23px]"));
+		panel.setLayout(new MigLayout("", "[110.00px][65px][93px][65px]", "[][][][][][][][101px][23px]"));
 		
 		JLabel lblName = new JLabel("Name");
 		panel.add(lblName, "cell 0 0,alignx center,aligny center");
