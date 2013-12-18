@@ -27,6 +27,8 @@ import javax.swing.ListSelectionModel;
 import java.awt.Checkbox;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
+import java.awt.Dimension;
+import javax.swing.JScrollPane;
 
 public class IpalilosGui extends JFrame {
 
@@ -85,93 +87,129 @@ public class IpalilosGui extends JFrame {
 		
 		JPanel panel = new JPanel();
 		tabbedPane.addTab("Kataxorisi Paketou", null, panel, null);
-		panel.setLayout(null);
+		panel.setLayout(new MigLayout("", "[110.00px][65px][93px][65px]", "[23px][20px][26px][33px][25px][28px][22px][101px][23px]"));
 		
 		JLabel lblName = new JLabel("Name");
-		lblName.setBounds(36, 12, 27, 14);
-		panel.add(lblName);
+		panel.add(lblName, "cell 0 0,alignx center,aligny center");
 		
 		JFormattedTextField frmtdtxtfldOnoma = new JFormattedTextField();
-		frmtdtxtfldOnoma.setBounds(96, 7, 223, 23);
 		frmtdtxtfldOnoma.setFocusLostBehavior(JFormattedTextField.PERSIST);
-		panel.add(frmtdtxtfldOnoma);
+		panel.add(frmtdtxtfldOnoma, "cell 1 0 3 1,grow");
 		
 		JLabel lblSurname = new JLabel("Surname");
-		lblSurname.setBounds(29, 37, 42, 14);
-		panel.add(lblSurname);
+		panel.add(lblSurname, "cell 0 1,alignx center,aligny center");
 		
 		JFormattedTextField formattedTextField = new JFormattedTextField();
-		formattedTextField.setBounds(96, 34, 223, 20);
 		formattedTextField.setFocusLostBehavior(JFormattedTextField.PERSIST);
-		panel.add(formattedTextField);
+		panel.add(formattedTextField, "cell 1 1 3 1,growx,aligny top");
 		
 		JLabel lblStreet = new JLabel("Address");
-		lblStreet.setBounds(30, 64, 39, 14);
-		panel.add(lblStreet);
+		panel.add(lblStreet, "cell 0 2,alignx center,aligny center");
 		
 		JFormattedTextField formattedTextField_1 = new JFormattedTextField();
-		formattedTextField_1.setBounds(96, 58, 223, 26);
 		formattedTextField_1.setFocusLostBehavior(JFormattedTextField.PERSIST);
-		panel.add(formattedTextField_1);
+		panel.add(formattedTextField_1, "cell 1 2 3 1,grow");
 		
 		JLabel lblStreetNumber = new JLabel("Postal Code");
-		lblStreetNumber.setBounds(21, 98, 57, 14);
-		panel.add(lblStreetNumber);
+		panel.add(lblStreetNumber, "cell 0 3,alignx center,aligny center");
 		
 		JFormattedTextField formattedTextField_2 = new JFormattedTextField();
-		formattedTextField_2.setBounds(96, 88, 223, 33);
 		formattedTextField_2.setFocusLostBehavior(JFormattedTextField.PERSIST);
-		panel.add(formattedTextField_2);
+		panel.add(formattedTextField_2, "cell 1 3 3 1,grow");
 		
 		JLabel lblCountry = new JLabel("Country");
-		lblCountry.setBounds(30, 131, 39, 14);
-		panel.add(lblCountry);
+		panel.add(lblCountry, "cell 0 4,alignx center,aligny center");
 		
 		JFormattedTextField formattedTextField_3 = new JFormattedTextField();
-		formattedTextField_3.setBounds(96, 125, 223, 25);
 		formattedTextField_3.setFocusLostBehavior(JFormattedTextField.PERSIST);
-		panel.add(formattedTextField_3);
+		panel.add(formattedTextField_3, "cell 1 4 3 1,grow");
 		
 		JLabel lblPhoneNumber = new JLabel("Phone Number");
-		lblPhoneNumber.setBounds(15, 161, 70, 14);
-		panel.add(lblPhoneNumber);
+		panel.add(lblPhoneNumber, "cell 0 5,alignx center,aligny center");
 		
 		JFormattedTextField formattedTextField_4 = new JFormattedTextField();
-		formattedTextField_4.setBounds(96, 154, 223, 28);
 		formattedTextField_4.setFocusLostBehavior(JFormattedTextField.PERSIST);
-		panel.add(formattedTextField_4);
+		panel.add(formattedTextField_4, "cell 1 5 3 1,grow");
 		
 		JLabel lblFragile = new JLabel("Fragile");
-		lblFragile.setBounds(34, 197, 32, 14);
-		panel.add(lblFragile);
+		panel.add(lblFragile, "cell 0 6,alignx center,aligny center");
 		
 		Checkbox checkbox = new Checkbox("");
-		checkbox.setBounds(96, 193, 19, 22);
-		panel.add(checkbox);
+		panel.add(checkbox, "cell 1 6,alignx left,aligny top");
 		
 		JLabel lblComments = new JLabel("Comments");
-		lblComments.setBounds(25, 254, 50, 14);
-		panel.add(lblComments);
+		panel.add(lblComments, "cell 0 7,alignx center,aligny center");
 		
 		JTextArea textArea = new JTextArea();
+		textArea.setPreferredSize(new Dimension(10, 16));
+		textArea.setAutoscrolls(false);
 		textArea.setWrapStyleWord(true);
 		textArea.setLineWrap(true);
-		textArea.setBounds(96, 226, 223, 101);
-		panel.add(textArea);
+		panel.add(textArea, "flowx,cell 1 7 3 1,grow");
 		
 		JButton btnClear = new JButton("Clear");
 		btnClear.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 			}
 		});
-		btnClear.setBounds(96, 352, 65, 23);
-		panel.add(btnClear);
+		panel.add(btnClear, "cell 1 8,growx,aligny top");
 		
 		JButton btnNewButton = new JButton("Submit");
-		btnNewButton.setBounds(254, 352, 65, 23);
-		panel.add(btnNewButton);
+		panel.add(btnNewButton, "cell 3 8,alignx left,aligny top");
+		
+		JScrollPane scrollPane = new JScrollPane();
+		panel.add(scrollPane, "cell 2 7");
 		
 		JPanel panel_1 = new JPanel();
 		tabbedPane.addTab("Search", null, panel_1, null);
+		panel_1.setLayout(new MigLayout("", "[78.00px][grow]", "[23.00px][][][][][][][]"));
+		
+		JLabel label = new JLabel("Name");
+		panel_1.add(label, "cell 0 0,alignx center,aligny center");
+		
+		JFormattedTextField formattedTextField_5 = new JFormattedTextField();
+		formattedTextField_5.setFocusLostBehavior(JFormattedTextField.PERSIST);
+		panel_1.add(formattedTextField_5, "cell 1 0,grow");
+		
+		JLabel label_1 = new JLabel("Surname");
+		panel_1.add(label_1, "cell 0 1,alignx center,aligny center");
+		
+		JFormattedTextField formattedTextField_6 = new JFormattedTextField();
+		formattedTextField_6.setFocusLostBehavior(JFormattedTextField.PERSIST);
+		panel_1.add(formattedTextField_6, "cell 1 1,grow");
+		
+		JLabel label_2 = new JLabel("Address");
+		panel_1.add(label_2, "cell 0 2,alignx center,aligny center");
+		
+		JFormattedTextField formattedTextField_7 = new JFormattedTextField();
+		formattedTextField_7.setFocusLostBehavior(JFormattedTextField.PERSIST);
+		panel_1.add(formattedTextField_7, "cell 1 2,grow");
+		
+		JLabel lblPostalCode = new JLabel("Postal Code");
+		panel_1.add(lblPostalCode, "cell 0 3,alignx center,aligny center");
+		
+		JFormattedTextField formattedTextField_8 = new JFormattedTextField();
+		formattedTextField_8.setFocusLostBehavior(JFormattedTextField.PERSIST);
+		panel_1.add(formattedTextField_8, "cell 1 3,grow");
+		
+		JLabel lblPhone = new JLabel("Phone Number");
+		panel_1.add(lblPhone, "cell 0 4,alignx center,aligny center");
+		
+		JFormattedTextField formattedTextField_9 = new JFormattedTextField();
+		formattedTextField_9.setFocusLostBehavior(JFormattedTextField.PERSIST);
+		panel_1.add(formattedTextField_9, "cell 1 4,grow");
+		
+		JLabel lblCountry_1 = new JLabel("Country");
+		panel_1.add(lblCountry_1, "cell 0 5,alignx center,aligny center");
+		
+		JFormattedTextField formattedTextField_10 = new JFormattedTextField();
+		formattedTextField_10.setFocusLostBehavior(JFormattedTextField.PERSIST);
+		panel_1.add(formattedTextField_10, "cell 1 5,grow");
+		
+		JButton btnClear_1 = new JButton("Clear");
+		panel_1.add(btnClear_1, "flowx,cell 1 7");
+		
+		JButton btnSearch = new JButton("Search");
+		panel_1.add(btnSearch, "cell 1 7");
 	}
 }
