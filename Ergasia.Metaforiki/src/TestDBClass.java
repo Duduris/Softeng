@@ -12,9 +12,9 @@ public class TestDBClass {
 		try{
 			Class.forName("com.mysql.jdbc.Driver").newInstance();
 			
-			String url = "jdbc:mysql://weblab.teipir.gr/lessons2";
-			String username = "web_mon45";
-			String pass = "w13011d863";
+			String url = "jdbc:mysql://83.212.112.80/foo";
+			String username = "root";
+			String pass = "1234";
 			
 			Connection conn = DriverManager.getConnection(url, username, pass);
 			
