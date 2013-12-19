@@ -67,9 +67,6 @@ public class MetaforeasGui extends JFrame {
 		table.setShowVerticalLines(false);
 		contentPane.add(table, "cell 0 0 18 10,grow");
 		
-		JButton btnNewButton = new JButton("New button");
-		contentPane.add(btnNewButton, "cell 18 0");
-		
 		JButton button = new JButton("Submit");
 		contentPane.add(button, "cell 18 3 1 2,grow");
 		
