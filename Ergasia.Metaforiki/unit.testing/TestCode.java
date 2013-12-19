@@ -7,7 +7,7 @@ public class TestCode {
 
 	@Test
 	public void test() {
-		fail("Impemented Now");
+		fail("Mpikame kai oi 3");
 	}
 
 }
