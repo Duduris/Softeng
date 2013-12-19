@@ -7,7 +7,7 @@ public class TestCode {
 
 	@Test
 	public void test() {
-		fail("Mpikame kai oi 3");
+		fail("Mpikame kai oi 3 twra");
 	}
 
 }
