@@ -1,6 +1,5 @@
 package gui;
 
-import java.awt.BorderLayout;
 import java.awt.EventQueue;
 
 import javax.swing.JFrame;
@@ -10,25 +9,17 @@ import javax.swing.JButton;
 import javax.swing.JMenuBar;
 import javax.swing.JMenu;
 import javax.swing.JMenuItem;
-import javax.swing.JList;
-import javax.swing.JSplitPane;
 import javax.swing.JTabbedPane;
-import javax.swing.JTextField;
-import javax.swing.JLayeredPane;
-import com.jgoodies.forms.layout.FormLayout;
-import com.jgoodies.forms.layout.ColumnSpec;
-import com.jgoodies.forms.layout.RowSpec;
 import net.miginfocom.swing.MigLayout;
 import javax.swing.JFormattedTextField;
 import javax.swing.JLabel;
 import javax.swing.JTextArea;
-import java.awt.List;
-import javax.swing.ListSelectionModel;
 import java.awt.Checkbox;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 import java.awt.Dimension;
 import javax.swing.JScrollPane;
+import javax.swing.ScrollPaneConstants;
 
 public class IpalilosGui extends JFrame {
 
@@ -87,7 +78,7 @@ public class IpalilosGui extends JFrame {
 		
 		JPanel panel = new JPanel();
 		tabbedPane.addTab("Kataxorisi Paketou", null, panel, null);
-		panel.setLayout(new MigLayout("", "[110.00px][65px][93px][65px]", "[][][][][][][][101px][23px]"));
+		panel.setLayout(new MigLayout("", "[110.00px][112.00px][47.00][130.00px]", "[][][][][][][][101px][23px]"));
 		
 		JLabel lblName = new JLabel("Name");
 		panel.add(lblName, "cell 0 0,alignx center,aligny center");
@@ -140,12 +131,16 @@ public class IpalilosGui extends JFrame {
 		JLabel lblComments = new JLabel("Comments");
 		panel.add(lblComments, "cell 0 7,alignx center,aligny center");
 		
+		JScrollPane scrollPane = new JScrollPane();
+		scrollPane.setHorizontalScrollBarPolicy(ScrollPaneConstants.HORIZONTAL_SCROLLBAR_NEVER);
+		panel.add(scrollPane, "cell 1 7 3 1,grow");
+		
 		JTextArea textArea = new JTextArea();
+		scrollPane.setViewportView(textArea);
 		textArea.setPreferredSize(new Dimension(10, 16));
 		textArea.setAutoscrolls(false);
 		textArea.setWrapStyleWord(true);
 		textArea.setLineWrap(true);
-		panel.add(textArea, "flowx,cell 1 7 3 1,grow");
 		
 		JButton btnClear = new JButton("Clear");
 		btnClear.addActionListener(new ActionListener() {
@@ -155,14 +150,11 @@ public class IpalilosGui extends JFrame {
 		panel.add(btnClear, "cell 1 8,growx,aligny top");
 		
 		JButton btnNewButton = new JButton("Submit");
-		panel.add(btnNewButton, "cell 3 8,alignx left,aligny top");
-		
-		JScrollPane scrollPane = new JScrollPane();
-		panel.add(scrollPane, "cell 2 7");
+		panel.add(btnNewButton, "cell 3 8,growx,aligny top");
 		
 		JPanel panel_1 = new JPanel();
 		tabbedPane.addTab("Search", null, panel_1, null);
-		panel_1.setLayout(new MigLayout("", "[78.00px][grow]", "[23.00px][][][][][][][]"));
+		panel_1.setLayout(new MigLayout("", "[95.00px][grow]", "[23.00px][][][][][][][42.00][274.00,grow][121.00]"));
 		
 		JLabel label = new JLabel("Name");
 		panel_1.add(label, "cell 0 0,alignx center,aligny center");
@@ -206,10 +198,23 @@ public class IpalilosGui extends JFrame {
 		formattedTextField_10.setFocusLostBehavior(JFormattedTextField.PERSIST);
 		panel_1.add(formattedTextField_10, "cell 1 5,grow");
 		
+		JLabel lblTrackingNumber = new JLabel("Tracking Number");
+		panel_1.add(lblTrackingNumber, "cell 0 6,alignx center,aligny center");
+		
+		JFormattedTextField formattedTextField_11 = new JFormattedTextField();
+		formattedTextField_11.setFocusLostBehavior(JFormattedTextField.PERSIST);
+		panel_1.add(formattedTextField_11, "cell 1 6,grow");
+		
 		JButton btnClear_1 = new JButton("Clear");
-		panel_1.add(btnClear_1, "flowx,cell 1 7");
+		panel_1.add(btnClear_1, "flowx,cell 1 7,growy");
 		
 		JButton btnSearch = new JButton("Search");
-		panel_1.add(btnSearch, "cell 1 7");
+		panel_1.add(btnSearch, "cell 1 7,growy");
+		
+		JTextArea txtrTest = new JTextArea();
+		txtrTest.setVisible(false);
+		txtrTest.setText("Test");
+		txtrTest.setEditable(false);
+		panel_1.add(txtrTest, "cell 1 8,grow");
 	}
 }
