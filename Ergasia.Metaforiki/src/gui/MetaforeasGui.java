@@ -1,13 +1,10 @@
 package gui;
 
-import java.awt.BorderLayout;
 import java.awt.EventQueue;
 
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
-
-import java.awt.CardLayout;
 
 import net.miginfocom.swing.MigLayout;
 
@@ -17,6 +14,10 @@ import javax.swing.ListSelectionModel;
 
 public class MetaforeasGui extends JFrame {
 
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 3;
 	private JPanel contentPane;
 	private JTable table;
 
@@ -50,11 +51,13 @@ public class MetaforeasGui extends JFrame {
 			{"Sue", "Black", "Knitting", new Integer(2), new Boolean(false)},
 			{"Jane", "White", "Speed reading", new Integer(20), new Boolean(true)},
 			{"Joe", "Brown", "Pool", new Integer(10), new Boolean(false)}
-	};*/
+	};
+	
+	*/
 	public MetaforeasGui() {
 		setTitle("Metaforeas");
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setBounds(100, 100, 799, 424);
+		setBounds(100, 100, 672, 424);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);
