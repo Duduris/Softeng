@@ -15,7 +15,8 @@ public class TestGuiWrapper {
 		   */
 		  //IpalilosPanel gui = new IpalilosPanel();
 		  //MetaforeasPanel gui = new MetaforeasPanel();
-		  LoginPanel gui = new LoginPanel();
+		  //LoginPanel gui = new LoginPanel();
+		  AdministratorPanel gui = new AdministratorPanel();
 		  
 		  /*gui.setPreferredSize(new Dimension(600,400));
 		  frame.getContentPane().add(gui);
