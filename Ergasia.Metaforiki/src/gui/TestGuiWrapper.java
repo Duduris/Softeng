@@ -6,13 +6,16 @@ import javax.swing.JFrame;
 public class TestGuiWrapper {
 
 	public static void main(String[] args) {
-		  JFrame frame = new JFrame("Frame in Java Swing");
+		  JFrame frame = new JFrame("Metaforiki");
 		  frame.setSize(600, 600);
-		  
 		  frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		  
+		  /*
+		   * Epilogi Gui
+		   */
 		  //IpalilosPanel gui = new IpalilosPanel();
-		  MetaforeasPanel gui = new MetaforeasPanel();
+		  //MetaforeasPanel gui = new MetaforeasPanel();
+		  LoginPanel gui = new LoginPanel();
 		  
 		  /*gui.setPreferredSize(new Dimension(600,400));
 		  frame.getContentPane().add(gui);

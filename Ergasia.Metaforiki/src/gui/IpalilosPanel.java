@@ -16,9 +16,7 @@ import java.awt.Font;
 public class IpalilosPanel extends JPanel {
 
 	private static final long serialVersionUID = 1;
-	/**
-	 * Create the panel.
-	 */
+
 	public IpalilosPanel() {
 		setLayout(new BoxLayout(this, BoxLayout.X_AXIS));
 		
