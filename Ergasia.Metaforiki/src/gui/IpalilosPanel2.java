@@ -130,8 +130,8 @@ public class IpalilosPanel2 extends JPanel {
 				//elegxos gia tixon null sta Jtextboxes gia null kai arithmous sta string
 				if (formattedTextField.getText().length() >= 1 & formattedTextField_1.getText().length() >= 1 & formattedTextField_2.getText().length() >= 1 & formattedTextField_3.getText().length() >= 1 & formattedTextField_4.getText().length() >= 1 & formattedTextField_5.getText().length() >= 1)
 				{
-					if(formattedTextField_5.getText().matches("^[0000000000-9999999999]+$")){
-						if(formattedTextField_3.getText().matches("^[00000-99999]+$")){
+					if(formattedTextField_5.getText().matches("^[1000000000-9999999999]+$")){
+						if(formattedTextField_3.getText().matches("^[10000-99999]+$")){
 							if(formattedTextField.getText().matches("^[a-zA-Z]+$")){
 								if(formattedTextField_1.getText().matches("^[a-zA-Z]+$")){							
 									if(formattedTextField_4.getText().matches("^[a-zA-Z]+$")){
@@ -312,9 +312,9 @@ public class IpalilosPanel2 extends JPanel {
 				
 				int z=0;
 				if (formattedTextField1.getText().length() >= 1 || formattedTextField2.getText().length() >= 1 || formattedTextField3.getText().length() >= 1 || formattedTextField4.getText().length() >= 1 || formattedTextField5.getText().length() >= 1 || formattedTextField6.getText().length() >= 1 || formattedTextField7.getText().length() >= 1){
-					if(formattedTextField1.getText().matches("^[000000000-99999999]+$")){
-						if(formattedTextField5.getText().matches("^[00000-99999]+$")){
-							if(formattedTextField7.getText().matches("^[0000000000-9999999999]+$")){
+					if(formattedTextField1.getText().matches("^[10000000-99999999]+$")){
+						if(formattedTextField5.getText().matches("^[10000-99999]+$")){
+							if(formattedTextField7.getText().matches("^[1000000000-9999999999]+$")){
 					
 					if(formattedTextField2.getText().matches("^[a-zA-Z]+$")){
 						if(formattedTextField3.getText().matches("^[a-zA-Z]+$")){
