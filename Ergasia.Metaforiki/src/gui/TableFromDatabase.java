@@ -40,7 +40,8 @@ Class.forName("com.mysql.jdbc.Driver").newInstance();
             ResultSet rs = stmt.executeQuery( sql );
             ResultSetMetaData md = rs.getMetaData();
             int columns = md.getColumnCount();
-
+            
+            
             //  Get column names
 
             for (int i = 1; i <= columns; i++)
@@ -98,14 +99,5 @@ Class.forName("com.mysql.jdbc.Driver").newInstance();
         JPanel buttonPanel = new JPanel();
         getContentPane().add( buttonPanel, BorderLayout.SOUTH );
     }
-/*
-    
-     public static void main(String[] args)
-    {
-        TableFromDatabase frame = new TableFromDatabase();
-        frame.setDefaultCloseOperation( EXIT_ON_CLOSE );
-        frame.pack();
-        frame.setVisible(true);
-    }*/
     
 }
