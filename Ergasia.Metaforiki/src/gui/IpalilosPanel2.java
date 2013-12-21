@@ -216,49 +216,128 @@ public class IpalilosPanel2 extends JPanel {
 		JLabel lblName1 = new JLabel("Name");
 		panel_1.add(lblName1, "cell 0 1,alignx center,aligny center");
 		
-		JFormattedTextField formattedTextField1 = new JFormattedTextField();
+		final JFormattedTextField formattedTextField1 = new JFormattedTextField();
 		panel_1.add(formattedTextField1, "cell 1 0,grow");
 		
 		JLabel lblSurname1 = new JLabel("Surname");
 		panel_1.add(lblSurname1, "cell 0 2,alignx center,aligny center");
 		
-		JFormattedTextField formattedTextField_11 = new JFormattedTextField();
-		panel_1.add(formattedTextField_11, "cell 1 1,grow");
+		final JFormattedTextField formattedTextField2 = new JFormattedTextField();
+		panel_1.add(formattedTextField2, "cell 1 1,grow");
 		
 		JLabel lblAddress1 = new JLabel("Address");
 		panel_1.add(lblAddress1, "cell 0 3,alignx center,aligny center");
 		
-		JFormattedTextField formattedTextField_21 = new JFormattedTextField();
-		panel_1.add(formattedTextField_21, "cell 1 2,grow");
+		final JFormattedTextField formattedTextField3 = new JFormattedTextField();
+		panel_1.add(formattedTextField3, "cell 1 2,grow");
 		
 		JLabel lblPostalCode1 = new JLabel("Postal Code");
 		panel_1.add(lblPostalCode1, "cell 0 4,alignx center,aligny center");
 		
-		JFormattedTextField formattedTextField_31 = new JFormattedTextField();
-		panel_1.add(formattedTextField_31, "cell 1 3,grow");
+		final JFormattedTextField formattedTextField4 = new JFormattedTextField();
+		panel_1.add(formattedTextField4, "cell 1 3,grow");
 		
 		JLabel lblCountry1 = new JLabel("Country");
 		panel_1.add(lblCountry1, "cell 0 5,alignx center,aligny center");
 		
-		JFormattedTextField formattedTextField_41 = new JFormattedTextField();
-		panel_1.add(formattedTextField_41, "cell 1 4,grow");
+		final JFormattedTextField formattedTextField5 = new JFormattedTextField();
+		panel_1.add(formattedTextField5, "cell 1 4,grow");
 		
 		JLabel lblPhoneNumber1 = new JLabel("Phone Number");
 		panel_1.add(lblPhoneNumber1, "cell 0 6,alignx center,aligny center");
 		
-		JFormattedTextField formattedTextField_51 = new JFormattedTextField();
-		panel_1.add(formattedTextField_51, "cell 1 5,grow");
+		final JFormattedTextField formattedTextField6 = new JFormattedTextField();
+		panel_1.add(formattedTextField6, "cell 1 5,grow");
 		
 		JLabel lblTracking = new JLabel("Tracking Number");
 		panel_1.add(lblTracking, "cell 0 0,alignx center,aligny center");
 		
-		JFormattedTextField formattedTextField_6 = new JFormattedTextField();
-		panel_1.add(formattedTextField_6, "cell 1 6,grow");
+		final JFormattedTextField formattedTextField7 = new JFormattedTextField();
+		panel_1.add(formattedTextField7, "cell 1 6,grow");
 		
 		JButton btnClear_1 = new JButton("Clear");
+		btnClear_1.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				formattedTextField1.setText("");
+				formattedTextField2.setText("");
+				formattedTextField3.setText("");
+				formattedTextField4.setText("");
+				formattedTextField5.setText("");
+				formattedTextField6.setText("");
+				formattedTextField7.setText("");
+			}
+		});
 		panel_1.add(btnClear_1, "flowx,cell 1 7,growy");
 		
 		JButton btnSearch = new JButton("Search");
+		btnSearch.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				
+				String trackingnumber = formattedTextField1.getText();
+				String name = formattedTextField2.getText();
+				String surname = formattedTextField3.getText();
+				String address = formattedTextField4.getText();
+				String tk = formattedTextField5.getText();
+				String country = formattedTextField6.getText();
+				String phonenumber = formattedTextField7.getText();
+				
+				int z=0;
+				if (formattedTextField1.getText().length() >= 1 || formattedTextField2.getText().length() >= 1 || formattedTextField3.getText().length() >= 1 || formattedTextField4.getText().length() >= 1 || formattedTextField5.getText().length() >= 1 || formattedTextField6.getText().length() >= 1 || formattedTextField7.getText().length() >= 1){
+				
+					String x ="select * from demata where ";
+					
+					if(formattedTextField1.getText().length() >= 1){
+						x = x + "tk=" + trackingnumber;
+						z = 1;
+					}
+					if(formattedTextField2.getText().length() >= 1 & z==1){
+						x = x + " And onoma=" + "'"  + name + "'" ;	
+					}else if (formattedTextField2.getText().length() >= 1){
+						x = x + " onoma=" + "\"" + name + "\"";
+						z=1;
+						}else {
+							z=2;
+							}
+					if(formattedTextField3.getText().length() >= 1 & z==1){
+						x = x + " And epitheto=" + "\""  + surname + "\"" ;	
+					}else if (formattedTextField3.getText().length() >= 1){
+						x = x + " epitheto=" + "\""  + surname + "\"" ;
+						z=1;
+						}
+					if(formattedTextField4.getText().length() >= 1 & z==1){
+						x = x + " And address=" + "\"" + address + "\"" ;	
+					}else if (formattedTextField4.getText().length() >= 1){
+						x = x + " address=" + "\""  + address + "\"" ;
+						z=1;
+						}
+					if(formattedTextField5.getText().length() >= 1 & z==1){
+						x = x + " And tk=" + tk;	
+					}else if (formattedTextField5.getText().length() >= 1){
+						x = x + " tk=" + tk;
+						z=1;
+						}
+					if(formattedTextField6.getText().length() >= 1 & z==1){
+						x = x + " And xwra=" + "\""  + country + "\"" ;	
+					}else if (formattedTextField6.getText().length() >= 1){
+						x = x + " xwra=" + "\""  + country + "\"" ;
+						z=1;
+						}
+					if(formattedTextField7.getText().length() >= 1 & z==1){
+						x = x + " And phone=" + phonenumber;	
+					}else if (formattedTextField7.getText().length() >= 1){
+						x = x + " phone=" + phonenumber;
+						z=1;
+						}
+				
+					System.out.println(x);
+					TableFromDatabase c =new TableFromDatabase(x);
+			        c.pack();
+			        c.setVisible(true);
+				} 
+				else JOptionPane.showMessageDialog(null,"Fill at least one Field","Wanring",JOptionPane.WARNING_MESSAGE);;
+				
+			}
+		});
 		panel_1.add(btnSearch, "cell 1 7,growy");
 		
 		JScrollPane scrollPane_1 = new JScrollPane();
@@ -270,6 +349,18 @@ public class IpalilosPanel2 extends JPanel {
 		scrollPane_1.setViewportView(textArea_1);
 		textArea_1.setLineWrap(true);
 		textArea_1.setFont(new Font("Monospaced", Font.PLAIN, 11));
+		
+		JButton Everything = new JButton("Show Everything");
+		Everything.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				String sql ="Select * from demata";
+				TableFromDatabase c =new TableFromDatabase(sql);
+		        c.pack();
+		        c.setVisible(true);
+				
+			}
+		});
+		panel_1.add(Everything, "cell 1 7");
 
 	}
 }
