@@ -127,9 +127,18 @@ public class IpalilosPanel2 extends JPanel {
 		panel.add(btnSubmit, "cell 2 8,alignx right,growy");
 		btnSubmit.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
-				//elegxos gia tixon null sta Jtextboxes gia null
-				if (formattedTextField.getText().length() >= 1 & formattedTextField_1.getText().length() >= 1 & formattedTextField_2.getText().length() >= 1 & formattedTextField_3.getText().length() >= 1 & formattedTextField_4.getText().length() >= 1 & formattedTextField_5.getText().length() >= 1){
-				
+				//elegxos gia tixon null sta Jtextboxes gia null kai arithmous sta string
+				if (formattedTextField.getText().length() >= 1 & formattedTextField_1.getText().length() >= 1 & formattedTextField_2.getText().length() >= 1 & formattedTextField_3.getText().length() >= 1 & formattedTextField_4.getText().length() >= 1 & formattedTextField_5.getText().length() >= 1)
+				{
+					if(formattedTextField.getText().matches("^[a-zA-Z]+$")){
+						System.out.println("Help name");
+						
+						if(formattedTextField_1.getText().matches("^[a-zA-Z]+$")){
+							
+								if(formattedTextField_4.getText().matches("^[a-zA-Z]+$")){
+									
+							
+						
 				try{
 					
 					
@@ -199,7 +208,14 @@ public class IpalilosPanel2 extends JPanel {
 				e.printStackTrace();
 					}
 				
-				}else JOptionPane.showMessageDialog(null,"All the fields are mandatory! \n (Except for comments)","Wanring",JOptionPane.WARNING_MESSAGE);;
+									}else JOptionPane.showMessageDialog(null,"Field Country takes only letters","Wanring",JOptionPane.WARNING_MESSAGE);;
+								}else JOptionPane.showMessageDialog(null,"Field Surname takes only letters","Wanring",JOptionPane.WARNING_MESSAGE);;
+							
+							}else JOptionPane.showMessageDialog(null,"Field Name takes only letters","Wanring",JOptionPane.WARNING_MESSAGE);;
+						
+						}
+				
+				else JOptionPane.showMessageDialog(null,"All the fields are mandatory! \n (Except for comments)","Wanring",JOptionPane.WARNING_MESSAGE);;
 			}
 			
 			});
@@ -287,7 +303,7 @@ public class IpalilosPanel2 extends JPanel {
 					String x ="select * from demata where ";
 					
 					if(formattedTextField1.getText().length() >= 1){
-						x = x + "tk=" + trackingnumber;
+						x = x + "trackingnumber=" + trackingnumber;
 						z = 1;
 					}
 					if(formattedTextField2.getText().length() >= 1 & z==1){
