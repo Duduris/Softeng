@@ -130,12 +130,11 @@ public class IpalilosPanel2 extends JPanel {
 				//elegxos gia tixon null sta Jtextboxes gia null kai arithmous sta string
 				if (formattedTextField.getText().length() >= 1 & formattedTextField_1.getText().length() >= 1 & formattedTextField_2.getText().length() >= 1 & formattedTextField_3.getText().length() >= 1 & formattedTextField_4.getText().length() >= 1 & formattedTextField_5.getText().length() >= 1)
 				{
-					if(formattedTextField.getText().matches("^[a-zA-Z]+$")){
-						System.out.println("Help name");
-						
-						if(formattedTextField_1.getText().matches("^[a-zA-Z]+$")){
-							
-								if(formattedTextField_4.getText().matches("^[a-zA-Z]+$")){
+					if(formattedTextField_5.getText().matches("^[0000000000-9999999999]+$")){
+						if(formattedTextField_3.getText().matches("^[00000-99999]+$")){
+							if(formattedTextField.getText().matches("^[a-zA-Z]+$")){
+								if(formattedTextField_1.getText().matches("^[a-zA-Z]+$")){							
+									if(formattedTextField_4.getText().matches("^[a-zA-Z]+$")){
 									
 							
 						
@@ -158,14 +157,26 @@ public class IpalilosPanel2 extends JPanel {
 					ResultSet rs = stm.executeQuery(sqldiavasma);
 					while(rs.next()){
 						id2 = rs.getInt("id");
-						}
+					}
 					
 					
 					//tyxaio tracking number Elegxos me epanalipsi an yparxei eidh
+					String sqldiavasmatr = "select * from demata";
+					ResultSet rs1 = stm.executeQuery(sqldiavasmatr);
 					int min = 0000000;
 					int max = 9999999;
+					int x=0,y=10;
 					Random r = new Random();
-					int trackingnumber = r.nextInt(max - min + 1) + min;
+					int trackingnumber;
+					trackingnumber = r.nextInt(max - min + 1) + min;
+					while (rs1.next()){
+					if(rs1.getInt("trackingnumber")==trackingnumber){
+						trackingnumber = r.nextInt(max - min + 1) + min;
+						}
+					}
+					
+					
+					//if (trackingnumber==rs.getInt("trackingnumber"))
 					
 					//Arxiki katastasi (Mi paradomeno)
 					int katastasi = 0;
@@ -207,13 +218,15 @@ public class IpalilosPanel2 extends JPanel {
 					}catch(Exception e){
 				e.printStackTrace();
 					}
-				
 									}else JOptionPane.showMessageDialog(null,"Field Country takes only letters","Wanring",JOptionPane.WARNING_MESSAGE);;
 								}else JOptionPane.showMessageDialog(null,"Field Surname takes only letters","Wanring",JOptionPane.WARNING_MESSAGE);;
 							
 							}else JOptionPane.showMessageDialog(null,"Field Name takes only letters","Wanring",JOptionPane.WARNING_MESSAGE);;
+					}else JOptionPane.showMessageDialog(null,"Field PostalCode takes only 5-digit numbers","Wanring",JOptionPane.WARNING_MESSAGE);;
+					
 						
-						}
+						}else JOptionPane.showMessageDialog(null,"Field Phone takes only 10-digit numbers","Wanring",JOptionPane.WARNING_MESSAGE);;
+				}
 				
 				else JOptionPane.showMessageDialog(null,"All the fields are mandatory! \n (Except for comments)","Wanring",JOptionPane.WARNING_MESSAGE);;
 			}
@@ -299,7 +312,14 @@ public class IpalilosPanel2 extends JPanel {
 				
 				int z=0;
 				if (formattedTextField1.getText().length() >= 1 || formattedTextField2.getText().length() >= 1 || formattedTextField3.getText().length() >= 1 || formattedTextField4.getText().length() >= 1 || formattedTextField5.getText().length() >= 1 || formattedTextField6.getText().length() >= 1 || formattedTextField7.getText().length() >= 1){
-				
+					if(formattedTextField1.getText().matches("^[000000000-99999999]+$")){
+						if(formattedTextField5.getText().matches("^[00000-99999]+$")){
+							if(formattedTextField7.getText().matches("^[0000000000-9999999999]+$")){
+					
+					if(formattedTextField2.getText().matches("^[a-zA-Z]+$")){
+						if(formattedTextField3.getText().matches("^[a-zA-Z]+$")){
+							if(formattedTextField6.getText().matches("^[a-zA-Z]+$")){
+						
 					String x ="select * from demata where ";
 					
 					if(formattedTextField1.getText().length() >= 1){
@@ -349,7 +369,17 @@ public class IpalilosPanel2 extends JPanel {
 					TableFromDatabase c =new TableFromDatabase(x);
 			        c.pack();
 			        c.setVisible(true);
+							}
+							else JOptionPane.showMessageDialog(null,"The Country field takes only letters","Wanring",JOptionPane.WARNING_MESSAGE);;
+						}
+						else JOptionPane.showMessageDialog(null,"The Surname field takes only letters","Wanring",JOptionPane.WARNING_MESSAGE);;	
+					}
+					else JOptionPane.showMessageDialog(null,"The Name field takes only letters","Wanring",JOptionPane.WARNING_MESSAGE);;
 				} 
+								else JOptionPane.showMessageDialog(null,"The PhoneNumber field takes only 10-digit numbers","Wanring",JOptionPane.WARNING_MESSAGE);;
+							}else JOptionPane.showMessageDialog(null,"The PostalCode field takes only 5-digit numbers","Wanring",JOptionPane.WARNING_MESSAGE);;
+					}else JOptionPane.showMessageDialog(null,"The TrackingNumber field takes only 8-digit numbers","Wanring",JOptionPane.WARNING_MESSAGE);;
+				}
 				else JOptionPane.showMessageDialog(null,"Fill at least one Field","Wanring",JOptionPane.WARNING_MESSAGE);;
 				
 			}
