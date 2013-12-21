@@ -17,9 +17,9 @@ public class TestGuiWrapper {
 		  /*
 		   * Epilogi Gui
 		   */
-		  //IpalilosPanel gui = new IpalilosPanel();
+		  IpalilosPanel2 gui = new IpalilosPanel2();
 		  //MetaforeasPanel gui = new MetaforeasPanel();
-		  LoginPanel gui = new LoginPanel();
+		  //LoginPanel gui = new LoginPanel();
 		  //AdministratorPanel gui = new AdministratorPanel();
 		  
 		  /*gui.setPreferredSize(new Dimension(600,400));

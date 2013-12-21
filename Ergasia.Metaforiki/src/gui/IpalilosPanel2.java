@@ -9,6 +9,7 @@ import net.miginfocom.swing.MigLayout;
 import javax.swing.JLabel;
 import javax.swing.JFormattedTextField;
 import javax.swing.JCheckBox;
+import javax.swing.JOptionPane;
 import javax.swing.JTextArea;
 import javax.swing.JButton;
 import javax.swing.JScrollPane;
@@ -50,20 +51,20 @@ public class IpalilosPanel2 extends JPanel {
 		JLabel lblName = new JLabel("Name");
 		panel.add(lblName, "cell 0 0,alignx center,aligny center");
 		
-		final JFormattedTextField frmtdtxtfldAsdsd = new JFormattedTextField();
-		panel.add(frmtdtxtfldAsdsd, "cell 1 0 2 1,grow");
+		final JFormattedTextField formattedTextField = new JFormattedTextField();
+		panel.add(formattedTextField, "cell 1 0 2 1,grow");
 		
 		JLabel lblSurname = new JLabel("Surname");
 		panel.add(lblSurname, "cell 0 1,alignx center,aligny center");
 		
-		final JFormattedTextField frmtdtxtfldSdfafdsf = new JFormattedTextField();
-		panel.add(frmtdtxtfldSdfafdsf, "cell 1 1 2 1,grow");
+		final JFormattedTextField formattedTextField_1 = new JFormattedTextField();
+		panel.add(formattedTextField_1, "cell 1 1 2 1,grow");
 		
 		JLabel lblAddress = new JLabel("Address");
 		panel.add(lblAddress, "cell 0 2,alignx center,aligny center");
 		
-		final JFormattedTextField frmtdtxtfldDfsgsdfsdfasf = new JFormattedTextField();
-		panel.add(frmtdtxtfldDfsgsdfsdfasf, "cell 1 2 2 1,grow");
+		final JFormattedTextField formattedTextField_2 = new JFormattedTextField();
+		panel.add(formattedTextField_2, "cell 1 2 2 1,grow");
 		
 		JLabel lblPostalCode = new JLabel("Postal Code");
 		panel.add(lblPostalCode, "cell 0 3,alignx center,aligny center");
@@ -74,8 +75,8 @@ public class IpalilosPanel2 extends JPanel {
 		JLabel lblCountry = new JLabel("Country");
 		panel.add(lblCountry, "cell 0 4,alignx center,aligny center");
 		
-		final JFormattedTextField frmtdtxtfldFdssdfg = new JFormattedTextField();
-		panel.add(frmtdtxtfldFdssdfg, "cell 1 4 2 1,grow");
+		final JFormattedTextField formattedTextField_4 = new JFormattedTextField();
+		panel.add(formattedTextField_4, "cell 1 4 2 1,grow");
 		
 		JLabel lblPhoneNumber = new JLabel("Phone Number");
 		panel.add(lblPhoneNumber, "cell 0 5,alignx center,aligny center");
@@ -98,38 +99,41 @@ public class IpalilosPanel2 extends JPanel {
 		scrollPane.setHorizontalScrollBarPolicy(ScrollPaneConstants.HORIZONTAL_SCROLLBAR_NEVER);
 		panel.add(scrollPane, "cell 1 7 2 1,grow");
 		
-		final JTextArea txtrDfcsbnfhgGhetrgGh = new JTextArea();
-		txtrDfcsbnfhgGhetrgGh.setFont(new Font("Monospaced", Font.PLAIN, 11));
-		txtrDfcsbnfhgGhetrgGh.setLineWrap(true);
-		scrollPane.setViewportView(txtrDfcsbnfhgGhetrgGh);
+		final JTextArea TextArea = new JTextArea();
+		TextArea.setFont(new Font("Monospaced", Font.PLAIN, 11));
+		TextArea.setLineWrap(true);
+		scrollPane.setViewportView(TextArea);
 		
 		
 		
 		JButton btnClear = new JButton("Clear");
+		btnClear.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				formattedTextField.setText("");
+				formattedTextField_1.setText("");
+				formattedTextField_2.setText("");
+				formattedTextField_3.setText("");
+				formattedTextField_4.setText("");
+				formattedTextField_5.setText("");
+				chckbxNewCheckBox.setSelected(false);
+				TextArea.setText("");
+			}
+		});
 		panel.add(btnClear, "cell 1 8,alignx left,growy");
 		
-		
-		/*
-		final String name = frmtdtxtfldAsdsd.getText(); //Name
-		final String surname = frmtdtxtfldSdfafdsf.getText(); //Surname
-		final String address = frmtdtxtfldDfsgsdfsdfasf.getText(); //Address
-		final int tk = Integer.parseInt(formattedTextField_3.getText()); //Postal Code
-		final String xwra = frmtdtxtfldFdssdfg.getText(); //Country
-		final int phone = Integer.parseInt(formattedTextField_5.getText()); // Phone
-		final boolean checkbox = chckbxNewCheckBox.isSelected();//checkbox
-		final String comment = txtrDfcsbnfhgGhetrgGh.getText(); //Comment
-		*/
 		
 		
 		JButton btnSubmit = new JButton("Submit");
 		panel.add(btnSubmit, "cell 2 8,alignx right,growy");
 		btnSubmit.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
+				//elegxos gia tixon null sta Jtextboxes gia null
+				if (formattedTextField.getText().length() >= 1 & formattedTextField_1.getText().length() >= 1 & formattedTextField_2.getText().length() >= 1 & formattedTextField_3.getText().length() >= 1 & formattedTextField_4.getText().length() >= 1 & formattedTextField_5.getText().length() >= 1){
 				
 				try{
 					
 					
-					//elegxos gia tixon null sta Jtextboxes
+					
 					//grafw sti vasi
 					Class.forName("com.mysql.jdbc.Driver").newInstance();
 					
@@ -167,23 +171,37 @@ public class IpalilosPanel2 extends JPanel {
 					System.out.println(id2 + 1);
 					ps.setInt(1, id2 + 1);
 					ps.setInt(2, trackingnumber);
-					ps.setString(3, frmtdtxtfldAsdsd.getText());
-					ps.setString(4, frmtdtxtfldSdfafdsf.getText());
-					ps.setString(5, frmtdtxtfldDfsgsdfsdfasf.getText());
+					ps.setString(3, formattedTextField.getText());
+					ps.setString(4, formattedTextField_1.getText());
+					ps.setString(5, formattedTextField_2.getText());
 					ps.setInt(6, Integer.parseInt(formattedTextField_3.getText()));
-					ps.setString(7, frmtdtxtfldFdssdfg.getText());
+					ps.setString(7, formattedTextField_4.getText());
 					ps.setInt(8, Integer.parseInt(formattedTextField_5.getText()));
 					ps.setInt(9, ckeck);
-					ps.setString(10, txtrDfcsbnfhgGhetrgGh.getText());
+					ps.setString(10, TextArea.getText());
 					ps.setInt(11, katastasi);
 					java.sql.Date date = getCurrentJavaSqlDate();
 				    ps.setDate(12, date);
 					ps.executeUpdate();
 					
+					formattedTextField.setText("");
+					formattedTextField_1.setText("");
+					formattedTextField_2.setText("");
+					formattedTextField_3.setText("");
+					formattedTextField_4.setText("");
+					formattedTextField_5.setText("");
+					chckbxNewCheckBox.setSelected(false);
+					TextArea.setText("");
+					
+					JOptionPane.showMessageDialog(null,"The tracking number for \n this package is: " + trackingnumber,"Wanring",JOptionPane.WARNING_MESSAGE);;
 					
 					}catch(Exception e){
 				e.printStackTrace();
-			}}
+					}
+				
+				}else JOptionPane.showMessageDialog(null,"All the fields are mandatory! \n (Except for comments)","Wanring",JOptionPane.WARNING_MESSAGE);;
+			}
+			
 			});
 		
 		
