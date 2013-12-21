@@ -4,6 +4,8 @@ import java.awt.Dimension;
 import java.awt.Toolkit;
 import javax.swing.JFrame;
 
+import controllers.LoginPanelController;
+
 public class TestGuiWrapper {
 
 	public static void main(String[] args) {
@@ -17,10 +19,14 @@ public class TestGuiWrapper {
 		  /*
 		   * Epilogi Gui
 		   */
-		  IpalilosPanel2 gui = new IpalilosPanel2();
+		  //IpalilosPanel2 gui = new IpalilosPanel2();
 		  //MetaforeasPanel gui = new MetaforeasPanel();
-		  //LoginPanel gui = new LoginPanel();
+		  LoginPanel gui = new LoginPanel();
 		  //AdministratorPanel gui = new AdministratorPanel();
+		  //IpalilosPanel gui = new IpalilosPanel();
+		  
+		  
+		  LoginPanelController guicont = new LoginPanelController(gui);
 		  
 		  /*gui.setPreferredSize(new Dimension(600,400));
 		  frame.getContentPane().add(gui);

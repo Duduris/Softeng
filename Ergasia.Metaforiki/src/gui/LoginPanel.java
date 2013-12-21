@@ -8,12 +8,14 @@ import javax.swing.JLabel;
 import javax.swing.JButton;
 import javax.swing.JComboBox;
 import java.awt.Font;
+import java.awt.event.ActionListener;
 
 public class LoginPanel extends JPanel {
 
 	private static final long serialVersionUID = 3;
 	private JPasswordField pwdPass;
-	String usertypes[] = {"Administrator", "Customer", "Clerk", "Courier"};
+	private String usertypes[] = {"Administrator", "Customer", "Clerk", "Courier"};
+	private JButton btnSingIn;
 
 	public LoginPanel() {
 		setOpaque(false);
@@ -33,9 +35,16 @@ public class LoginPanel extends JPanel {
 		pwdPass = new JPasswordField();
 		add(pwdPass, "cell 1 4,grow");
 		
-		JButton btnSingIn = new JButton("Sing In");
-		add(btnSingIn, "cell 1 5,grow");
+		btnSingIn = new JButton("Sing In");
 
+		add(btnSingIn, "cell 1 5,grow");
+		
+		//String value=comboBox.getSelectedItem().toString();
+		
+	}
+	
+	public void btnSingInListener(ActionListener act){
+		btnSingIn.addActionListener(act);
 	}
 
 }
