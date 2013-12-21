@@ -13,6 +13,7 @@ import java.awt.CardLayout;
 public class AdministratorPanel extends JPanel {
 
 	private static final long serialVersionUID = 4;
+	
 	String teststring[] = { "Fragile", "Delivered" };
 	DefaultPieDataset pieDataset = new DefaultPieDataset();
 

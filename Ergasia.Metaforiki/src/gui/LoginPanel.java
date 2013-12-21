@@ -1,14 +1,13 @@
 package gui;
 
 import javax.swing.JPanel;
-
 import net.miginfocom.swing.MigLayout;
-
 import javax.swing.JPasswordField;
 import javax.swing.JFormattedTextField;
 import javax.swing.JLabel;
 import javax.swing.JButton;
 import javax.swing.JComboBox;
+import java.awt.Font;
 
 public class LoginPanel extends JPanel {
 
@@ -17,9 +16,11 @@ public class LoginPanel extends JPanel {
 	String usertypes[] = {"Administrator", "Customer", "Clerk", "Courier"};
 
 	public LoginPanel() {
+		setOpaque(false);
 		setLayout(new MigLayout("", "[grow][200][grow]", "[grow][40][40][40][40][40][grow]"));
 		
 		JLabel lblMetaforikiLogin = new JLabel("METAFORIKI LOGIN");
+		lblMetaforikiLogin.setFont(new Font("Tahoma", Font.BOLD, 15));
 		add(lblMetaforikiLogin, "cell 1 1,alignx center,aligny center");
 		
 		JComboBox<Object> comboBox = new JComboBox<Object>(usertypes);
