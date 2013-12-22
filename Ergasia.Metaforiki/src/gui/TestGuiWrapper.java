@@ -5,6 +5,7 @@ import java.awt.Toolkit;
 import javax.swing.JFrame;
 
 import controllers.LoginPanelController;
+import controllers.MetaforeasPanelController;
 
 public class TestGuiWrapper {
 
@@ -19,19 +20,22 @@ public class TestGuiWrapper {
 		  /*
 		   * Epilogi Gui
 		   */
-		  IpalilosPanel2 gui = new IpalilosPanel2();
+		  //IpalilosPanel2 gui = new IpalilosPanel2();
 		  //MetaforeasPanel gui = new MetaforeasPanel();
 		  //LoginPanel gui = new LoginPanel();
 		  //AdministratorPanel gui = new AdministratorPanel();
 		  //IpalilosPanel gui = new IpalilosPanel();
+		  CustomerPanel gui = new CustomerPanel();
+		  
 		  
 		  //LoginPanelController guicont = new LoginPanelController(gui);
+		  //MetaforeasPanelController guicont = new MetaforeasPanelController(gui);
 		  
-		  gui.setPreferredSize(new Dimension(600,400));
+		  /*gui.setPreferredSize(new Dimension(600,400));
 		  frame.getContentPane().add(gui);
 		  frame.pack();
 		  frame.setVisible(true);
-		  
+		  */
 		  frame.add(gui);
 		  frame.setVisible(true);
 		  

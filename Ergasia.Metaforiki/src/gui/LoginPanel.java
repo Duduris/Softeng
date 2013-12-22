@@ -1,12 +1,15 @@
 package gui;
 
 import javax.swing.JPanel;
+
 import net.miginfocom.swing.MigLayout;
+
 import javax.swing.JPasswordField;
 import javax.swing.JFormattedTextField;
 import javax.swing.JLabel;
 import javax.swing.JButton;
 import javax.swing.JComboBox;
+
 import java.awt.Font;
 import java.awt.event.ActionListener;
 
@@ -15,7 +18,9 @@ public class LoginPanel extends JPanel {
 	private static final long serialVersionUID = 3;
 	private JPasswordField pwdPass;
 	private String usertypes[] = {"Administrator", "Customer", "Clerk", "Courier"};
-	private JButton btnSingIn;
+	public JButton btnSingIn;
+	private JComboBox<Object> comboBox;
+	private JFormattedTextField formattedTextField;
 
 	public LoginPanel() {
 		setOpaque(false);
@@ -25,11 +30,11 @@ public class LoginPanel extends JPanel {
 		lblMetaforikiLogin.setFont(new Font("Tahoma", Font.BOLD, 15));
 		add(lblMetaforikiLogin, "cell 1 1,alignx center,aligny center");
 		
-		JComboBox<Object> comboBox = new JComboBox<Object>(usertypes);
+		comboBox = new JComboBox<Object>(usertypes);
 		comboBox.setSelectedIndex(1);
 		add(comboBox, "cell 1 2,grow");
 		
-		JFormattedTextField formattedTextField = new JFormattedTextField();
+		formattedTextField = new JFormattedTextField();
 		add(formattedTextField, "cell 1 3,grow");
 		
 		pwdPass = new JPasswordField();
@@ -39,12 +44,25 @@ public class LoginPanel extends JPanel {
 
 		add(btnSingIn, "cell 1 5,grow");
 		
-		//String value=comboBox.getSelectedItem().toString();
 		
 	}
 	
-	public void btnSingInListener(ActionListener act){
+	public void btnSingInListener(ActionListener act) {
 		btnSingIn.addActionListener(act);
+	}
+	
+	public String getUserType() {
+		return comboBox.getSelectedItem().toString();
+	}
+	
+	public String getUserName() {
+		return formattedTextField.getText();
+	}
+	
+	@SuppressWarnings("deprecation")
+	public String getPass() {
+		//return pwdPass.getPassword();
+		return pwdPass.getText();
 	}
 
 }

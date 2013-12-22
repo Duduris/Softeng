@@ -5,6 +5,7 @@ import java.awt.event.ActionListener;
 import gui.LoginPanel;
 
 public class LoginPanelController {
+	
 	private LoginPanel loginpanel;
 	
 	public LoginPanelController(LoginPanel loginpanel) {
@@ -14,7 +15,22 @@ public class LoginPanelController {
 	
 	class BtnSingInListener implements ActionListener {
 		public void actionPerformed(ActionEvent e) {
-			System.out.println("Test");
+			/*
+			 * An Patithike to Singin Test
+			 */
+			String test = loginpanel.getUserType() + " " + loginpanel.getUserName() + " " +  loginpanel.getPass();
+			System.out.println(test);
 		}
 	}
+	
+	public String changePanel(){
+		return loginpanel.getUserType();
+	}
+	
+	/*
+	 * Test
+	public void panelListener(ActionListener act) {
+		loginpanel.btnSingIn.addActionListener(act);
+	}
+	*/
 }
