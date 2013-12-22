@@ -18,6 +18,7 @@ import javax.swing.table.DefaultTableModel;
 public class MetaforeasPanel extends JPanel {
 
 	private static final long serialVersionUID = 2;
+	
 	private String[] problem = { "OK", "DAMAGED", "UNAVAILBLE", "WRONG ADDRESS" };
 	private JTable table;
 	private DefaultTableModel tm;

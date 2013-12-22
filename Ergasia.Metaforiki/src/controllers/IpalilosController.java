@@ -4,11 +4,11 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import gui.IpalilosPanel;
 
-public class IpalilosPanelController {
+public class IpalilosController {
 
 	private IpalilosPanel gui;
 	
-	public IpalilosPanelController(IpalilosPanel gui) {
+	public IpalilosController(IpalilosPanel gui) {
 		this.gui = gui;
 		gui.btnClearListener(new BtnClearListener());
 		gui.btnSubmitListener(new BtnSubmitListener());

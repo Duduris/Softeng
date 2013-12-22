@@ -4,11 +4,11 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import gui.AdministratorPanel;
 
-public class AdministratorPanelController {
+public class AdministratorController {
 	
 	private AdministratorPanel gui;
 
-	public AdministratorPanelController(AdministratorPanel gui) {
+	public AdministratorController(AdministratorPanel gui) {
 		this.gui = gui;
 		gui.btnExportListener(new BtnExportListener());
 		gui.btnExitListener(new BtnExitListener());

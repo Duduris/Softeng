@@ -14,6 +14,7 @@ import javax.swing.JFormattedTextField;
 public class CustomerPanel extends JPanel {
 
 	private static final long serialVersionUID = 5;
+	
 	private JFormattedTextField textField;
 	private JTextArea textArea;
 	private JButton btnSearch;

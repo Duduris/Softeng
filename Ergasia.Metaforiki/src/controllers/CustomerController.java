@@ -4,11 +4,11 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import gui.CustomerPanel;
 
-public class CustomerPanelController {
+public class CustomerController {
 
 	private CustomerPanel gui;
 	
-	public CustomerPanelController(CustomerPanel gui) {
+	public CustomerController(CustomerPanel gui) {
 		this.gui = gui;
 		gui.btnSearchListener(new BtnSearchListener());
 	}

@@ -4,8 +4,8 @@ import java.awt.Dimension;
 import java.awt.Toolkit;
 import javax.swing.JFrame;
 
-import controllers.LoginPanelController;
-import controllers.MetaforeasPanelController;
+import controllers.LoginController;
+import controllers.MetaforeasController;
 
 public class TestGuiWrapper {
 
@@ -28,14 +28,10 @@ public class TestGuiWrapper {
 		  CustomerPanel gui = new CustomerPanel();
 		  
 		  
-		  //LoginPanelController guicont = new LoginPanelController(gui);
-		  //MetaforeasPanelController guicont = new MetaforeasPanelController(gui);
+		  //LoginController guicont = new LoginPanelController(gui);
+		  //MetaforeasController guicont = new MetaforeasPanelController(gui);
+		  //CustomerPanelConto
 		  
-		  /*gui.setPreferredSize(new Dimension(600,400));
-		  frame.getContentPane().add(gui);
-		  frame.pack();
-		  frame.setVisible(true);
-		  */
 		  frame.add(gui);
 		  frame.setVisible(true);
 		  

@@ -18,6 +18,7 @@ import java.awt.event.ActionListener;
 public class AdministratorPanel extends JPanel {
 
 	private static final long serialVersionUID = 4;
+	
 	private JComboBox<Object> comboBox;
 	private String teststring[] = { "Fragile", "Delivered" };
 	private JButton btnExit;
@@ -69,8 +70,8 @@ public class AdministratorPanel extends JPanel {
 		return comboBox.getSelectedItem().toString();
 	}
 	
-	public void setChart(DefaultPieDataset Dataset) {
-		pieDataset = Dataset;
+	public void setChart(DefaultPieDataset dataset) {
+		pieDataset = dataset;
 	}
 
 

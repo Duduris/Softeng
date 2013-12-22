@@ -16,6 +16,7 @@ import java.awt.event.ActionListener;
 public class LoginPanel extends JPanel {
 
 	private static final long serialVersionUID = 3;
+	
 	private JPasswordField pwdPass;
 	private String usertypes[] = {"Administrator", "Customer", "Clerk", "Courier"};
 	public JButton btnSingIn;

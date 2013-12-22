@@ -4,11 +4,11 @@ import java.awt.event.ActionListener;
 
 import gui.LoginPanel;
 
-public class LoginPanelController {
+public class LoginController {
 	
 	private LoginPanel loginpanel;
 	
-	public LoginPanelController(LoginPanel loginpanel) {
+	public LoginController(LoginPanel loginpanel) {
 		this.loginpanel = loginpanel;
 		loginpanel.btnSingInListener(new BtnSingInListener());
 	}

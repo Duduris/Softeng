@@ -4,11 +4,11 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import gui.MetaforeasPanel;
 
-public class MetaforeasPanelController {
+public class MetaforeasController {
 	
 	private MetaforeasPanel gui;
 	
-	public MetaforeasPanelController(MetaforeasPanel gui){
+	public MetaforeasController(MetaforeasPanel gui){
 		this.gui = gui;
 		gui.btnSubmitListener(new BtnSumitListener());
 		gui.btnMapListener(new BtnSumitListener());
