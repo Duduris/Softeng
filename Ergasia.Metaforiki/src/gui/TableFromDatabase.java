@@ -94,10 +94,13 @@ Class.forName("com.mysql.jdbc.Driver").newInstance();
 
         JScrollPane scrollPane = new JScrollPane( table );
         scrollPane.setSize(new Dimension(1280, 720));
-        getContentPane().add( scrollPane );
+        getContentPane().add( scrollPane, BorderLayout.CENTER );
 
         JPanel buttonPanel = new JPanel();
         getContentPane().add( buttonPanel, BorderLayout.SOUTH );
+        
+        JButton btnDelete = new JButton("Delete");
+        buttonPanel.add(btnDelete);
     }
     
 }

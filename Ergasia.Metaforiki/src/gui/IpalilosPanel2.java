@@ -3,9 +3,7 @@ package gui;
 import javax.swing.JPanel;
 import javax.swing.BoxLayout;
 import javax.swing.JTabbedPane;
-
 import net.miginfocom.swing.MigLayout;
-
 import javax.swing.JLabel;
 import javax.swing.JFormattedTextField;
 import javax.swing.JCheckBox;
@@ -14,7 +12,6 @@ import javax.swing.JTextArea;
 import javax.swing.JButton;
 import javax.swing.JScrollPane;
 import javax.swing.ScrollPaneConstants;
-
 import java.awt.Font;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
@@ -27,13 +24,16 @@ import java.util.Random;
 
 
 public class IpalilosPanel2 extends JPanel {
+	private static final long serialVersionUID = 1;
 	
+	
+	//date
 	public static java.sql.Date getCurrentJavaSqlDate() {
 	    java.util.Date today = new java.util.Date();
 	    return new java.sql.Date(today.getTime());
 	  }
-	private static final long serialVersionUID = 1;
-
+	
+	
 	public IpalilosPanel2() {
 		setLayout(new BoxLayout(this, BoxLayout.X_AXIS));
 		
@@ -90,8 +90,7 @@ public class IpalilosPanel2 extends JPanel {
 		
 		final JCheckBox chckbxNewCheckBox = new JCheckBox("");
 		panel.add(chckbxNewCheckBox, "cell 1 6");
-		
-		
+				
 		JLabel lblComments = new JLabel("Comments");
 		panel.add(lblComments, "cell 0 7,alignx center,aligny center");
 		
@@ -104,9 +103,9 @@ public class IpalilosPanel2 extends JPanel {
 		TextArea.setLineWrap(true);
 		scrollPane.setViewportView(TextArea);
 		
-		
-		
+		//Clear Button kai action Listener
 		JButton btnClear = new JButton("Clear");
+		panel.add(btnClear, "cell 1 8,alignx left,growy");
 		btnClear.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				formattedTextField.setText("");
@@ -119,50 +118,46 @@ public class IpalilosPanel2 extends JPanel {
 				TextArea.setText("");
 			}
 		});
-		panel.add(btnClear, "cell 1 8,alignx left,growy");
 		
 		
 		
+		//Submit Button kai Action Listener
 		JButton btnSubmit = new JButton("Submit");
 		panel.add(btnSubmit, "cell 2 8,alignx right,growy");
 		btnSubmit.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
-				//elegxos gia tixon null sta Jtextboxes gia null kai arithmous sta string
+				//elegxos gia tixon null se ola ta textboxes kai perirismous se auta
 				if (formattedTextField.getText().length() >= 1 & formattedTextField_1.getText().length() >= 1 & formattedTextField_2.getText().length() >= 1 & formattedTextField_3.getText().length() >= 1 & formattedTextField_4.getText().length() >= 1 & formattedTextField_5.getText().length() >= 1)
 				{
-					if(formattedTextField_5.getText().matches("^[1000000000-9999999999]+$")){
-						if(formattedTextField_3.getText().matches("^[10000-99999]+$")){
-							if(formattedTextField.getText().matches("^[a-zA-Z]+$")){
-								if(formattedTextField_1.getText().matches("^[a-zA-Z]+$")){							
-									if(formattedTextField_4.getText().matches("^[a-zA-Z]+$")){
-									
-							
+					if(formattedTextField_5.getText().matches("\\d{10}|\\d{7}")){
+						if(formattedTextField_3.getText().matches("\\d{5}|\\d{5}")){
+							if(formattedTextField.getText().matches("[a-zA-Z\\s]*")){
+								if(formattedTextField_1.getText().matches("[a-zA-Z\\s]*")){;
+									if(formattedTextField_4.getText().matches("[a-zA-Z\\s]*")){;
 						
 				try{
 					
-					
-					
-					//grafw sti vasi
+					//Connect sti vasi
 					Class.forName("com.mysql.jdbc.Driver").newInstance();
-					
 					String url = "jdbc:mysql://83.212.112.80/foo";
 					String username = "root";
 					String pass = "1234";
-					
 					Connection conn = DriverManager.getConnection(url, username, pass);
 					Statement stm = conn.createStatement();
 					
-					int id2=15;
-					String sqldiavasma = "select * from demata";
-					ResultSet rs = stm.executeQuery(sqldiavasma);
+					
+					//Eisodos teleytaiou id
+					int id2=0;
+					String sqldiavasmaid = "select * from demata";
+					ResultSet rs = stm.executeQuery(sqldiavasmaid);
 					while(rs.next()){
 						id2 = rs.getInt("id");
 					}
 					
 					
-					//tyxaio tracking number Elegxos me epanalipsi an yparxei eidh
-					String sqldiavasmatr = "select * from demata";
-					ResultSet rs1 = stm.executeQuery(sqldiavasmatr);
+					//tyxaio tracking number kai Elegxos an yparxei eidh
+					String sqldiavasmatn = "select * from demata";
+					ResultSet rs1 = stm.executeQuery(sqldiavasmatn);
 					int min = 0000000;
 					int max = 9999999;
 					int x=0,y=10;
@@ -176,16 +171,16 @@ public class IpalilosPanel2 extends JPanel {
 					}
 					
 					
-					//if (trackingnumber==rs.getInt("trackingnumber"))
-					
-					//Arxiki katastasi (Mi paradomeno)
-					int katastasi = 0;
+					//Arxiki katastasi=0 (Mi paradomeno)
+					String katastasi = "Not Delivered";
 					
 					//fragile
-					int ckeck = 0;
+					String ckeck = "Yes";
 					if (chckbxNewCheckBox.isSelected()) {
-						ckeck = 1;
-						}
+						ckeck = "No";
+					}
+					
+					//Grapsimo sti basi
 					String sqlgrapsimo = "insert into demata values(?,?,?,?,?,?,?,?,?,?,?,?)";
 					PreparedStatement ps = conn.prepareStatement(sqlgrapsimo);
 					System.out.println(id2 + 1);
@@ -197,13 +192,15 @@ public class IpalilosPanel2 extends JPanel {
 					ps.setInt(6, Integer.parseInt(formattedTextField_3.getText()));
 					ps.setString(7, formattedTextField_4.getText());
 					ps.setInt(8, Integer.parseInt(formattedTextField_5.getText()));
-					ps.setInt(9, ckeck);
+					ps.setString(9, ckeck);
 					ps.setString(10, TextArea.getText());
-					ps.setInt(11, katastasi);
+					ps.setString(11, katastasi);
 					java.sql.Date date = getCurrentJavaSqlDate();
 				    ps.setDate(12, date);
 					ps.executeUpdate();
 					
+					
+					//Clear textboxes meta apo epitixis eggrafi
 					formattedTextField.setText("");
 					formattedTextField_1.setText("");
 					formattedTextField_2.setText("");
@@ -213,25 +210,21 @@ public class IpalilosPanel2 extends JPanel {
 					chckbxNewCheckBox.setSelected(false);
 					TextArea.setText("");
 					
-					JOptionPane.showMessageDialog(null,"The tracking number for \n this package is: " + trackingnumber,"Wanring",JOptionPane.WARNING_MESSAGE);;
+					//Tracking number paketou
+					JOptionPane.showMessageDialog(null,"The tracking number for \n this package is: " + trackingnumber,"Tracking Number",JOptionPane.WARNING_MESSAGE);;
 					
 					}catch(Exception e){
 				e.printStackTrace();
 					}
 									}else JOptionPane.showMessageDialog(null,"Field Country takes only letters","Wanring",JOptionPane.WARNING_MESSAGE);;
-								}else JOptionPane.showMessageDialog(null,"Field Surname takes only letters","Wanring",JOptionPane.WARNING_MESSAGE);;
-							
+								}else JOptionPane.showMessageDialog(null,"Field Surname takes only letters","Wanring",JOptionPane.WARNING_MESSAGE);;						
 							}else JOptionPane.showMessageDialog(null,"Field Name takes only letters","Wanring",JOptionPane.WARNING_MESSAGE);;
-					}else JOptionPane.showMessageDialog(null,"Field PostalCode takes only 5-digit numbers","Wanring",JOptionPane.WARNING_MESSAGE);;
-					
-						
-						}else JOptionPane.showMessageDialog(null,"Field Phone takes only 10-digit numbers","Wanring",JOptionPane.WARNING_MESSAGE);;
-				}
-				
-				else JOptionPane.showMessageDialog(null,"All the fields are mandatory! \n (Except for comments)","Wanring",JOptionPane.WARNING_MESSAGE);;
-			}
+						}else JOptionPane.showMessageDialog(null,"Field PostalCode takes only 5-digit numbers","Wanring",JOptionPane.WARNING_MESSAGE);;
+					}else JOptionPane.showMessageDialog(null,"Field Phone takes only 10-digit numbers","Wanring",JOptionPane.WARNING_MESSAGE);;
+				}else JOptionPane.showMessageDialog(null,"All the fields are mandatory! \n (Except for comments)","Wanring",JOptionPane.WARNING_MESSAGE);;
+		}
 			
-			});
+	});
 		
 		
 		/* 
@@ -284,6 +277,8 @@ public class IpalilosPanel2 extends JPanel {
 		final JFormattedTextField formattedTextField7 = new JFormattedTextField();
 		panel_1.add(formattedTextField7, "cell 1 6,grow");
 		
+		
+		//Clear Button
 		JButton btnClear_1 = new JButton("Clear");
 		btnClear_1.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
@@ -298,10 +293,14 @@ public class IpalilosPanel2 extends JPanel {
 		});
 		panel_1.add(btnClear_1, "flowx,cell 1 7,growy");
 		
+		
+		//Search Button
 		JButton btnSearch = new JButton("Search");
+		panel_1.add(btnSearch, "cell 1 7,growy");
 		btnSearch.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				
+				//Diavasma textboxes
 				String trackingnumber = formattedTextField1.getText();
 				String name = formattedTextField2.getText();
 				String surname = formattedTextField3.getText();
@@ -310,81 +309,74 @@ public class IpalilosPanel2 extends JPanel {
 				String country = formattedTextField6.getText();
 				String phonenumber = formattedTextField7.getText();
 				
-				int z=0;
+				//elegxos gia tixon null se ola ta textboxes kai perirismous se auta
 				if (formattedTextField1.getText().length() >= 1 || formattedTextField2.getText().length() >= 1 || formattedTextField3.getText().length() >= 1 || formattedTextField4.getText().length() >= 1 || formattedTextField5.getText().length() >= 1 || formattedTextField6.getText().length() >= 1 || formattedTextField7.getText().length() >= 1){
-					if(formattedTextField1.getText().matches("^[10000000-99999999]+$")){
-						if(formattedTextField5.getText().matches("^[10000-99999]+$")){
-							if(formattedTextField7.getText().matches("^[1000000000-9999999999]+$")){
-					
-					if(formattedTextField2.getText().matches("^[a-zA-Z]+$")){
-						if(formattedTextField3.getText().matches("^[a-zA-Z]+$")){
-							if(formattedTextField6.getText().matches("^[a-zA-Z]+$")){
+					if(formattedTextField1.getText().matches("\\d{0}|\\d{7}")){
+						if(formattedTextField5.getText().matches("\\d{0}|\\d{5}")){
+							if(formattedTextField7.getText().matches("\\d{0}|\\d{10}")){
+								if(formattedTextField2.getText().matches("[a-zA-Z\\s]*")){;
+									if(formattedTextField3.getText().matches("[a-zA-Z\\s]*")){;
+										if(formattedTextField6.getText().matches("[a-zA-Z\\s]*")){
 						
-					String x ="select * from demata where ";
 					
-					if(formattedTextField1.getText().length() >= 1){
-						x = x + "trackingnumber=" + trackingnumber;
-						z = 1;
-					}
-					if(formattedTextField2.getText().length() >= 1 & z==1){
-						x = x + " And onoma=" + "'"  + name + "'" ;	
-					}else if (formattedTextField2.getText().length() >= 1){
-						x = x + " onoma=" + "\"" + name + "\"";
-						z=1;
-						}else {
-							z=2;
-							}
-					if(formattedTextField3.getText().length() >= 1 & z==1){
-						x = x + " And epitheto=" + "\""  + surname + "\"" ;	
-					}else if (formattedTextField3.getText().length() >= 1){
-						x = x + " epitheto=" + "\""  + surname + "\"" ;
-						z=1;
-						}
-					if(formattedTextField4.getText().length() >= 1 & z==1){
-						x = x + " And address=" + "\"" + address + "\"" ;	
-					}else if (formattedTextField4.getText().length() >= 1){
-						x = x + " address=" + "\""  + address + "\"" ;
-						z=1;
-						}
-					if(formattedTextField5.getText().length() >= 1 & z==1){
-						x = x + " And tk=" + tk;	
-					}else if (formattedTextField5.getText().length() >= 1){
-						x = x + " tk=" + tk;
-						z=1;
-						}
-					if(formattedTextField6.getText().length() >= 1 & z==1){
-						x = x + " And xwra=" + "\""  + country + "\"" ;	
-					}else if (formattedTextField6.getText().length() >= 1){
-						x = x + " xwra=" + "\""  + country + "\"" ;
-						z=1;
-						}
-					if(formattedTextField7.getText().length() >= 1 & z==1){
-						x = x + " And phone=" + phonenumber;	
-					}else if (formattedTextField7.getText().length() >= 1){
-						x = x + " phone=" + phonenumber;
-						z=1;
-						}
-				
-					System.out.println(x);
-					TableFromDatabase c =new TableFromDatabase(x);
-			        c.pack();
-			        c.setVisible(true);
-							}
-							else JOptionPane.showMessageDialog(null,"The Country field takes only letters","Wanring",JOptionPane.WARNING_MESSAGE);;
-						}
-						else JOptionPane.showMessageDialog(null,"The Surname field takes only letters","Wanring",JOptionPane.WARNING_MESSAGE);;	
-					}
-					else JOptionPane.showMessageDialog(null,"The Name field takes only letters","Wanring",JOptionPane.WARNING_MESSAGE);;
-				} 
-								else JOptionPane.showMessageDialog(null,"The PhoneNumber field takes only 10-digit numbers","Wanring",JOptionPane.WARNING_MESSAGE);;
-							}else JOptionPane.showMessageDialog(null,"The PostalCode field takes only 5-digit numbers","Wanring",JOptionPane.WARNING_MESSAGE);;
-					}else JOptionPane.showMessageDialog(null,"The TrackingNumber field takes only 8-digit numbers","Wanring",JOptionPane.WARNING_MESSAGE);;
+				//Etoimasia query
+				String x ="select * from demata where ";
+				int z=0;
+				if(formattedTextField1.getText().length() >= 1){
+					x = x + "trackingnumber=" + trackingnumber;						z = 1;
 				}
-				else JOptionPane.showMessageDialog(null,"Fill at least one Field","Wanring",JOptionPane.WARNING_MESSAGE);;
+				if(formattedTextField2.getText().length() >= 1 & z==1){
+					x = x + " And onoma=" + "'"  + name + "'" ;	
+				}else if (formattedTextField2.getText().length() >= 1){
+					x = x + " onoma=" + "\"" + name + "\"";
+					z=1;
+				}
+				if(formattedTextField3.getText().length() >= 1 & z==1){
+					x = x + " And epitheto=" + "\""  + surname + "\"" ;	
+				}else if (formattedTextField3.getText().length() >= 1){
+					x = x + " epitheto=" + "\""  + surname + "\"" ;
+					z=1;
+				}
+				if(formattedTextField4.getText().length() >= 1 & z==1){
+					x = x + " And address=" + "\"" + address + "\"" ;	
+				}else if (formattedTextField4.getText().length() >= 1){
+					x = x + " address=" + "\""  + address + "\"" ;
+					z=1;
+				}
+				if(formattedTextField5.getText().length() >= 1 & z==1){
+					x = x + " And tk=" + tk;	
+				}else if (formattedTextField5.getText().length() >= 1){
+					x = x + " tk=" + tk;
+					z=1;
+				}
+				if(formattedTextField6.getText().length() >= 1 & z==1){
+					x = x + " And xwra=" + "\""  + country + "\"" ;	
+				}else if (formattedTextField6.getText().length() >= 1){
+					x = x + " xwra=" + "\""  + country + "\"" ;
+					z=1;
+				}
+				if(formattedTextField7.getText().length() >= 1 & z==1){
+					x = x + " And phone=" + phonenumber;	
+				}else if (formattedTextField7.getText().length() >= 1){
+					x = x + " phone=" + phonenumber;
+					z=1;
+				}
+				//Provoli query kai pinaka
+				System.out.println(x);
+				TableFromDatabase c =new TableFromDatabase(x);
+			    c.pack();
+			    c.setVisible(true);
+										}else JOptionPane.showMessageDialog(null,"The Country field takes only letters","Wanring",JOptionPane.WARNING_MESSAGE);;
+									}else JOptionPane.showMessageDialog(null,"The Surname field takes only letters","Wanring",JOptionPane.WARNING_MESSAGE);;	
+								}else JOptionPane.showMessageDialog(null,"The Name field takes only letters","Wanring",JOptionPane.WARNING_MESSAGE);;
+							}else JOptionPane.showMessageDialog(null,"The PhoneNumber field takes only 10-digit numbers","Wanring",JOptionPane.WARNING_MESSAGE);;
+						}else JOptionPane.showMessageDialog(null,"The PostalCode field takes only 5-digit numbers","Wanring",JOptionPane.WARNING_MESSAGE);;
+					}else JOptionPane.showMessageDialog(null,"The TrackingNumber field takes only 8-digit numbers","Wanring",JOptionPane.WARNING_MESSAGE);;
+				}else JOptionPane.showMessageDialog(null,"Fill at least one Field","Wanring",JOptionPane.WARNING_MESSAGE);;
 				
-			}
-		});
-		panel_1.add(btnSearch, "cell 1 7,growy");
+	}
+});
+		
 		
 		JScrollPane scrollPane_1 = new JScrollPane();
 		scrollPane_1.setHorizontalScrollBarPolicy(ScrollPaneConstants.HORIZONTAL_SCROLLBAR_NEVER);
@@ -396,14 +388,17 @@ public class IpalilosPanel2 extends JPanel {
 		textArea_1.setLineWrap(true);
 		textArea_1.setFont(new Font("Monospaced", Font.PLAIN, 11));
 		
+		
+		//Show Everything Button
 		JButton Everything = new JButton("Show Everything");
 		Everything.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				
+				//Provoli oloklirou tou pinaka
 				String sql ="Select * from demata";
 				TableFromDatabase c =new TableFromDatabase(sql);
 		        c.pack();
 		        c.setVisible(true);
-				
 			}
 		});
 		panel_1.add(Everything, "cell 1 7");
