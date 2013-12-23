@@ -29,6 +29,13 @@ public class IpalilosPanel extends JPanel {
 	private JTextArea textArea;
 	private JButton btnClear;
 	private JButton btnSubmit;
+	private JLabel lblNewLabel;
+	private JLabel lblNewLabel2;
+	private JLabel lblNewLabel3;
+	private JLabel lblNewLabel4;
+	private JLabel lblNewLabel5;
+	private JLabel lblNewLabel6;
+	
 	
 	private JFormattedTextField formattedTextField1;
 	private JFormattedTextField formattedTextField_11;
@@ -41,11 +48,8 @@ public class IpalilosPanel extends JPanel {
 	private JButton btnSearch;
 	private JTextArea textArea_1;
 	private JScrollPane scrollPane_1;
-	private JLabel lblNewLabel;
-	private JLabel lblNewLabel2;
-	private JLabel lblNewLabel3;
-	private JLabel lblNewLabel4;
-	private JLabel lblNewLabel6;
+	
+
 	
 
 	public IpalilosPanel() {
@@ -71,7 +75,7 @@ public class IpalilosPanel extends JPanel {
 		lblNewLabel = new JLabel("Name takes only letters");
 		lblNewLabel.setForeground(Color.RED);
 		lblNewLabel.setVisible(false);
-		panel.add(lblNewLabel, "cell 1 1,h 30");
+		panel.add(lblNewLabel, "cell 1 1,h 15");
 
 		JLabel lblSurname = new JLabel("Surname");
 		panel.add(lblSurname, "cell 0 2,alignx center,aligny center");
@@ -82,7 +86,7 @@ public class IpalilosPanel extends JPanel {
 		lblNewLabel2 = new JLabel("Surname takes only letters");
 		lblNewLabel2.setForeground(Color.RED);
 		lblNewLabel2.setVisible(false);
-		panel.add(lblNewLabel2, "cell 1 3,h 30");
+		panel.add(lblNewLabel2, "cell 1 3,h 15");
 
 		JLabel lblAddress = new JLabel("Address");
 		panel.add(lblAddress, "cell 0 4,alignx center,aligny center");
@@ -99,7 +103,7 @@ public class IpalilosPanel extends JPanel {
 		lblNewLabel3 = new JLabel("Postal Code must be 5-digit number");
 		lblNewLabel3.setForeground(Color.RED);
 		lblNewLabel3.setVisible(false);
-		panel.add(lblNewLabel3, "cell 1 7, h 30");
+		panel.add(lblNewLabel3, "cell 1 7, h 15");
 
 		JLabel lblCountry = new JLabel("Country");
 		panel.add(lblCountry, "cell 0 8,alignx center,aligny center");
@@ -110,13 +114,18 @@ public class IpalilosPanel extends JPanel {
 		lblNewLabel4 = new JLabel("Country takes only letters");
 		lblNewLabel4.setForeground(Color.RED);
 		lblNewLabel4.setVisible(false);
-		panel.add(lblNewLabel4, "cell 1 9,height 30");
+		panel.add(lblNewLabel4, "cell 1 9,height 15");
 
 		JLabel lblPhoneNumber = new JLabel("Phone Number");
 		panel.add(lblPhoneNumber, "cell 0 10,alignx center,aligny center");
 
 		formattedTextField_5 = new JFormattedTextField();
 		panel.add(formattedTextField_5, "cell 1 10 2 1,grow");
+		
+		lblNewLabel5 = new JLabel("Phone must be 10-digit number");
+		lblNewLabel5.setForeground(Color.RED);
+		lblNewLabel5.setVisible(false);
+		panel.add(lblNewLabel5, "cell 1 11,h 15");
 
 		JLabel lblFragile = new JLabel("Fragile");
 		panel.add(lblFragile, "cell 0 12,alignx center,aligny center");
@@ -124,10 +133,10 @@ public class IpalilosPanel extends JPanel {
 		chckbxNewCheckBox = new JCheckBox("");
 		panel.add(chckbxNewCheckBox, "cell 1 12");
 		
-		lblNewLabel6 = new JLabel("All Fileds are mandatory");
+		lblNewLabel6 = new JLabel("All Fileds except Comments are mandatory");
 		lblNewLabel6.setForeground(Color.RED);
 		lblNewLabel6.setVisible(false);
-		panel.add(lblNewLabel6, "cell 1 13,height 30");
+		panel.add(lblNewLabel6, "cell 1 13,height 15");
 
 		JLabel lblComments = new JLabel("Comments");
 		panel.add(lblComments, "cell 0 14,alignx center,aligny center");
@@ -154,8 +163,7 @@ public class IpalilosPanel extends JPanel {
 
 		JPanel panel_1 = new JPanel();
 		tabbedPane.addTab("Search", null, panel_1, null);
-		panel_1.setLayout(new MigLayout("", "[125.00][100.00,grow]",
-				"[30][30][30][30][30][30][30][30][125.00,grow]"));
+		panel_1.setLayout(new MigLayout("hidemode 3", "[125.00][100.00,grow]", "[30][30][30][30][30][30][30][30][][grow]"));
 
 		JLabel lblName1 = new JLabel("Name");
 		panel_1.add(lblName1, "cell 0 1,alignx center,aligny center");
@@ -209,7 +217,7 @@ public class IpalilosPanel extends JPanel {
 		scrollPane_1.setVisible(false);
 		scrollPane_1
 				.setHorizontalScrollBarPolicy(ScrollPaneConstants.HORIZONTAL_SCROLLBAR_NEVER);
-		panel_1.add(scrollPane_1, "cell 1 8,grow");
+		panel_1.add(scrollPane_1, "cell 1 8,grow, h 125");
 
 		textArea_1 = new JTextArea();
 		scrollPane_1.setViewportView(textArea_1);
@@ -233,12 +241,12 @@ public class IpalilosPanel extends JPanel {
 	public String[] getTextBoxesPacket() {
 		String[] values = new String[8];
 		
-		values[0] = formattedTextField1.getText();
-		values[1] = formattedTextField_11.getText();
-		values[2] = formattedTextField_21.getText();
-		values[3] = formattedTextField_31.getText();
-		values[4] = formattedTextField_41.getText();
-		values[5] = formattedTextField_51.getText();
+		values[0] = formattedTextField.getText();
+		values[1] = formattedTextField_1.getText();
+		values[2] = formattedTextField_2.getText();
+		values[3] = formattedTextField_3.getText();
+		values[4] = formattedTextField_4.getText();
+		values[5] = formattedTextField_5.getText();
 		if (chckbxNewCheckBox.isSelected())
 			values[6] = "Fragile";
 		else 
@@ -258,6 +266,17 @@ public class IpalilosPanel extends JPanel {
 		chckbxNewCheckBox.setSelected(false);
 		textArea.setText("");
 	}
+	
+	public void displayWarningsP1(boolean[] warning) {
+		lblNewLabel.setVisible(warning[0]);
+		lblNewLabel2.setVisible(warning[1]);
+		lblNewLabel3.setVisible(warning[2]);
+		lblNewLabel4.setVisible(warning[3]);
+		lblNewLabel5.setVisible(warning[4]);
+		lblNewLabel6.setVisible(warning[5]);
+		revalidate();
+		
+	}
 
 	/*
 	 * Panel 2
@@ -274,12 +293,12 @@ public class IpalilosPanel extends JPanel {
 	public String[] getTextBoxesSearch() {
 		String[] values = new String[7];
 		
-		values[0] = formattedTextField.getText();
-		values[1] = formattedTextField_1.getText();
-		values[2] = formattedTextField_2.getText();
-		values[3] = formattedTextField_3.getText();
-		values[4] = formattedTextField_4.getText();
-		values[5] = formattedTextField_5.getText();
+		values[0] = formattedTextField1.getText();
+		values[1] = formattedTextField_11.getText();
+		values[2] = formattedTextField_21.getText();
+		values[3] = formattedTextField_31.getText();
+		values[4] = formattedTextField_41.getText();
+		values[5] = formattedTextField_51.getText();
 		values[6] = formattedTextField_6.getText();
 		
 		return values;
@@ -304,5 +323,7 @@ public class IpalilosPanel extends JPanel {
 	public void hideTextArea() {
 		scrollPane_1.setVisible(false);
 	}
+	
+	
 	
 }
