@@ -7,6 +7,7 @@ import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.Statement;
+import java.sql.Timestamp;
 import java.util.Random;
 
 import gui.IpalilosPanel;
@@ -126,11 +127,10 @@ public class IpalilosController {
 						 ps.setInt(8, 1);
 					 else
 						 ps.setInt(8, 0);
-					 ps.setString(9, Integer.toString(trackingnumber));
+					 ps.setString(9, "RE"+Integer.toString(trackingnumber)+"GR");
 					 ps.setString(10, text[7]);
-					 java.sql.Date date = getCurrentJavaSqlDate();
 					 ps.setString(11, "undelivered");
-					 ps.setDate(12, date);
+					 ps.setTimestamp(12, new Timestamp(System.currentTimeMillis()));
 					 ps.executeUpdate();
 
 					 gui.setTrackingNumb("RE"+Integer.toString(trackingnumber)+"GR");
@@ -143,10 +143,6 @@ public class IpalilosController {
 
 		}
 		
-		public java.sql.Date getCurrentJavaSqlDate() {
-		    java.util.Date today = new java.util.Date();
-		    return new java.sql.Date(today.getTime());
-		}
 	}
 	
 	class BtnSearchListener implements ActionListener {
