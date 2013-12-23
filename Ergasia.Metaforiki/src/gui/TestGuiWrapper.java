@@ -2,14 +2,13 @@ package gui;
 
 import java.awt.Dimension;
 import java.awt.Toolkit;
-
 import javax.swing.JFrame;
-
 import models.CustomerModel;
 import controllers.CustomerController;
 import controllers.IpalilosController;
 import controllers.LoginController;
 import controllers.MetaforeasController;
+import controllers.AdministratorController;
 
 public class TestGuiWrapper {
 
@@ -25,25 +24,26 @@ public class TestGuiWrapper {
 		   * Epilogi Gui
 		   */
 		  //IpalilosPanel2 gui = new IpalilosPanel2();
-		  //MetaforeasPanel gui = new MetaforeasPanel();
+		  
 		  //LoginPanel gui = new LoginPanel();
-		  //AdministratorPanel gui = new AdministratorPanel();
-		  
-
 		  //LoginController guicont = new LoginPanelController(gui);
+		  
+		  AdministratorPanel gui = new AdministratorPanel();
+		  AdministratorController guicont = new AdministratorController(gui);
+		  
+		  //MetaforeasPanel gui = new MetaforeasPanel();
 		  //MetaforeasController guicont = new MetaforeasPanelController(gui);
-		  
-		  
+		  		  
 		  //IpalilosPanel gui = new IpalilosPanel();
 		  //IpalilosController guicont = new IpalilosController(gui);
 		  
 		  //Proti dokimi sto MVC
 		  
-		  
-		  CustomerPanel gui = new CustomerPanel();
-		  CustomerModel model = new CustomerModel();
-		  CustomerController guicont = new CustomerController(gui/*, model*/);
-		  
+		 
+		  //CustomerPanel gui = new CustomerPanel();
+		  //CustomerModel model = new CustomerModel();
+		  //CustomerController guicont = new CustomerController(gui/*, model*/);
+		 
 		  
 		  frame.add(gui);
 		  frame.setVisible(true);

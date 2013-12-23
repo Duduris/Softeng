@@ -20,17 +20,19 @@ public class AdministratorPanel extends JPanel {
 	private static final long serialVersionUID = 4;
 	
 	private JComboBox<Object> comboBox;
-	private String teststring[] = { "Fragile", "Delivered" };
+	private String parameters[] = { "None","Fragile", "Delivered","To be Delivered","Damaged", "Wrong Address", "Unavailable" };
 	private JButton btnExit;
 	private JButton btnExportAll;
+	private JPanel panel;
+	private JFreeChart chart;
 	
 	private DefaultPieDataset pieDataset;
 	
 
 	public AdministratorPanel() {
-		setLayout(new MigLayout("", "[grow][40]", "[40][40][grow]"));
+		setLayout(new MigLayout("hidemode 3", "[grow][40]", "[40][40][grow]"));
 
-		comboBox = new JComboBox<Object>(teststring);
+		comboBox = new JComboBox<Object>(parameters);
 		add(comboBox, "cell 0 0,alignx left,aligny center");
 
 		btnExit = new JButton("Exit");
@@ -39,22 +41,10 @@ public class AdministratorPanel extends JPanel {
 		btnExportAll = new JButton("Export All");
 		add(btnExportAll, "cell 1 1,grow");
 
-		JPanel panel = new JPanel();
-		add(panel, "cell 0 1 1 2,grow");
+		panel = new JPanel();
 		panel.setLayout(new CardLayout(0, 0));
+		add(panel, "cell 0 1 1 2,grow");
 		
-		pieDataset = new DefaultPieDataset();
-
-		pieDataset.setValue("One", new Integer(10));
-		pieDataset.setValue("Two", new Integer(20));
-		pieDataset.setValue("Three", new Integer(30));
-		pieDataset.setValue("Four", new Integer(10));
-		pieDataset.setValue("Five", new Integer(20));
-		pieDataset.setValue("Six", new Integer(10));
-		JFreeChart chart = ChartFactory.createPieChart3D("3D Chart",pieDataset, true, true, true);
-
-		ChartPanel chpan = new ChartPanel(chart);
-		panel.add(chpan);
 
 	}
 	
@@ -65,14 +55,24 @@ public class AdministratorPanel extends JPanel {
 	public void btnExitListener(ActionListener e) {
 		btnExit.addActionListener(e);
 	}
+	
+	public void comboBxListener(ActionListener e) {
+		comboBox.addActionListener(e);
+	}
 
 	public String getItemStatus() {
 		return comboBox.getSelectedItem().toString();
 	}
 	
 	public void setChart(DefaultPieDataset dataset) {
+	    panel.removeAll(); 
 		pieDataset = dataset;
+		chart = ChartFactory.createPieChart3D("Statistics",pieDataset, true, true, true);
+		ChartPanel chpan = new ChartPanel(chart);
+		panel.add(chpan);
+		revalidate();
 	}
-
+	
+	
 
 }
