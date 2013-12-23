@@ -42,8 +42,6 @@ public class IpalilosController {
 			 * Panel1 Submit
 			 */
 			
-			
-			
 			//prepei na mpei sto adistixo model dokimastika gia tora na kanoume doulia
 			
 			 String[] text = new String[8];
@@ -102,17 +100,15 @@ public class IpalilosController {
 					 
 					 String sqldiavasmatn = "select tracking from metaforiki";
 					 ResultSet rs1 = stm.executeQuery(sqldiavasmatn);
-					 int min = 000000000;
-					 int max = 999999999;
-					 int x=0,y=10;
+
 					 Random r = new Random();
-					 int trackingnumber;
-					 trackingnumber = r.nextInt(max - min + 1) + min;
+					 String trackingnumber = String.format("%09d", r.nextInt(1000000000));
 					 while (rs1.next()){
-						 if(rs1.getString("tracking").regionMatches(3, Integer.toString(trackingnumber), 11, 13)){
-							 trackingnumber = r.nextInt(max - min + 1) + min;
+						 if(rs1.getString("tracking").regionMatches(3, trackingnumber, 11, 13)){
+							 trackingnumber = String.format("%09d", r.nextInt(1000000000));
 						 }
 					 }
+					 trackingnumber = "RE"+trackingnumber+"GR";
 
 					 String sqlgrapsimo = "insert into metaforiki values(?,?,?,?,?,?,?,?,?,?,?,?)";
 					 PreparedStatement ps = conn.prepareStatement(sqlgrapsimo);
@@ -127,13 +123,13 @@ public class IpalilosController {
 						 ps.setInt(8, 1);
 					 else
 						 ps.setInt(8, 0);
-					 ps.setString(9, "RE"+Integer.toString(trackingnumber)+"GR");
+					 ps.setString(9, trackingnumber);
 					 ps.setString(10, text[7]);
 					 ps.setString(11, "undelivered");
 					 ps.setTimestamp(12, new Timestamp(System.currentTimeMillis()));
 					 ps.executeUpdate();
 
-					 gui.setTrackingNumb("RE"+Integer.toString(trackingnumber)+"GR");
+					 gui.setTrackingNumb(trackingnumber);
 					 
 			         rs.close();
 			         stm.close();
