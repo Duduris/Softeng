@@ -10,6 +10,7 @@ import javax.swing.JTextArea;
 import javax.swing.JScrollPane;
 import javax.swing.ScrollPaneConstants;
 import javax.swing.JFormattedTextField;
+import java.awt.Color;
 
 public class CustomerPanel extends JPanel {
 
@@ -19,9 +20,10 @@ public class CustomerPanel extends JPanel {
 	private JTextArea textArea;
 	private JButton btnSearch;
 	private JScrollPane scrollPane;
+	private JLabel lblInputATracking;
 
 	public CustomerPanel() {
-		setLayout(new MigLayout("hidemode 3", "[grow][100][grow]", "[grow][40][40][40][][40][grow]"));
+		setLayout(new MigLayout("hidemode 3", "[grow][100][grow]", "[grow][40][40][40][][][40][grow]"));
 		
 		JLabel lblNewLabel = new JLabel(" Track n Trace ");
 		lblNewLabel.setFont(new Font("Tahoma", Font.BOLD | Font.ITALIC, 12));
@@ -36,8 +38,13 @@ public class CustomerPanel extends JPanel {
 		
 		scrollPane = new JScrollPane();
 		scrollPane.setVisible(false);
+		
+		lblInputATracking = new JLabel("Input a Tracking Number ");
+		lblInputATracking.setForeground(Color.RED);
+		lblInputATracking.setVisible(false);
+		add(lblInputATracking, "cell 1 4,h 15");
 		scrollPane.setHorizontalScrollBarPolicy(ScrollPaneConstants.HORIZONTAL_SCROLLBAR_NEVER);
-		add(scrollPane, "cell 1 4,grow, h 100");
+		add(scrollPane, "cell 1 5,height 100,grow");
 		
 		textArea = new JTextArea();
 		textArea.setLineWrap(true);
@@ -46,7 +53,7 @@ public class CustomerPanel extends JPanel {
 		textArea.setFont(new Font("Tahoma", Font.PLAIN, 11));
 		
 		btnSearch = new JButton("Search");
-		add(btnSearch, "cell 1 5,alignx center,growy");
+		add(btnSearch, "cell 1 6,alignx center,growy");
 
 	}
 	
@@ -60,7 +67,13 @@ public class CustomerPanel extends JPanel {
 	
 	public void setTrackingInfo(String info) {
 		scrollPane.setVisible(true);
+		lblInputATracking.setVisible(false);
 		textArea.setText(info);
+		revalidate();
+	}
+	public void showWarning() {
+		lblInputATracking.setVisible(true);
+		scrollPane.setVisible(false);
 		revalidate();
 	}
 

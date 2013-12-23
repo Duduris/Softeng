@@ -28,20 +28,22 @@ public class TestGuiWrapper {
 		  //MetaforeasPanel gui = new MetaforeasPanel();
 		  //LoginPanel gui = new LoginPanel();
 		  //AdministratorPanel gui = new AdministratorPanel();
-		  IpalilosPanel gui = new IpalilosPanel();
+		  
 
 		  //LoginController guicont = new LoginPanelController(gui);
 		  //MetaforeasController guicont = new MetaforeasPanelController(gui);
 		  
-		  IpalilosController guicont = new IpalilosController(gui);
+		  
+		  //IpalilosPanel gui = new IpalilosPanel();
+		  //IpalilosController guicont = new IpalilosController(gui);
 		  
 		  //Proti dokimi sto MVC
 		  
-		  /*
+		  
 		  CustomerPanel gui = new CustomerPanel();
 		  CustomerModel model = new CustomerModel();
-		  CustomerController guicont = new CustomerController(gui, model);
-		  */
+		  CustomerController guicont = new CustomerController(gui/*, model*/);
+		  
 		  
 		  frame.add(gui);
 		  frame.setVisible(true);

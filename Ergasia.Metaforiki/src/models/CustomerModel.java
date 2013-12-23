@@ -1,11 +1,15 @@
 package models;
 
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.ResultSet;
+import java.sql.Statement;
 import java.util.Observable;
 
 public class CustomerModel extends Observable {
 	
 	private String tracking;
-	private String query = "Test    dfgdgdffffffffffffffffffgdfgdgdfg rtr	fdgd	fsdfgdfg";
+	private String query;
 	
 	public CustomerModel() {
 
@@ -13,9 +17,9 @@ public class CustomerModel extends Observable {
 	
 	public void setQuery(String tracking) {
 		this.tracking = tracking;
-		setChanged();
-		notifyObservers(this.tracking);
-
+		/*setChanged();
+		notifyObservers(this.tracking);*/
+		
 	}
 	
 	public String retTrackigInfo() {

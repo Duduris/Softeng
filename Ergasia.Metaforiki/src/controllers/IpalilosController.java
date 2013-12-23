@@ -134,6 +134,10 @@ public class IpalilosController {
 					 ps.executeUpdate();
 
 					 gui.setTrackingNumb("RE"+Integer.toString(trackingnumber)+"GR");
+					 
+			         rs.close();
+			         stm.close();
+			         conn.close();
 						
 						
 				 }catch(Exception e1){
