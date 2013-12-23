@@ -45,7 +45,6 @@ public class IpalilosPanel extends JPanel {
 	private JLabel lblNewLabel2;
 	private JLabel lblNewLabel3;
 	private JLabel lblNewLabel4;
-	private JLabel lblNewLabel5;
 	private JLabel lblNewLabel6;
 	
 
@@ -61,7 +60,7 @@ public class IpalilosPanel extends JPanel {
 
 		JPanel panel = new JPanel();
 		tabbedPane.addTab("New Packet", null, panel, null);
-		panel.setLayout(new MigLayout("hidemode 3", "[125.00][100.00,grow][100.00,grow]", "[30][][30][][30][][30][][][30][][][30][][][30][][][125.00,grow][30]"));
+		panel.setLayout(new MigLayout("hidemode 3", "[125.00][100.00,grow][100.00,grow]", "[30]2[]2[30]2[]2[30]2[]2[30]2[]2[30]2[]2[30]2[]2[30]2[]2[125.00,grow][30]"));
 
 		JLabel lblName = new JLabel("Name");
 		panel.add(lblName, "cell 0 0,alignx center,aligny center");
@@ -103,45 +102,40 @@ public class IpalilosPanel extends JPanel {
 		panel.add(lblNewLabel3, "cell 1 7, h 30");
 
 		JLabel lblCountry = new JLabel("Country");
-		panel.add(lblCountry, "cell 0 9,alignx center,aligny center");
+		panel.add(lblCountry, "cell 0 8,alignx center,aligny center");
 
 		formattedTextField_4 = new JFormattedTextField();
-		panel.add(formattedTextField_4, "cell 1 9 2 1,grow");
+		panel.add(formattedTextField_4, "cell 1 8 2 1,grow");
 		
 		lblNewLabel4 = new JLabel("Country takes only letters");
 		lblNewLabel4.setForeground(Color.RED);
 		lblNewLabel4.setVisible(false);
-		panel.add(lblNewLabel4, "cell 1 10,h 30");
+		panel.add(lblNewLabel4, "cell 1 9,height 30");
 
 		JLabel lblPhoneNumber = new JLabel("Phone Number");
-		panel.add(lblPhoneNumber, "cell 0 12,alignx center,aligny center");
+		panel.add(lblPhoneNumber, "cell 0 10,alignx center,aligny center");
 
 		formattedTextField_5 = new JFormattedTextField();
-		panel.add(formattedTextField_5, "cell 1 12 2 1,grow");
-		
-		lblNewLabel5 = new JLabel("Phone must be 10 -digit number");
-		lblNewLabel5.setForeground(Color.RED);
-		lblNewLabel5.setVisible(false);
-		panel.add(lblNewLabel5, "cell 1 13, h 30");
+		panel.add(formattedTextField_5, "cell 1 10 2 1,grow");
 
 		JLabel lblFragile = new JLabel("Fragile");
-		panel.add(lblFragile, "cell 0 15,alignx center,aligny center");
+		panel.add(lblFragile, "cell 0 12,alignx center,aligny center");
 
 		chckbxNewCheckBox = new JCheckBox("");
-		panel.add(chckbxNewCheckBox, "cell 1 15");
+		panel.add(chckbxNewCheckBox, "cell 1 12");
 		
 		lblNewLabel6 = new JLabel("All Fileds are mandatory");
 		lblNewLabel6.setForeground(Color.RED);
 		lblNewLabel6.setVisible(false);
-		panel.add(lblNewLabel6, "cell 1 16, h 30");
+		panel.add(lblNewLabel6, "cell 1 13,height 30");
 
 		JLabel lblComments = new JLabel("Comments");
-		panel.add(lblComments, "cell 0 18,alignx center,aligny center");
+		panel.add(lblComments, "cell 0 14,alignx center,aligny center");
 
 		JScrollPane scrollPane = new JScrollPane();
 		scrollPane
 				.setHorizontalScrollBarPolicy(ScrollPaneConstants.HORIZONTAL_SCROLLBAR_NEVER);
-		panel.add(scrollPane, "cell 1 18 2 1,grow");
+		panel.add(scrollPane, "cell 1 14 2 1,grow");
 
 		textArea = new JTextArea();
 		textArea.setFont(new Font("Monospaced", Font.PLAIN, 11));
@@ -149,10 +143,10 @@ public class IpalilosPanel extends JPanel {
 		scrollPane.setViewportView(textArea);
 
 		btnClear = new JButton("Clear");
-		panel.add(btnClear, "cell 1 19,alignx left,growy");
+		panel.add(btnClear, "cell 1 15,alignx left,growy");
 
 		btnSubmit = new JButton("Submit");
-		panel.add(btnSubmit, "cell 2 19,alignx right,growy");
+		panel.add(btnSubmit, "cell 2 15,alignx right,growy");
 
 		/*
 		 * Tab 2
