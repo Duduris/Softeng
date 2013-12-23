@@ -47,9 +47,10 @@ public class TestDBClass2 {
 				String tracking = rs.getString("tracking");
 				String comments = rs.getString("comments");
 				String status = rs.getString("status");
+				String date = rs.getString("date");
 				System.out.println(id + " " + name + " " + surname + " " +address+ " " 
 						+postalcode+ " " +country+ " " +phone+ " " +fragile+ " " 
-						+ tracking+ " " +comments+ " " +status);
+						+ tracking+ " " +comments+ " " +status+" "+date);
 			}
 
 		} catch (Exception e) {

@@ -25,6 +25,7 @@ public class IpalilosPanel extends JPanel {
 	private JFormattedTextField formattedTextField_3;
 	private JFormattedTextField formattedTextField_4;
 	private JFormattedTextField formattedTextField_5;
+	private JFormattedTextField formattedTextField_6;
 	private JCheckBox chckbxNewCheckBox;
 	private JTextArea textArea;
 	private JButton btnClear;
@@ -35,6 +36,7 @@ public class IpalilosPanel extends JPanel {
 	private JLabel lblNewLabel4;
 	private JLabel lblNewLabel5;
 	private JLabel lblNewLabel6;
+	private JLabel lblTrackNum;
 	
 	
 	private JFormattedTextField formattedTextField1;
@@ -43,11 +45,13 @@ public class IpalilosPanel extends JPanel {
 	private JFormattedTextField formattedTextField_31;
 	private JFormattedTextField formattedTextField_41;
 	private JFormattedTextField formattedTextField_51;
-	private JFormattedTextField formattedTextField_6;
+	private JFormattedTextField formattedTextField_61;
 	private JButton btnClear_1;
 	private JButton btnSearch;
 	private JTextArea textArea_1;
 	private JScrollPane scrollPane_1;
+	
+	
 	
 
 	
@@ -64,7 +68,7 @@ public class IpalilosPanel extends JPanel {
 
 		JPanel panel = new JPanel();
 		tabbedPane.addTab("New Packet", null, panel, null);
-		panel.setLayout(new MigLayout("hidemode 3", "[125.00][100.00,grow][100.00,grow]", "[30]2[]2[30]2[]2[30]2[]2[30]2[]2[30]2[]2[30]2[]2[30]2[]2[125.00,grow][30]"));
+		panel.setLayout(new MigLayout("hidemode 3", "[125.00][100.00,grow][100.00,grow]", "[30]2[]2[30]2[]2[30]2[]2[30]2[]2[30]2[]2[30]2[]2[30]2[]2[125.00,grow][][30]"));
 
 		JLabel lblName = new JLabel("Name");
 		panel.add(lblName, "cell 0 0,alignx center,aligny center");
@@ -150,12 +154,20 @@ public class IpalilosPanel extends JPanel {
 		textArea.setFont(new Font("Monospaced", Font.PLAIN, 11));
 		textArea.setLineWrap(true);
 		scrollPane.setViewportView(textArea);
+		
+		lblTrackNum = new JLabel("The tracking number for this package is: ");
+		lblTrackNum.setVisible(false);
+		panel.add(lblTrackNum, "cell 1 15,alignx trailing,h 30");
+		
+		formattedTextField_6 = new JFormattedTextField();
+		formattedTextField_6.setVisible(false);
+		panel.add(formattedTextField_6, "cell 2 15,growx,h 30");
 
 		btnClear = new JButton("Clear");
-		panel.add(btnClear, "cell 1 15,alignx left,growy");
+		panel.add(btnClear, "cell 1 16,alignx left,growy");
 
 		btnSubmit = new JButton("Submit");
-		panel.add(btnSubmit, "cell 2 15,alignx right,growy");
+		panel.add(btnSubmit, "cell 2 16,alignx right,growy");
 
 		/*
 		 * Tab 2
@@ -204,8 +216,8 @@ public class IpalilosPanel extends JPanel {
 		JLabel lblTracking = new JLabel("Tracking Number");
 		panel_1.add(lblTracking, "cell 0 0,alignx center,aligny center");
 
-		formattedTextField_6 = new JFormattedTextField();
-		panel_1.add(formattedTextField_6, "cell 1 6,grow");
+		formattedTextField_61 = new JFormattedTextField();
+		panel_1.add(formattedTextField_61, "cell 1 6,grow");
 
 		btnClear_1 = new JButton("Clear");
 		panel_1.add(btnClear_1, "flowx,cell 1 7,growy");
@@ -248,9 +260,9 @@ public class IpalilosPanel extends JPanel {
 		values[4] = formattedTextField_4.getText();
 		values[5] = formattedTextField_5.getText();
 		if (chckbxNewCheckBox.isSelected())
-			values[6] = "Fragile";
+			values[6] = "t";
 		else 
-			values[6] = "Not Selected";
+			values[6] = "f";
 		values[7] = textArea.getText();
 		
 		return values;
@@ -263,8 +275,17 @@ public class IpalilosPanel extends JPanel {
 		formattedTextField_3.setText("");
 		formattedTextField_4.setText("");
 		formattedTextField_5.setText("");
+		formattedTextField_6.setText("");
+		formattedTextField_6.setVisible(false);
 		chckbxNewCheckBox.setSelected(false);
 		textArea.setText("");
+		lblNewLabel.setVisible(false);
+		lblNewLabel2.setVisible(false);
+		lblNewLabel3.setVisible(false);
+		lblNewLabel4.setVisible(false);
+		lblNewLabel5.setVisible(false);
+		lblNewLabel6.setVisible(false);
+		lblTrackNum.setVisible(false);
 	}
 	
 	public void displayWarningsP1(boolean[] warning) {
@@ -276,6 +297,13 @@ public class IpalilosPanel extends JPanel {
 		lblNewLabel6.setVisible(warning[5]);
 		revalidate();
 		
+	}
+	
+	public void setTrackingNumb(String track) {
+		formattedTextField_6.setText(track);
+		lblTrackNum.setVisible(true);
+		formattedTextField_6.setVisible(true);
+		revalidate();
 	}
 
 	/*
@@ -299,7 +327,7 @@ public class IpalilosPanel extends JPanel {
 		values[3] = formattedTextField_31.getText();
 		values[4] = formattedTextField_41.getText();
 		values[5] = formattedTextField_51.getText();
-		values[6] = formattedTextField_6.getText();
+		values[6] = formattedTextField_61.getText();
 		
 		return values;
 	}
@@ -311,7 +339,7 @@ public class IpalilosPanel extends JPanel {
 		formattedTextField_31.setText("");
 		formattedTextField_41.setText("");
 		formattedTextField_51.setText("");
-		formattedTextField_6.setText("");
+		formattedTextField_61.setText("");
 	}
 	
 	public void updateStatus(String status) {
