@@ -21,7 +21,7 @@ public class CustomerPanel extends JPanel {
 	private JScrollPane scrollPane;
 
 	public CustomerPanel() {
-		setLayout(new MigLayout("", "[grow][100][grow]", "[grow][40][40][40][40][80][grow]"));
+		setLayout(new MigLayout("hidemode 3", "[grow][100][grow]", "[grow][40][40][40][][40][grow]"));
 		
 		JLabel lblNewLabel = new JLabel(" Track n Trace ");
 		lblNewLabel.setFont(new Font("Tahoma", Font.BOLD | Font.ITALIC, 12));
@@ -31,20 +31,22 @@ public class CustomerPanel extends JPanel {
 		add(lblTypeThe, "cell 1 2,alignx center,growy");
 		
 		textField = new JFormattedTextField();
-		add(textField, "cell 1 3,grow");
+		add(textField, "cell 1 3,grow, hidemode 3");
 		textField.setColumns(10);
 		
 		scrollPane = new JScrollPane();
 		scrollPane.setVisible(false);
 		scrollPane.setHorizontalScrollBarPolicy(ScrollPaneConstants.HORIZONTAL_SCROLLBAR_NEVER);
-		add(scrollPane, "cell 1 5,grow");
+		add(scrollPane, "cell 1 4,grow, h 100");
 		
 		textArea = new JTextArea();
+		textArea.setLineWrap(true);
+		textArea.setWrapStyleWord(true);
 		scrollPane.setViewportView(textArea);
 		textArea.setFont(new Font("Tahoma", Font.PLAIN, 11));
 		
 		btnSearch = new JButton("Search");
-		add(btnSearch, "cell 1 4,alignx center,growy");
+		add(btnSearch, "cell 1 5,alignx center,growy");
 
 	}
 	
@@ -59,6 +61,7 @@ public class CustomerPanel extends JPanel {
 	public void setTrackingInfo(String info) {
 		scrollPane.setVisible(true);
 		textArea.setText(info);
+		revalidate();
 	}
 
 }
