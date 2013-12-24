@@ -28,11 +28,11 @@ public class TestGuiWrapper {
 		  //LoginPanel gui = new LoginPanel();
 		  //LoginController guicont = new LoginPanelController(gui);
 		  
-		  AdministratorPanel gui = new AdministratorPanel();
-		  AdministratorController guicont = new AdministratorController(gui);
+		  //AdministratorPanel gui = new AdministratorPanel();
+		  //AdministratorController guicont = new AdministratorController(gui);
 		  
-		  //MetaforeasPanel gui = new MetaforeasPanel();
-		  //MetaforeasController guicont = new MetaforeasPanelController(gui);
+		  MetaforeasPanel gui = new MetaforeasPanel();
+		  MetaforeasController guicont = new MetaforeasController(gui);
 		  		  
 		  //IpalilosPanel gui = new IpalilosPanel();
 		  //IpalilosController guicont = new IpalilosController(gui);

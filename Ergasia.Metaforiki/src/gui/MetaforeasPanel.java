@@ -5,41 +5,31 @@ import javax.swing.JButton;
 import javax.swing.JPanel;
 import javax.swing.JTable;
 import javax.swing.ListSelectionModel;
-
 import net.miginfocom.swing.MigLayout;
-
 import java.awt.Font;
 import java.awt.CardLayout;
 import java.awt.event.ActionListener;
-
 import javax.swing.JComboBox;
 import javax.swing.table.DefaultTableModel;
+import javax.swing.JScrollPane;
+import additional.TableColumnAdjuster;
 
 public class MetaforeasPanel extends JPanel {
 
 	private static final long serialVersionUID = 2;
 	
-	private String[] problem = { "OK", "DAMAGED", "UNAVAILBLE", "WRONG ADDRESS" };
+	private String[] problem = { "OK", "DAMAGED", "UNAVAILABLE", "WRONG ADDRESS" };
 	private JTable table;
 	private DefaultTableModel tm;
 	private JComboBox<Object> comboBox;
 	private JButton btnMap;
 	private JButton btnSubmit;
-	private JButton btnExit;
+	private JButton btnConn;
 	private CardLayout card;
+	private TableColumnAdjuster tca;
 
-	private String[] columnNames = { "First Name", "Last Name", "Sport" };
-
-	/*
-	 * private Object[][] data = {{"First Name", "Last Name", "Sport"}};
-	 * String[] columnNames = {"First Name", "Last Name", "Sport", "# of Years",
-	 * "Vegetarian"}; Object[][] data = { {"Kathy", "Smith","Snowboarding", new
-	 * Integer(5), new Boolean(false)}, {"John", "Doe", "Rowing", new
-	 * Integer(3), new Boolean(true)}, {"Sue", "Black", "Knitting", new
-	 * Integer(2), new Boolean(false)}, {"Jane", "White", "Speed reading", new
-	 * Integer(20), new Boolean(true)}, {"Joe", "Brown", "Pool", new
-	 * Integer(10), new Boolean(false)} };
-	 */
+	private String[] columnNames = { "First Name", "Last Name", "Address", "Status" };
+	private JScrollPane scrollPane;
 
 	public MetaforeasPanel() {
 
@@ -52,8 +42,8 @@ public class MetaforeasPanel extends JPanel {
 		btnSubmit = new JButton("Submit");
 		add(btnSubmit, "cell 1 4,grow");
 
-		btnExit = new JButton("Exit");
-		add(btnExit, "cell 1 0,grow");
+		btnConn = new JButton("Connect");
+		add(btnConn, "cell 1 0,grow");
 
 		comboBox = new JComboBox<Object>(problem);
 		comboBox.setFont(new Font("Tahoma", Font.BOLD, 14));
@@ -69,14 +59,20 @@ public class MetaforeasPanel extends JPanel {
 		tablepanel.setLayout(new MigLayout("", "[grow]", "[grow]"));
 
 		panel.add(tablepanel, "p1");
-
-		table = new JTable(new DefaultTableModel(columnNames, 1));
+		
+		
+		scrollPane = new JScrollPane();
+		tablepanel.add(scrollPane, "cell 0 0,grow");
+		table = new JTable(new DefaultTableModel(columnNames, 0));
+		scrollPane.setViewportView(table);
 		tm = (DefaultTableModel) table.getModel();
-		table.setRowHeight(20);
+		table.setAutoResizeMode(JTable.AUTO_RESIZE_OFF);
+		tca = new TableColumnAdjuster(table);
+		table.setRowHeight(50);
 		table.setFont(new Font("Tahoma", Font.PLAIN, 15));
 		table.setShowVerticalLines(false);
 		table.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
-		tablepanel.add(table, "cell 0 0,grow");
+		table.setAutoResizeMode(JTable.AUTO_RESIZE_ALL_COLUMNS);
 
 		JPanel mappanel = new JPanel();
 		mappanel.setLayout(new MigLayout("", "[grow]", "[grow]"));
@@ -95,8 +91,8 @@ public class MetaforeasPanel extends JPanel {
 		btnSubmit.addActionListener(e);
 	}
 
-	public void btnExitListener(ActionListener e) {
-		btnExit.addActionListener(e);
+	public void btnConnectListener(ActionListener e) {
+		btnConn.addActionListener(e);
 	}
 
 	public String getItemStatus() {
@@ -109,6 +105,16 @@ public class MetaforeasPanel extends JPanel {
 
 	public void setTableData(Object[] db) {
 		tm.addRow(db);
+		tca.adjustColumns();
+	}
+	
+	public void updateStatus(String value) {
+		tm.setValueAt(value, table.getSelectedRow(), 3);
+		tca.adjustColumns();
+	}
+	
+	public void clearTable() {
+		tm.setRowCount(0);
 	}
 
 }
