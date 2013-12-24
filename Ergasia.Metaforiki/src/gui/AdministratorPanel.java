@@ -1,18 +1,13 @@
 package gui;
 
 import javax.swing.JPanel;
-
 import org.jfree.chart.ChartFactory;
 import org.jfree.chart.ChartPanel;
 import org.jfree.chart.JFreeChart;
 import org.jfree.data.general.DefaultPieDataset;
-
 import net.miginfocom.swing.MigLayout;
-
 import javax.swing.JButton;
 import javax.swing.JComboBox;
-import javax.swing.JFileChooser;
-
 import java.awt.CardLayout;
 import java.awt.event.ActionListener;
 

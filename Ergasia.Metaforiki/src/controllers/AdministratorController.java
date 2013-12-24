@@ -11,6 +11,7 @@ import java.sql.ResultSet;
 import java.sql.Statement;
 
 import javax.swing.JFileChooser;
+import javax.swing.JOptionPane;
 
 import org.jfree.data.general.DefaultPieDataset;
 
@@ -126,18 +127,17 @@ public class AdministratorController {
 							csv.append(end);
 						}
 					}
-
+					
+					Desktop.getDesktop().open(new File(file.getAbsolutePath().replace("\\" + file.getName()," ")));
+					
 					csv.flush();
 					csv.close();
-
-					//Desktop.getDesktop().open(new File("myjdbcfile.csv"));
-
 					rs.close();
 					stm.close();
 					conn.close();
 
 				}catch(Exception e1){
-					e1.printStackTrace();
+					JOptionPane.showMessageDialog(null, e1.getMessage());
 				}
 			}
 		}

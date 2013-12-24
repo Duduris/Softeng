@@ -14,6 +14,10 @@ import javax.swing.ScrollPaneConstants;
 import java.awt.Font;
 import java.awt.event.ActionListener;
 import java.awt.Color;
+import javax.swing.JTable;
+import javax.swing.table.DefaultTableModel;
+
+import additional.TableColumnAdjuster;
 
 public class IpalilosPanel extends JPanel {
 
@@ -48,12 +52,18 @@ public class IpalilosPanel extends JPanel {
 	private JFormattedTextField formattedTextField_61;
 	private JButton btnClear_1;
 	private JButton btnSearch;
-	private JTextArea textArea_1;
 	private JScrollPane scrollPane_1;
-	
-	
-	
-
+	private JTable table;
+	private JLabel lblSearchWarnig1;
+	private JLabel lblSearchWarnig2;
+	private JLabel lblSearchWarnig3;
+	private JLabel lblSearchWarnig4;
+	private JLabel lblSearchWarnig5;
+	private JLabel lblSearchWarnig6;
+	private JLabel lblSearchWarnig7;
+	private DefaultTableModel tm;
+	private TableColumnAdjuster tca;
+	private String[] columnNames = { "First Name", "Last Name", "Address", "Postal Code","Country","Phone","Fragile","Tracking","Comments", "Status" };
 	
 
 	public IpalilosPanel() {
@@ -146,8 +156,7 @@ public class IpalilosPanel extends JPanel {
 		panel.add(lblComments, "cell 0 14,alignx center,aligny center");
 
 		JScrollPane scrollPane = new JScrollPane();
-		scrollPane
-				.setHorizontalScrollBarPolicy(ScrollPaneConstants.HORIZONTAL_SCROLLBAR_NEVER);
+		scrollPane.setHorizontalScrollBarPolicy(ScrollPaneConstants.HORIZONTAL_SCROLLBAR_NEVER);
 		panel.add(scrollPane, "cell 1 14 2 1,grow");
 
 		textArea = new JTextArea();
@@ -175,66 +184,118 @@ public class IpalilosPanel extends JPanel {
 
 		JPanel panel_1 = new JPanel();
 		tabbedPane.addTab("Search", null, panel_1, null);
-		panel_1.setLayout(new MigLayout("hidemode 3", "[125.00][100.00,grow]", "[30][30][30][30][30][30][30][30][][grow]"));
+		panel_1.setLayout(new MigLayout("hidemode 3", "[125.00][100.00,grow]", "[30]2[]2[30]2[]2[30]2[]2[30][30]2[]2[30]2[]2[30][][][30][grow]"));
+		
+		lblSearchWarnig1 = new JLabel("Tracking Warning");
+		lblSearchWarnig1.setForeground(Color.RED);
+		panel_1.add(lblSearchWarnig1, "cell 1 1");
 
 		JLabel lblName1 = new JLabel("Name");
-		panel_1.add(lblName1, "cell 0 1,alignx center,aligny center");
+		panel_1.add(lblName1, "cell 0 2,alignx center,aligny center");
 
 		formattedTextField1 = new JFormattedTextField();
 		panel_1.add(formattedTextField1, "cell 1 0,grow");
+		
+		lblSearchWarnig2 = new JLabel("Name takes only letters");
+		lblSearchWarnig2.setForeground(Color.RED);
+		panel_1.add(lblSearchWarnig2, "cell 1 3");
 
 		JLabel lblSurname1 = new JLabel("Surname");
-		panel_1.add(lblSurname1, "cell 0 2,alignx center,aligny center");
+		panel_1.add(lblSurname1, "cell 0 4,alignx center,aligny center");
 
 		formattedTextField_11 = new JFormattedTextField();
-		panel_1.add(formattedTextField_11, "cell 1 1,grow");
+		panel_1.add(formattedTextField_11, "cell 1 2,grow");
+		
+		lblSearchWarnig3 = new JLabel("Surname takes only letters");
+		lblSearchWarnig3.setForeground(Color.RED);
+		panel_1.add(lblSearchWarnig3, "cell 1 5");
 
 		JLabel lblAddress1 = new JLabel("Address");
-		panel_1.add(lblAddress1, "cell 0 3,alignx center,aligny center");
+		panel_1.add(lblAddress1, "cell 0 6,alignx center,aligny center");
 
 		formattedTextField_21 = new JFormattedTextField();
-		panel_1.add(formattedTextField_21, "cell 1 2,grow");
+		panel_1.add(formattedTextField_21, "cell 1 4,grow");
 
 		JLabel lblPostalCode1 = new JLabel("Postal Code");
-		panel_1.add(lblPostalCode1, "cell 0 4,alignx center,aligny center");
+		panel_1.add(lblPostalCode1, "cell 0 7,alignx center,aligny center");
 
 		formattedTextField_31 = new JFormattedTextField();
-		panel_1.add(formattedTextField_31, "cell 1 3,grow");
+		panel_1.add(formattedTextField_31, "cell 1 6,grow");
+		
+		lblSearchWarnig4 = new JLabel("Postal Code must be 5-digit number");
+		lblSearchWarnig4.setForeground(Color.RED);
+		panel_1.add(lblSearchWarnig4, "cell 1 8");
 
 		JLabel lblCountry1 = new JLabel("Country");
-		panel_1.add(lblCountry1, "cell 0 5,alignx center,aligny center");
+		panel_1.add(lblCountry1, "cell 0 9,alignx center,aligny center");
 
 		formattedTextField_41 = new JFormattedTextField();
-		panel_1.add(formattedTextField_41, "cell 1 4,grow");
+		panel_1.add(formattedTextField_41, "cell 1 7,grow");
+		
+		lblSearchWarnig5 = new JLabel("Country takes only letters");
+		lblSearchWarnig5.setForeground(Color.RED);
+		panel_1.add(lblSearchWarnig5, "cell 1 10");
 
 		JLabel lblPhoneNumber1 = new JLabel("Phone Number");
-		panel_1.add(lblPhoneNumber1, "cell 0 6,alignx center,aligny center");
+		panel_1.add(lblPhoneNumber1, "cell 0 11,alignx center,aligny center");
 
 		formattedTextField_51 = new JFormattedTextField();
-		panel_1.add(formattedTextField_51, "cell 1 5,grow");
+		panel_1.add(formattedTextField_51, "cell 1 9,grow");
 
 		JLabel lblTracking = new JLabel("Tracking Number");
 		panel_1.add(lblTracking, "cell 0 0,alignx center,aligny center");
 
 		formattedTextField_61 = new JFormattedTextField();
-		panel_1.add(formattedTextField_61, "cell 1 6,grow");
+		panel_1.add(formattedTextField_61, "cell 1 11,grow");
+		
+		lblSearchWarnig6 = new JLabel("Phone must be 10-digit number");
+		lblSearchWarnig6.setForeground(Color.RED);
+		panel_1.add(lblSearchWarnig6, "cell 1 12");
+		
+		lblSearchWarnig7 = new JLabel("Fill at least one Field");
+		lblSearchWarnig7.setForeground(Color.RED);
+		panel_1.add(lblSearchWarnig7, "cell 1 13");
 
 		btnClear_1 = new JButton("Clear");
-		panel_1.add(btnClear_1, "flowx,cell 1 7,growy");
+		panel_1.add(btnClear_1, "flowx,cell 1 14,growy");
 
 		btnSearch = new JButton("Search");
-		panel_1.add(btnSearch, "cell 1 7,growy");
+		panel_1.add(btnSearch, "cell 1 14,growy");
+		
+        tm = new DefaultTableModel(columnNames, 0) {
+			private static final long serialVersionUID = 1L;
 
-		scrollPane_1 = new JScrollPane();
+			@Override
+            public Class<?> getColumnClass(int column) {
+                return getValueAt(0, column).getClass();
+            }
+
+            @Override
+            public boolean isCellEditable(int row, int column) {
+                return false;
+            }
+        };
+		table = new JTable(tm){
+			private static final long serialVersionUID = 1L;
+
+			public boolean getScrollableTracksViewportWidth()
+            {
+                return getPreferredSize().width < getParent().getWidth();
+            }
+		};
+		scrollPane_1 = new JScrollPane(table);
+		panel_1.add(scrollPane_1, "cell 1 15,grow");
 		scrollPane_1.setVisible(false);
-		scrollPane_1
-				.setHorizontalScrollBarPolicy(ScrollPaneConstants.HORIZONTAL_SCROLLBAR_NEVER);
-		panel_1.add(scrollPane_1, "cell 1 8,grow, h 125");
-
-		textArea_1 = new JTextArea();
-		scrollPane_1.setViewportView(textArea_1);
-		textArea_1.setLineWrap(true);
-		textArea_1.setFont(new Font("Monospaced", Font.PLAIN, 11));
+		table.setAutoResizeMode(JTable.AUTO_RESIZE_OFF);
+		tca = new TableColumnAdjuster(table);
+		
+		lblSearchWarnig1.setVisible(false);
+		lblSearchWarnig2.setVisible(false);
+		lblSearchWarnig3.setVisible(false);
+		lblSearchWarnig4.setVisible(false);
+		lblSearchWarnig5.setVisible(false);
+		lblSearchWarnig6.setVisible(false);
+		lblSearchWarnig7.setVisible(false);
 
 	}
 
@@ -340,18 +401,39 @@ public class IpalilosPanel extends JPanel {
 		formattedTextField_41.setText("");
 		formattedTextField_51.setText("");
 		formattedTextField_61.setText("");
-	}
-	
-	public void updateStatus(String status) {
-		scrollPane_1.setVisible(true);
-		textArea_1.setText(status);
-		//textArea.append(status);
-	}
-	
-	public void hideTextArea() {
 		scrollPane_1.setVisible(false);
+		lblSearchWarnig1.setVisible(false);
+		lblSearchWarnig2.setVisible(false);
+		lblSearchWarnig3.setVisible(false);
+		lblSearchWarnig4.setVisible(false);
+		lblSearchWarnig5.setVisible(false);
+		lblSearchWarnig6.setVisible(false);
+		lblSearchWarnig7.setVisible(false);
+		revalidate();
 	}
 	
+	public void updateStatus(Object[] db) {
+		scrollPane_1.setVisible(true);
+		tm.addRow(db);
+		tca.adjustColumns();
+		revalidate();
+	}
 	
+	public void displayWarningsP2(boolean[] warning) {
+		lblSearchWarnig1.setVisible(warning[0]);
+		lblSearchWarnig2.setVisible(warning[1]);
+		lblSearchWarnig3.setVisible(warning[2]);
+		lblSearchWarnig4.setVisible(warning[4]);
+		lblSearchWarnig5.setVisible(warning[5]);
+		lblSearchWarnig6.setVisible(warning[6]);
+		lblSearchWarnig7.setVisible(warning[7]);
+		revalidate();
+	}
+	
+	public void clearTable() {
+		scrollPane_1.setVisible(false);
+		tm.setRowCount(0);
+		revalidate();
+	}
 	
 }

@@ -150,6 +150,74 @@ public class IpalilosController {
 			/*
 			 * Panel2 Search
 			 */
+			String[] text = new String[7];
+			boolean[] warning = new boolean[8];
+			gui.clearTable();
+			text = gui.getTextBoxesSearch();
+			
+			int i, count = 0;
+			for (i = 0; i < 7; i++)
+				if (text[i].length() == 0 )
+					count++;
+			warning[7] = (count == i)?true:false;	
+					
+			if (!warning[7]){		
+				warning[0] = !text[0].matches("[A-Za-z]{2}\\d{9}[A-Za-z]{2}|\\d{0}");
+				warning[1] = !text[1].matches("[a-zA-Z\\s]*");
+				warning[2] = !text[2].matches("[a-zA-Z\\s]*");
+				warning[3] = !text[3].matches("[a-zA-Z\\s]*");
+				warning[4] = !text[4].matches("\\d{5}|\\d{0}");
+				warning[5] = !text[5].matches("[a-zA-Z\\s]*");
+				warning[6] = !text[6].matches("\\d{10}|\\d{0}");
+			}
+			gui.displayWarningsP2(warning);
+			
+			boolean ready = true;
+			
+			for (i = 0; i < 8; i++)
+				if (warning[i])
+					ready = false;
+			
+			if (ready){
+				try {
+					Class.forName("com.mysql.jdbc.Driver").newInstance();
+
+					String url = "jdbc:mysql://83.212.109.15/db1";
+					String username = "root";
+					String pass = "36966";
+					
+					Connection conn = DriverManager.getConnection(url, username, pass);
+					Statement stm = conn.createStatement();
+
+					String database[] = { " tracking="," name="," surname="," address="," postalcode="," country="," phone=" }; 
+					String x = "select * from metaforiki where";
+					String y = " and";
+					boolean first = true;
+					
+					for (i = 0; i < 7; i++){
+						if (!text[i].isEmpty()){
+							if (first == true){
+								x += database[i] +"'"+ text[i]+"'";
+								first = false;
+							}else{
+								x += y + database[i] +"'"+ text[i]+"'";
+							}
+						}
+					}
+					
+					String[] responce = new String[10];
+					ResultSet rs = stm.executeQuery(x);
+					while (rs.next()){
+						for (i = 0; i < 10; i++)
+							responce[i] = rs.getString(i+2);
+						gui.updateStatus(responce);
+					}
+
+				}catch(Exception e1){
+					e1.printStackTrace();
+				}
+				
+			}
 
 		}
 	}
@@ -159,6 +227,7 @@ public class IpalilosController {
 			/*
 			 * Panel2 Clear
 			 */
+			gui.clearTextBoxesSearch();
 
 		}
 	}

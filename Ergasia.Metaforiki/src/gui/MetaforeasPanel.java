@@ -6,27 +6,16 @@ import javax.swing.JButton;
 import javax.swing.JPanel;
 import javax.swing.JTable;
 import javax.swing.ListSelectionModel;
-
 import net.miginfocom.swing.MigLayout;
-
-import java.awt.BorderLayout;
 import java.awt.Font;
 import java.awt.CardLayout;
-import java.awt.Image;
-import java.awt.Label;
-import java.awt.Toolkit;
 import java.awt.event.ActionListener;
-import java.io.InputStream;
-import java.net.MalformedURLException;
-import java.net.URL;
-import java.net.URLConnection;
-
+import java.awt.event.ComponentAdapter;
+import java.awt.event.ComponentEvent;
 import javax.swing.JComboBox;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.JScrollPane;
-
 import additional.TableColumnAdjuster;
-
 import javax.swing.JTextPane;
 import javax.swing.JLabel;
 
@@ -55,7 +44,6 @@ public class MetaforeasPanel extends JPanel {
 	private JPanel mappanel;
 	private JLabel lblMap;
 	
-
 	public MetaforeasPanel() {
 
 		setLayout(new MigLayout("", "[427.00,grow][70.00]", "[60][grow][60][grow][60px][grow][60]"));
@@ -112,14 +100,18 @@ public class MetaforeasPanel extends JPanel {
 		table.setShowVerticalLines(false);
 		table.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
 		table.setAutoResizeMode(JTable.AUTO_RESIZE_ALL_COLUMNS);
+		
+		table.getParent().addComponentListener(new ComponentAdapter() {
+		    @Override
+		    public void componentResized(final ComponentEvent e) {
+		    	tca.adjustColumns();
+		    }
+		});
 
 		mappanel = new JPanel();
 		mappanel.setLayout(new MigLayout("", "[grow]", "[grow]"));
 		panel.add(mappanel, "2");
 		
-		lblMap = new JLabel("");
-		mappanel.add(lblMap, "cell 0 0");
-
 		card = (CardLayout) panel.getLayout();
 		card.show(panel, "1");
 		
@@ -134,6 +126,7 @@ public class MetaforeasPanel extends JPanel {
 		textPane.setFont(new Font("Tahoma", Font.BOLD, 14));
 		scrollPane_1.setViewportView(textPane);
 		textPane.setEditable(false);
+		
 
 	}
 
@@ -193,6 +186,7 @@ public class MetaforeasPanel extends JPanel {
 		//mappanel.removeAll();
 		lblMap = new JLabel(img);
 		mappanel.add(lblMap, "cell 0 0,grow");
+
 	}
 	
 	public int[] getGmapSize(){

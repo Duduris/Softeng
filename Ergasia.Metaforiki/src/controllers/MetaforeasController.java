@@ -1,6 +1,5 @@
 package controllers;
 
-import java.awt.Dimension;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.net.MalformedURLException;
@@ -34,6 +33,7 @@ public class MetaforeasController {
 			 * Submit
 			 */
 			gui.clearMap();
+			gui.switchPanel(1);
 			String combobx;
 			int id = 0;
 			combobx = gui.getItemStatus();
@@ -198,7 +198,8 @@ public class MetaforeasController {
 			/*
 			 * Connect
 			 */
-			
+			gui.switchPanel(1);
+			gui.clearMap();
 			try {
 				Class.forName("com.mysql.jdbc.Driver").newInstance();
 
