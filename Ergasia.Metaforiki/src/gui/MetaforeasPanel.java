@@ -5,14 +5,19 @@ import javax.swing.JButton;
 import javax.swing.JPanel;
 import javax.swing.JTable;
 import javax.swing.ListSelectionModel;
+
 import net.miginfocom.swing.MigLayout;
+
 import java.awt.Font;
 import java.awt.CardLayout;
 import java.awt.event.ActionListener;
+
 import javax.swing.JComboBox;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.JScrollPane;
+
 import additional.TableColumnAdjuster;
+import javax.swing.JTextPane;
 
 public class MetaforeasPanel extends JPanel {
 
@@ -25,22 +30,31 @@ public class MetaforeasPanel extends JPanel {
 	private JButton btnMap;
 	private JButton btnSubmit;
 	private JButton btnConn;
+	private JButton btnMore;
+	private JPanel panel;
 	private CardLayout card;
 	private TableColumnAdjuster tca;
 
 	private String[] columnNames = { "First Name", "Last Name", "Address", "Status" };
 	private JScrollPane scrollPane;
+	static int p = 1;
+	private JPanel infopanel;
+	private JScrollPane scrollPane_1;
+	private JTextPane textPane;
+	
 
 	public MetaforeasPanel() {
 
-		setLayout(new MigLayout("", "[427.00,grow][70.00]",
-				"[60][grow][60][grow][60]"));
+		setLayout(new MigLayout("", "[427.00,grow][70.00]", "[60][grow][60][grow][60px][grow][60]"));
 
 		btnMap = new JButton("Map");
 		add(btnMap, "cell 1 2,grow");
+		
+		btnMore = new JButton("<html>More<br>Info</html>");
+		add(btnMore, "cell 1 4,grow");
 
 		btnSubmit = new JButton("Submit");
-		add(btnSubmit, "cell 1 4,grow");
+		add(btnSubmit, "cell 1 6,grow");
 
 		btnConn = new JButton("Connect");
 		add(btnConn, "cell 1 0,grow");
@@ -50,15 +64,15 @@ public class MetaforeasPanel extends JPanel {
 		DefaultListCellRenderer dlcr = new DefaultListCellRenderer();
 		dlcr.setHorizontalAlignment(DefaultListCellRenderer.CENTER);
 		comboBox.setRenderer(dlcr);
-		add(comboBox, "cell 0 4,grow");
+		add(comboBox, "cell 0 6,grow");
 
-		JPanel panel = new JPanel(new CardLayout());
-		add(panel, "cell 0 0 1 4,grow");
+		panel = new JPanel(new CardLayout());
+		add(panel, "cell 0 0 1 6,grow");
 
 		JPanel tablepanel = new JPanel();
 		tablepanel.setLayout(new MigLayout("", "[grow]", "[grow]"));
 
-		panel.add(tablepanel, "p1");
+		panel.add(tablepanel, "1");
 		
 		
 		scrollPane = new JScrollPane();
@@ -76,10 +90,22 @@ public class MetaforeasPanel extends JPanel {
 
 		JPanel mappanel = new JPanel();
 		mappanel.setLayout(new MigLayout("", "[grow]", "[grow]"));
-		panel.add(mappanel, "p2");
+		panel.add(mappanel, "2");
 
 		card = (CardLayout) panel.getLayout();
-		card.show(panel, "p1");
+		card.show(panel, "1");
+		
+		infopanel = new JPanel();
+		panel.add(infopanel, "3");
+		infopanel.setLayout(new MigLayout("", "[grow]", "[grow]"));
+		
+		scrollPane_1 = new JScrollPane();
+		infopanel.add(scrollPane_1, "cell 0 0,grow");
+		
+		textPane = new JTextPane();
+		textPane.setFont(new Font("Tahoma", Font.BOLD, 14));
+		scrollPane_1.setViewportView(textPane);
+		textPane.setEditable(false);
 
 	}
 
@@ -93,6 +119,10 @@ public class MetaforeasPanel extends JPanel {
 
 	public void btnConnectListener(ActionListener e) {
 		btnConn.addActionListener(e);
+	}
+	
+	public void btnMoreListener(ActionListener e) {
+		btnMore.addActionListener(e);
 	}
 
 	public String getItemStatus() {
@@ -115,6 +145,20 @@ public class MetaforeasPanel extends JPanel {
 	
 	public void clearTable() {
 		tm.setRowCount(0);
+	}
+	
+	public void switchPanel(int pa){
+		p = pa;
+		card.show(panel, Integer.toString(pa));
+		
+	}
+	
+	public int getPanel() {
+		return p;
+	}
+	
+	public void setInfo(String info){
+		textPane.setText(info);
 	}
 
 }

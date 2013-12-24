@@ -25,7 +25,6 @@ public class AdministratorPanel extends JPanel {
 	private JButton btnExportAll;
 	private JPanel panel;
 	private JFreeChart chart;
-	
 	private DefaultPieDataset pieDataset;
 	
 
@@ -45,7 +44,6 @@ public class AdministratorPanel extends JPanel {
 		panel.setLayout(new CardLayout(0, 0));
 		add(panel, "cell 0 1 1 2,grow");
 		
-
 	}
 	
 	public void btnExportListener(ActionListener e) {
