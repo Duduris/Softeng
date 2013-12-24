@@ -21,7 +21,6 @@ public class AdministratorPanel extends JPanel {
 	
 	private JComboBox<Object> comboBox;
 	private String parameters[] = { "None","Fragile", "Delivered","To be Delivered","Damaged", "Wrong Address", "Unavailable" };
-	private JButton btnExit;
 	private JButton btnExportAll;
 	private JPanel panel;
 	private JFreeChart chart;
@@ -33,12 +32,9 @@ public class AdministratorPanel extends JPanel {
 
 		comboBox = new JComboBox<Object>(parameters);
 		add(comboBox, "cell 0 0,alignx left,aligny center");
-
-		btnExit = new JButton("Exit");
-		add(btnExit, "cell 1 0,grow");
 		
 		btnExportAll = new JButton("Export All");
-		add(btnExportAll, "cell 1 1,grow");
+		add(btnExportAll, "cell 1 0,grow");
 
 		panel = new JPanel();
 		panel.setLayout(new CardLayout(0, 0));
@@ -48,10 +44,6 @@ public class AdministratorPanel extends JPanel {
 	
 	public void btnExportListener(ActionListener e) {
 		btnExportAll.addActionListener(e);
-	}
-
-	public void btnExitListener(ActionListener e) {
-		btnExit.addActionListener(e);
 	}
 	
 	public void comboBxListener(ActionListener e) {

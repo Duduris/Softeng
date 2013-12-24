@@ -2,10 +2,12 @@ package controllers;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.io.FileWriter;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.ResultSet;
 import java.sql.Statement;
+
 import org.jfree.data.general.DefaultPieDataset;
 
 import gui.AdministratorPanel;
@@ -17,7 +19,6 @@ public class AdministratorController {
 	public AdministratorController(AdministratorPanel gui) {
 		this.gui = gui;
 		gui.btnExportListener(new BtnExportListener());
-		gui.btnExitListener(new BtnExitListener());
 		gui.comboBxListener(new ComboBoxListener());
 	}
 	
@@ -91,16 +92,40 @@ public class AdministratorController {
 			/*
 			 * Export
 			 */
+			// Prosoxi sto path - kapos prepei na mpeinei sto workspace oste na min vgalei kana error
+			String filename = "c:\\myjdbcfile.csv";
+			try {
+				FileWriter csv = new FileWriter(filename);
+				Class.forName("com.mysql.jdbc.Driver").newInstance();
 
+				String url = "jdbc:mysql://83.212.109.15/db1";
+				String username = "root";
+				String pass = "36966";
+				Connection conn = DriverManager.getConnection(url, username, pass);
+				Statement stm = conn.createStatement();
+				ResultSet rs = stm.executeQuery("select * from metaforiki");
+				
+				csv.append("ID;Name;Surname;Address;Postal Code;Country;Phone;Fragile;Tracking;Comments;Status;Date\n");
+				
+				while (rs.next()) {
+					for (int i = 1; i < 13; i++){
+						csv.append(rs.getString(i));
+						char end = (i == 12)?'\n':';';
+						csv.append(end);
+					}
+				}
+				
+				csv.flush();
+				csv.close();
+				rs.close();
+				stm.close();
+				conn.close();
+				
+			}catch(Exception e1){
+				e1.printStackTrace();
+			}
 		}
 	}
 	
-	class BtnExitListener implements ActionListener {
-		public void actionPerformed(ActionEvent e) {
-			/*
-			 * Exit
-			 */
 
-		}
-	}
 }
