@@ -1,12 +1,18 @@
 package controllers;
 
+import java.awt.Dimension;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.net.MalformedURLException;
+import java.net.URL;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.Statement;
+
+import javax.swing.ImageIcon;
+
 import gui.MetaforeasPanel;
 
 public class MetaforeasController {
@@ -27,6 +33,7 @@ public class MetaforeasController {
 			/*
 			 * Submit
 			 */
+			gui.clearMap();
 			String combobx;
 			int id = 0;
 			combobx = gui.getItemStatus();
@@ -66,6 +73,7 @@ public class MetaforeasController {
 			 * info
 			 */
 			int pa;
+			gui.clearMap();
 			pa = gui.getPanel();
 			pa = (pa > 2)? 1: 3;
 			if (pa != 3)
@@ -125,9 +133,62 @@ public class MetaforeasController {
 			 * Map
 			 */
 			int pa;
+			gui.clearMap();
 			pa = gui.getPanel();
 			pa = (pa == 2)? 1: 2;
-			gui.switchPanel(pa);
+			if (pa != 2)
+				gui.switchPanel(pa);
+			
+			int id = gui.getTableRow();
+			
+			if (pa == 2 && id >= 0){
+				try {
+					Class.forName("com.mysql.jdbc.Driver").newInstance();
+
+					String url = "jdbc:mysql://83.212.109.15/db1";
+					String username = "root";
+					String pass = "36966";
+
+					Connection conn = DriverManager.getConnection(url, username, pass);
+					Statement stm = conn.createStatement();
+
+					gui.switchPanel(pa);
+					id++;
+					
+					int[] dim = new int[2];
+					dim = gui.getGmapSize();
+					String x = Integer.toString(dim[0]);
+					String y = Integer.toString(dim[1]); 
+					
+					String sqldiavasmaid = "select * from metaforiki where id="+id;
+					ResultSet rs = stm.executeQuery(sqldiavasmaid);
+					
+					rs.next();
+
+					String address = rs.getString("address").replaceAll(" ", "+");
+					String postalcode = rs.getString("postalcode");
+					String country = rs.getString("country").replaceAll(" ", "+");;
+					
+					
+					String imageUrl = "http://maps.googleapis.com/maps/api/staticmap?";
+					imageUrl += "center="+address+","+postalcode+","+country;
+					imageUrl +=	"&zoom=16&size="+y+"x"+x+"&maptype=roadmap";
+					imageUrl += "&markers=color:red%7Clabel:A%7C"+address+","+postalcode+","+country;
+					imageUrl += "&sensor=false";
+					
+					try {
+						URL url1;
+						url1 = new URL(imageUrl);
+						ImageIcon img = new ImageIcon(new ImageIcon(url1).getImage());
+						gui.setGmap(img);
+					} catch (MalformedURLException e1) {
+						e1.printStackTrace();
+					}
+				}catch(Exception e1){
+					e1.printStackTrace();
+				}
+
+			}
 
 		}
 	}

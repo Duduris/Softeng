@@ -1,6 +1,7 @@
 package gui;
 
 import javax.swing.DefaultListCellRenderer;
+import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JPanel;
 import javax.swing.JTable;
@@ -8,16 +9,26 @@ import javax.swing.ListSelectionModel;
 
 import net.miginfocom.swing.MigLayout;
 
+import java.awt.BorderLayout;
 import java.awt.Font;
 import java.awt.CardLayout;
+import java.awt.Image;
+import java.awt.Label;
+import java.awt.Toolkit;
 import java.awt.event.ActionListener;
+import java.io.InputStream;
+import java.net.MalformedURLException;
+import java.net.URL;
+import java.net.URLConnection;
 
 import javax.swing.JComboBox;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.JScrollPane;
 
 import additional.TableColumnAdjuster;
+
 import javax.swing.JTextPane;
+import javax.swing.JLabel;
 
 public class MetaforeasPanel extends JPanel {
 
@@ -41,6 +52,8 @@ public class MetaforeasPanel extends JPanel {
 	private JPanel infopanel;
 	private JScrollPane scrollPane_1;
 	private JTextPane textPane;
+	private JPanel mappanel;
+	private JLabel lblMap;
 	
 
 	public MetaforeasPanel() {
@@ -77,9 +90,21 @@ public class MetaforeasPanel extends JPanel {
 		
 		scrollPane = new JScrollPane();
 		tablepanel.add(scrollPane, "cell 0 0,grow");
-		table = new JTable(new DefaultTableModel(columnNames, 0));
+        tm = new DefaultTableModel(columnNames, 0) {
+			private static final long serialVersionUID = 1L;
+
+			@Override
+            public Class<?> getColumnClass(int column) {
+                return getValueAt(0, column).getClass();
+            }
+
+            @Override
+            public boolean isCellEditable(int row, int column) {
+                return false;
+            }
+        };
+		table = new JTable(tm);
 		scrollPane.setViewportView(table);
-		tm = (DefaultTableModel) table.getModel();
 		table.setAutoResizeMode(JTable.AUTO_RESIZE_OFF);
 		tca = new TableColumnAdjuster(table);
 		table.setRowHeight(50);
@@ -88,9 +113,12 @@ public class MetaforeasPanel extends JPanel {
 		table.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
 		table.setAutoResizeMode(JTable.AUTO_RESIZE_ALL_COLUMNS);
 
-		JPanel mappanel = new JPanel();
+		mappanel = new JPanel();
 		mappanel.setLayout(new MigLayout("", "[grow]", "[grow]"));
 		panel.add(mappanel, "2");
+		
+		lblMap = new JLabel("");
+		mappanel.add(lblMap, "cell 0 0");
 
 		card = (CardLayout) panel.getLayout();
 		card.show(panel, "1");
@@ -160,5 +188,23 @@ public class MetaforeasPanel extends JPanel {
 	public void setInfo(String info){
 		textPane.setText(info);
 	}
-
+	
+	public void setGmap(ImageIcon img){
+		//mappanel.removeAll();
+		lblMap = new JLabel(img);
+		mappanel.add(lblMap, "cell 0 0,grow");
+	}
+	
+	public int[] getGmapSize(){
+		int[] dim = new int[2];
+		dim[0] = mappanel.getHeight();
+		dim[1] = mappanel.getWidth();
+		
+		return dim;
+	}
+	
+	public void clearMap(){
+		mappanel.removeAll();
+	}
+		
 }
