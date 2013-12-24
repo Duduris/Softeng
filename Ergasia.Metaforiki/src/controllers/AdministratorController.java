@@ -1,12 +1,16 @@
 package controllers;
 
+import java.awt.Desktop;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.io.File;
 import java.io.FileWriter;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.ResultSet;
 import java.sql.Statement;
+
+import javax.swing.JFileChooser;
 
 import org.jfree.data.general.DefaultPieDataset;
 
@@ -93,36 +97,48 @@ public class AdministratorController {
 			 * Export
 			 */
 			// Prosoxi sto path - kapos prepei na mpeinei sto workspace oste na min vgalei kana error
-			String filename = "c:\\myjdbcfile.csv";
-			try {
-				FileWriter csv = new FileWriter(filename);
-				Class.forName("com.mysql.jdbc.Driver").newInstance();
 
-				String url = "jdbc:mysql://83.212.109.15/db1";
-				String username = "root";
-				String pass = "36966";
-				Connection conn = DriverManager.getConnection(url, username, pass);
-				Statement stm = conn.createStatement();
-				ResultSet rs = stm.executeQuery("select * from metaforiki");
-				
-				csv.append("ID;Name;Surname;Address;Postal Code;Country;Phone;Fragile;Tracking;Comments;Status;Date\n");
-				
-				while (rs.next()) {
-					for (int i = 1; i < 13; i++){
-						csv.append(rs.getString(i));
-						char end = (i == 12)?'\n':';';
-						csv.append(end);
+			String filename = "myjdbcfile";
+			JFileChooser chooser = new JFileChooser( );
+			chooser.setSelectedFile(new File( filename + ".csv"));
+			int state = chooser.showSaveDialog(null);
+			File file = chooser.getSelectedFile();
+
+			if (file != null && state == JFileChooser.APPROVE_OPTION){
+
+				try {
+					FileWriter csv = new FileWriter(file);
+					Class.forName("com.mysql.jdbc.Driver").newInstance();
+
+					String url = "jdbc:mysql://83.212.109.15/db1";
+					String username = "root";
+					String pass = "36966";
+					Connection conn = DriverManager.getConnection(url, username, pass);
+					Statement stm = conn.createStatement();
+					ResultSet rs = stm.executeQuery("select * from metaforiki");
+
+					csv.append("ID;Name;Surname;Address;Postal Code;Country;Phone;Fragile;Tracking;Comments;Status;Date\n");
+
+					while (rs.next()) {
+						for (int i = 1; i < 13; i++){
+							csv.append(rs.getString(i));
+							char end = (i == 12)?'\n':';';
+							csv.append(end);
+						}
 					}
+
+					csv.flush();
+					csv.close();
+
+					//Desktop.getDesktop().open(new File("myjdbcfile.csv"));
+
+					rs.close();
+					stm.close();
+					conn.close();
+
+				}catch(Exception e1){
+					e1.printStackTrace();
 				}
-				
-				csv.flush();
-				csv.close();
-				rs.close();
-				stm.close();
-				conn.close();
-				
-			}catch(Exception e1){
-				e1.printStackTrace();
 			}
 		}
 	}

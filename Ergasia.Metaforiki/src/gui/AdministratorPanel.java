@@ -11,6 +11,7 @@ import net.miginfocom.swing.MigLayout;
 
 import javax.swing.JButton;
 import javax.swing.JComboBox;
+import javax.swing.JFileChooser;
 
 import java.awt.CardLayout;
 import java.awt.event.ActionListener;
@@ -39,6 +40,7 @@ public class AdministratorPanel extends JPanel {
 		panel = new JPanel();
 		panel.setLayout(new CardLayout(0, 0));
 		add(panel, "cell 0 1 1 2,grow");
+		
 		
 	}
 	
