@@ -6,8 +6,6 @@ import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.ResultSet;
 import java.sql.Statement;
-
-import models.CustomerModel;
 import gui.CustomerPanel;
 
 public class CustomerController {
@@ -32,7 +30,11 @@ public class CustomerController {
 			//omios tha metaferthoun sto adistixo model
 			
 			String tracking = gui.getTracking();
-			if (!tracking.isEmpty()) {
+			if (tracking.isEmpty()) {
+				gui.showWarning(1);
+			}else if (!tracking.matches("[A-Za-z]{2}\\d{9}[A-Za-z]{2}|\\d{0}")){
+				gui.showWarning(2);
+			}else{
 				try {
 					
 					String query;
@@ -53,8 +55,8 @@ public class CustomerController {
 						String name = rs.getString("name");
 						String surname = rs.getString("surname");
 						String country = rs.getString("country");
-						String comments = rs.getString("comments");
-						String status = rs.getString("status");
+						//String comments = rs.getString("comments");
+						//String status = rs.getString("status");
 						String date = rs.getString("date");
 
 						query = "To be delivered to:\t" + surname + " " + name
@@ -72,8 +74,6 @@ public class CustomerController {
 				} catch (Exception e1) {
 					e1.printStackTrace();
 				}
-			}else{
-				gui.showWarning();
 			}
 
 		}

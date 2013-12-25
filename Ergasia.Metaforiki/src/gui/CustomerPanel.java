@@ -21,9 +21,10 @@ public class CustomerPanel extends JPanel {
 	private JButton btnSearch;
 	private JScrollPane scrollPane;
 	private JLabel lblInputATracking;
+	private JLabel lblWrongFormatMust;
 
 	public CustomerPanel() {
-		setLayout(new MigLayout("hidemode 3", "[grow][100][grow]", "[grow][40][40][40][][][40][grow]"));
+		setLayout(new MigLayout("hidemode 3", "[grow][100][grow]", "[grow][40][40][40][]0[]0[][40][grow]"));
 		
 		JLabel lblNewLabel = new JLabel(" Track n Trace ");
 		lblNewLabel.setFont(new Font("Tahoma", Font.BOLD | Font.ITALIC, 12));
@@ -43,8 +44,13 @@ public class CustomerPanel extends JPanel {
 		lblInputATracking.setForeground(Color.RED);
 		lblInputATracking.setVisible(false);
 		add(lblInputATracking, "cell 1 4,h 15");
+		
+		lblWrongFormatMust = new JLabel("Wrong Format: must be RBxxxxxxxxxGR");
+		lblWrongFormatMust.setVisible(false);
+		lblWrongFormatMust.setForeground(Color.RED);
+		add(lblWrongFormatMust, "cell 1 5");
 		scrollPane.setHorizontalScrollBarPolicy(ScrollPaneConstants.HORIZONTAL_SCROLLBAR_NEVER);
-		add(scrollPane, "cell 1 5,height 100,grow");
+		add(scrollPane, "cell 1 6,height 100,grow");
 		
 		textArea = new JTextArea();
 		textArea.setLineWrap(true);
@@ -53,7 +59,7 @@ public class CustomerPanel extends JPanel {
 		textArea.setFont(new Font("Tahoma", Font.PLAIN, 11));
 		
 		btnSearch = new JButton("Search");
-		add(btnSearch, "cell 1 6,alignx center,growy");
+		add(btnSearch, "cell 1 7,alignx center,growy");
 
 	}
 	
@@ -68,11 +74,18 @@ public class CustomerPanel extends JPanel {
 	public void setTrackingInfo(String info) {
 		scrollPane.setVisible(true);
 		lblInputATracking.setVisible(false);
+		lblWrongFormatMust.setVisible(false);
 		textArea.setText(info);
 		revalidate();
 	}
-	public void showWarning() {
-		lblInputATracking.setVisible(true);
+	public void showWarning(int i) {
+		if(i == 1){
+			lblInputATracking.setVisible(true);
+			lblWrongFormatMust.setVisible(false);
+		}else{
+			lblInputATracking.setVisible(false);
+			lblWrongFormatMust.setVisible(true);
+		}
 		scrollPane.setVisible(false);
 		revalidate();
 	}
