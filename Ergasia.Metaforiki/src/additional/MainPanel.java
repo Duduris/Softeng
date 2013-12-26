@@ -5,20 +5,16 @@ import gui.CustomerPanel;
 import gui.IpalilosPanel;
 import gui.LoginPanel;
 import gui.MetaforeasPanel;
-
 import java.awt.Dimension;
 import java.awt.Toolkit;
-
 import javax.swing.JFrame;
 import javax.swing.JMenuBar;
 import javax.swing.JButton;
-
 import controllers.AdministratorController;
 import controllers.CustomerController;
 import controllers.IpalilosController;
 import controllers.LoginController;
 import controllers.MetaforeasController;
-
 import java.awt.CardLayout;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
@@ -66,18 +62,22 @@ public class MainPanel {
 		  frame.getContentPane().add(admin, "Administrator");
 		  
 		  card = (CardLayout) frame.getContentPane().getLayout();
-		  card.show(frame.getContentPane(), "Login");
+		  card.show(frame.getContentPane(), "Log");
+		  
+		  menuBar.setVisible(false);
 		  
 		  frame.setVisible(true);
 		  
 		  btnNewButton.addActionListener(new ActionListener() {
 			  public void actionPerformed(ActionEvent e) {
 				  card.show(frame.getContentPane(), "Log");
+				  menuBar.setVisible(false);
 			  }
 		  });
 		  login.btnSingIn.addActionListener(new ActionListener() {
 			  public void actionPerformed(ActionEvent arg0) {
 				  card.show(frame.getContentPane(), logcont.changePanel());
+				  menuBar.setVisible(true);
 			  }
 		  });
 
