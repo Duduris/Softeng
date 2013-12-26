@@ -64,6 +64,7 @@ public class IpalilosPanel extends JPanel {
 	private DefaultTableModel tm;
 	private TableColumnAdjuster tca;
 	private String[] columnNames = { "First Name", "Last Name", "Address", "Postal Code","Country","Phone","Fragile","Tracking","Comments", "Status" };
+	private JButton btnExport;
 	
 
 	public IpalilosPanel() {
@@ -289,6 +290,10 @@ public class IpalilosPanel extends JPanel {
 		table.setAutoResizeMode(JTable.AUTO_RESIZE_OFF);
 		tca = new TableColumnAdjuster(table);
 		
+		btnExport = new JButton("Export");
+		panel_1.add(btnExport, "cell 1 14,growy");
+		btnExport.setVisible(false);
+		
 		lblSearchWarnig1.setVisible(false);
 		lblSearchWarnig2.setVisible(false);
 		lblSearchWarnig3.setVisible(false);
@@ -379,6 +384,10 @@ public class IpalilosPanel extends JPanel {
 		btnClear_1.addActionListener(e);
 	}
 	
+	public void btnExportListener(ActionListener e) {
+		btnExport.addActionListener(e);
+	}
+	
 	public String[] getTextBoxesSearch() {
 		String[] values = new String[7];
 		
@@ -409,6 +418,7 @@ public class IpalilosPanel extends JPanel {
 		lblSearchWarnig5.setVisible(false);
 		lblSearchWarnig6.setVisible(false);
 		lblSearchWarnig7.setVisible(false);
+		btnExport.setVisible(false);
 		revalidate();
 	}
 	
@@ -416,6 +426,7 @@ public class IpalilosPanel extends JPanel {
 		scrollPane_1.setVisible(true);
 		tm.addRow(db);
 		tca.adjustColumns();
+		btnExport.setVisible(true);
 		revalidate();
 	}
 	
@@ -435,5 +446,20 @@ public class IpalilosPanel extends JPanel {
 		tm.setRowCount(0);
 		revalidate();
 	}
+	
+	public DefaultTableModel retTable(){
+		/*
+		 * Dimiourgei adigrafo tou table gia to neo parathiro
+		 */
+	    final DefaultTableModel copy = new DefaultTableModel(tm.getRowCount(), 0);
+	    for (int column = 0; column < tm.getColumnCount(); column++) {
+	        copy.addColumn(tm.getColumnName(column));
+	        for (int row = 0; row < tm.getRowCount(); row++)
+	            copy.setValueAt(tm.getValueAt(row, column), row, column);
+	    }
+	    return copy;
+	}
+	
+
 	
 }

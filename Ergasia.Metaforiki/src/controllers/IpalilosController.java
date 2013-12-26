@@ -1,5 +1,6 @@
 package controllers;
 
+import java.awt.Window.Type;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.sql.Connection;
@@ -9,7 +10,9 @@ import java.sql.ResultSet;
 import java.sql.Statement;
 import java.sql.Timestamp;
 import java.util.Random;
-
+import javax.swing.JFrame;
+import javax.swing.JTable;
+import additional.TableColumnAdjuster;
 import gui.IpalilosPanel;
 
 public class IpalilosController {
@@ -22,6 +25,7 @@ public class IpalilosController {
 		gui.btnSubmitListener(new BtnSubmitListener());
 		gui.btnSearchListener(new BtnSearchListener());
 		gui.btnClear2Listener(new BtnClear2Listener());
+		gui.btnExportListener(new BtnExportListener());
 		
 	}
 	
@@ -231,4 +235,23 @@ public class IpalilosController {
 
 		}
 	}
+	
+	class BtnExportListener implements ActionListener {
+		public void actionPerformed(ActionEvent e) {
+			/*
+			 * Panel2 Export
+			 */
+			JFrame frame = new JFrame("Demata");
+			frame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+			JTable table = new JTable(gui.retTable());
+			TableColumnAdjuster tca = new TableColumnAdjuster(table);
+			frame.setType(Type.POPUP);
+			frame.add(table);
+			tca.adjustColumns();
+			frame.pack();
+			frame.setVisible(true);
+
+		}
+	}
+	
 }
