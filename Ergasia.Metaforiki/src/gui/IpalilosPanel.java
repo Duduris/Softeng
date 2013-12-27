@@ -3,7 +3,9 @@ package gui;
 import javax.swing.JPanel;
 import javax.swing.BoxLayout;
 import javax.swing.JTabbedPane;
+
 import net.miginfocom.swing.MigLayout;
+
 import javax.swing.JLabel;
 import javax.swing.JFormattedTextField;
 import javax.swing.JCheckBox;
@@ -11,10 +13,14 @@ import javax.swing.JTextArea;
 import javax.swing.JButton;
 import javax.swing.JScrollPane;
 import javax.swing.ScrollPaneConstants;
+
 import java.awt.Font;
 import java.awt.event.ActionListener;
 import java.awt.Color;
+
 import javax.swing.JTable;
+import javax.swing.event.TableModelEvent;
+import javax.swing.event.TableModelListener;
 import javax.swing.table.DefaultTableModel;
 
 import additional.TableColumnAdjuster;
@@ -22,6 +28,8 @@ import additional.TableColumnAdjuster;
 public class IpalilosPanel extends JPanel {
 
 	private static final long serialVersionUID = 1;
+	
+	private JTabbedPane tabbedPane;
 
 	private JFormattedTextField formattedTextField;
 	private JFormattedTextField formattedTextField_1;
@@ -65,12 +73,14 @@ public class IpalilosPanel extends JPanel {
 	private TableColumnAdjuster tca;
 	private String[] columnNames = { "First Name", "Last Name", "Address", "Postal Code","Country","Phone","Fragile","Tracking","Comments", "Status" };
 	private JButton btnExport;
+	private JLabel lblNotFound;
+	private JButton btnSubmitTable;
 	
 
 	public IpalilosPanel() {
 		setLayout(new BoxLayout(this, BoxLayout.X_AXIS));
 
-		JTabbedPane tabbedPane = new JTabbedPane(JTabbedPane.TOP);
+		tabbedPane = new JTabbedPane(JTabbedPane.TOP);
 		add(tabbedPane);
 
 		/*
@@ -185,7 +195,7 @@ public class IpalilosPanel extends JPanel {
 
 		JPanel panel_1 = new JPanel();
 		tabbedPane.addTab("Search", null, panel_1, null);
-		panel_1.setLayout(new MigLayout("hidemode 3", "[125.00][100.00,grow]", "[30]2[]2[30]2[]2[30]2[]2[30][30]2[]2[30]2[]2[30][][][30][grow]"));
+		panel_1.setLayout(new MigLayout("hidemode 3", "[125.00][100.00,grow]", "[30]2[]2[30]2[]2[30]2[]2[30][30]2[]2[30]2[]2[30][][][30]2[]2[grow][]"));
 		
 		lblSearchWarnig1 = new JLabel("Tracking Warning");
 		lblSearchWarnig1.setForeground(Color.RED);
@@ -263,7 +273,7 @@ public class IpalilosPanel extends JPanel {
 		btnSearch = new JButton("Search");
 		panel_1.add(btnSearch, "cell 1 14,growy");
 		
-        tm = new DefaultTableModel(columnNames, 0) {
+        tm = new DefaultTableModel(columnNames, 0)/* {
 			private static final long serialVersionUID = 1L;
 
 			@Override
@@ -275,7 +285,12 @@ public class IpalilosPanel extends JPanel {
             public boolean isCellEditable(int row, int column) {
                 return false;
             }
-        };
+        }*/;
+		
+		lblNotFound = new JLabel("Nothing was Found!");
+		lblNotFound.setFont(new Font("Tahoma", Font.PLAIN, 14));
+		lblNotFound.setForeground(Color.BLUE);
+		panel_1.add(lblNotFound, "cell 1 15, h 50");
 		table = new JTable(tm){
 			private static final long serialVersionUID = 1L;
 
@@ -284,14 +299,31 @@ public class IpalilosPanel extends JPanel {
                 return getPreferredSize().width < getParent().getWidth();
             }
 		};
+		
+		 TableModelListener tablelisten = new TableModelListener() {
+		        @Override
+		        public void tableChanged(TableModelEvent e) {
+		            if (e.getType() == TableModelEvent.UPDATE) {
+
+		                int row = e.getFirstRow();
+		                int col = e.getColumn();
+
+		               System.out.println(row+" "+col);
+		            }
+		        }
+		    };
+		
 		scrollPane_1 = new JScrollPane(table);
-		panel_1.add(scrollPane_1, "cell 1 15,grow");
+		panel_1.add(scrollPane_1, "cell 1 16,grow");
 		scrollPane_1.setVisible(false);
 		table.setAutoResizeMode(JTable.AUTO_RESIZE_OFF);
 		tca = new TableColumnAdjuster(table);
 		
 		btnExport = new JButton("Export");
 		panel_1.add(btnExport, "cell 1 14,growy");
+		
+		btnSubmitTable = new JButton("Submit");
+		panel_1.add(btnSubmitTable, "cell 1 17,alignx right,growy");
 		btnExport.setVisible(false);
 		
 		lblSearchWarnig1.setVisible(false);
@@ -301,6 +333,9 @@ public class IpalilosPanel extends JPanel {
 		lblSearchWarnig5.setVisible(false);
 		lblSearchWarnig6.setVisible(false);
 		lblSearchWarnig7.setVisible(false);
+		
+		lblNotFound.setVisible(false);
+		btnSubmitTable.setVisible(false);
 
 	}
 
@@ -388,6 +423,13 @@ public class IpalilosPanel extends JPanel {
 		btnExport.addActionListener(e);
 	}
 	
+	public void btnSubmitTableListener(ActionListener e) {
+		btnSubmitTable.addActionListener(e);
+	}
+	
+  
+    
+	
 	public String[] getTextBoxesSearch() {
 		String[] values = new String[7];
 		
@@ -419,6 +461,7 @@ public class IpalilosPanel extends JPanel {
 		lblSearchWarnig6.setVisible(false);
 		lblSearchWarnig7.setVisible(false);
 		btnExport.setVisible(false);
+		btnSubmitTable.setVisible(false);
 		revalidate();
 	}
 	
@@ -443,6 +486,7 @@ public class IpalilosPanel extends JPanel {
 	
 	public void clearTable() {
 		scrollPane_1.setVisible(false);
+		btnSubmitTable.setVisible(false);
 		tm.setRowCount(0);
 		revalidate();
 	}
@@ -460,6 +504,20 @@ public class IpalilosPanel extends JPanel {
 	    return copy;
 	}
 	
-
+	public void clearAll() {
+		tabbedPane.setSelectedIndex(0);
+		lblNotFound.setVisible(false);
+		btnSubmitTable.setVisible(false);
+	}
+	
+	public void notFound(boolean ok){
+		lblNotFound.setVisible(ok);
+		btnExport.setVisible(!ok);
+		btnSubmitTable.setVisible(!ok);
+	}
+	
+	public JTable returnTable() {
+		return table;
+	}
 	
 }

@@ -19,6 +19,7 @@ public class IpalilosController {
 
 	private IpalilosPanel gui;
 	private JFrame frame;
+	private JTable table;
 	
 	public IpalilosController(IpalilosPanel gui) {
 		this.gui = gui;
@@ -27,6 +28,7 @@ public class IpalilosController {
 		gui.btnSearchListener(new BtnSearchListener());
 		gui.btnClear2Listener(new BtnClear2Listener());
 		gui.btnExportListener(new BtnExportListener());
+		gui.btnSubmitTableListener(new BtnSubmitTableListener());
 		
 	}
 	
@@ -212,11 +214,18 @@ public class IpalilosController {
 					
 					String[] responce = new String[10];
 					ResultSet rs = stm.executeQuery(x);
+					int y1 =0;
 					while (rs.next()){
+						y1++;
 						for (i = 0; i < 10; i++)
 							responce[i] = rs.getString(i+2);
 						gui.updateStatus(responce);
 					}
+					if (y1 == 0)
+						gui.notFound(true);
+					else 
+						gui.notFound(false);
+					
 
 				}catch(Exception e1){
 					e1.printStackTrace();
@@ -255,11 +264,21 @@ public class IpalilosController {
 		}
 	}
 	
+	class BtnSubmitTableListener implements  ActionListener {
+		public void actionPerformed(ActionEvent e) {
+			/*
+			 * Panels 2 Submit
+			 */
+		}
+	}
+	
 	public void clear() {
 		gui.clearTable();
 		gui.clearTextBoxesPacket();
 		gui.clearTextBoxesSearch();
-		//frame.dispose();
+		gui.clearAll();
+		if (frame != null)
+			frame.dispose();
 	}
 	
 }
