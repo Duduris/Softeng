@@ -40,7 +40,7 @@ public class CustomerController {
 					String query;
 					
 					Class.forName("com.mysql.jdbc.Driver").newInstance();
-					String url = "jdbc:mysql://83.212.109.15/db1";
+					String url = "jdbc:mysql://83.212.109.15/db1?characterEncoding=UTF-8";
 					String username = "root";
 					String pass = "36966";
 

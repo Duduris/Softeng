@@ -60,10 +60,10 @@ public class IpalilosController {
 				 if (text[i].length() == 0 )
 					 warning[5] = true;
 			 
-			 warning[0] = !text[0].matches("[a-zA-Z\\s]*");
-			 warning[1] = !text[1].matches("[a-zA-Z\\s]*");
+			 warning[0] = !text[0].matches("[a-zA-Zá-ùÁ-Ù\\s]*");
+			 warning[1] = !text[1].matches("[a-zA-Zá-ùÁ-Ù\\s]*");
 			 warning[2] = !text[3].matches("\\d{5}|\\d{5}");
-			 warning[3] = !text[4].matches("[a-zA-Z\\s]*");
+			 warning[3] = !text[4].matches("[a-zA-Zá-ùÁ-Ù\\s]*");
 			 warning[4] = !text[5].matches("\\d{10}|\\d{7}");
 			
 			 gui.displayWarningsP1(warning);
@@ -81,7 +81,7 @@ public class IpalilosController {
 				 try {
 					 Class.forName("com.mysql.jdbc.Driver").newInstance();
 
-					 String url = "jdbc:mysql://83.212.109.15/db1";
+					 String url = "jdbc:mysql://83.212.109.15/db1?characterEncoding=UTF-8";
 					 String username = "root";
 					 String pass = "36966";
 					 /*
@@ -170,11 +170,11 @@ public class IpalilosController {
 					
 			if (!warning[7]){		
 				warning[0] = !text[0].matches("[A-Za-z]{2}\\d{9}[A-Za-z]{2}|\\d{0}");
-				warning[1] = !text[1].matches("[a-zA-Z\\s]*");
-				warning[2] = !text[2].matches("[a-zA-Z\\s]*");
-				warning[3] = !text[3].matches("[a-zA-Z\\s]*");
+				warning[1] = !text[1].matches("[a-zA-Zá-ùÁ-Ù\\s]*");
+				warning[2] = !text[2].matches("[a-zA-Zá-ùÁ-Ù\\s]*");
+				warning[3] = !text[3].matches("[a-zA-Zá-ùÁ-Ù\\s]*");
 				warning[4] = !text[4].matches("\\d{5}|\\d{0}");
-				warning[5] = !text[5].matches("[a-zA-Z\\s]*");
+				warning[5] = !text[5].matches("[a-zA-Zá-ùÁ-Ù\\s]*");
 				warning[6] = !text[6].matches("\\d{10}|\\d{0}");
 			}
 			gui.displayWarningsP2(warning);
@@ -189,7 +189,7 @@ public class IpalilosController {
 				try {
 					Class.forName("com.mysql.jdbc.Driver").newInstance();
 
-					String url = "jdbc:mysql://83.212.109.15/db1";
+					String url = "jdbc:mysql://83.212.109.15/db1?characterEncoding=UTF-8";
 					String username = "root";
 					String pass = "36966";
 					

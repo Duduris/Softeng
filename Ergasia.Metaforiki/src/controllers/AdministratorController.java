@@ -40,7 +40,7 @@ public class AdministratorController {
 				try {
 					Class.forName("com.mysql.jdbc.Driver").newInstance();
 
-					String url = "jdbc:mysql://83.212.109.15/db1";
+					String url = "jdbc:mysql://83.212.109.15/db1?characterEncoding=UTF-8";
 					String username = "root";
 					String pass = "36966";
 					Connection conn = DriverManager.getConnection(url, username, pass);
@@ -111,7 +111,7 @@ public class AdministratorController {
 					FileWriter csv = new FileWriter(file);
 					Class.forName("com.mysql.jdbc.Driver").newInstance();
 
-					String url = "jdbc:mysql://83.212.109.15/db1";
+					String url = "jdbc:mysql://83.212.109.15/db1?characterEncoding=UTF-8";
 					String username = "root";
 					String pass = "36966";
 					Connection conn = DriverManager.getConnection(url, username, pass);
