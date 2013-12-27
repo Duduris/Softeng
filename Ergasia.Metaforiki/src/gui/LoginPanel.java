@@ -4,6 +4,7 @@ import javax.swing.JPanel;
 
 import net.miginfocom.swing.MigLayout;
 
+import javax.swing.ImageIcon;
 import javax.swing.JPasswordField;
 import javax.swing.JFormattedTextField;
 import javax.swing.JLabel;
@@ -12,6 +13,7 @@ import javax.swing.JComboBox;
 
 import java.awt.Font;
 import java.awt.event.ActionListener;
+import java.awt.Color;
 
 public class LoginPanel extends JPanel {
 
@@ -27,7 +29,10 @@ public class LoginPanel extends JPanel {
 		setOpaque(false);
 		setLayout(new MigLayout("", "[grow][200][grow]", "[grow][40][40][40][40][40][grow]"));
 		
-		JLabel lblMetaforikiLogin = new JLabel("METAFORIKI LOGIN");
+		ImageIcon image = new ImageIcon("D:/a.png"); 
+		
+		JLabel lblMetaforikiLogin = new JLabel(image);
+		lblMetaforikiLogin.setBackground(Color.WHITE);
 		lblMetaforikiLogin.setFont(new Font("Tahoma", Font.BOLD, 15));
 		add(lblMetaforikiLogin, "cell 1 1,alignx center,aligny center");
 		
