@@ -18,7 +18,7 @@ public class LoginPanel extends JPanel {
 	private static final long serialVersionUID = 3;
 	
 	private JPasswordField pwdPass;
-	private String usertypes[] = {"Administrator", "Customer", "Clerk", "Courier"};
+	private String usertypes[] = {"Administrator", "Customer", "Employee", "Courier"};
 	public JButton btnSingIn;
 	private JComboBox<Object> comboBox;
 	private JFormattedTextField formattedTextField;

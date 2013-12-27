@@ -3,9 +3,7 @@ package gui;
 import javax.swing.JPanel;
 import javax.swing.BoxLayout;
 import javax.swing.JTabbedPane;
-
 import net.miginfocom.swing.MigLayout;
-
 import javax.swing.JLabel;
 import javax.swing.JFormattedTextField;
 import javax.swing.JCheckBox;
@@ -13,14 +11,10 @@ import javax.swing.JTextArea;
 import javax.swing.JButton;
 import javax.swing.JScrollPane;
 import javax.swing.ScrollPaneConstants;
-
 import java.awt.Font;
 import java.awt.event.ActionListener;
 import java.awt.Color;
-
 import javax.swing.JTable;
-import javax.swing.event.TableModelEvent;
-import javax.swing.event.TableModelListener;
 import javax.swing.table.DefaultTableModel;
 
 import additional.TableColumnAdjuster;
@@ -273,19 +267,7 @@ public class IpalilosPanel extends JPanel {
 		btnSearch = new JButton("Search");
 		panel_1.add(btnSearch, "cell 1 14,growy");
 		
-        tm = new DefaultTableModel(columnNames, 0)/* {
-			private static final long serialVersionUID = 1L;
-
-			@Override
-            public Class<?> getColumnClass(int column) {
-                return getValueAt(0, column).getClass();
-            }
-
-            @Override
-            public boolean isCellEditable(int row, int column) {
-                return false;
-            }
-        }*/;
+        tm = new DefaultTableModel(columnNames, 0);
 		
 		lblNotFound = new JLabel("Nothing was Found!");
 		lblNotFound.setFont(new Font("Tahoma", Font.PLAIN, 14));
@@ -299,19 +281,6 @@ public class IpalilosPanel extends JPanel {
                 return getPreferredSize().width < getParent().getWidth();
             }
 		};
-		
-		 TableModelListener tablelisten = new TableModelListener() {
-		        @Override
-		        public void tableChanged(TableModelEvent e) {
-		            if (e.getType() == TableModelEvent.UPDATE) {
-
-		                int row = e.getFirstRow();
-		                int col = e.getColumn();
-
-		               System.out.println(row+" "+col);
-		            }
-		        }
-		    };
 		
 		scrollPane_1 = new JScrollPane(table);
 		panel_1.add(scrollPane_1, "cell 1 16,grow");
@@ -514,10 +483,6 @@ public class IpalilosPanel extends JPanel {
 		lblNotFound.setVisible(ok);
 		btnExport.setVisible(!ok);
 		btnSubmitTable.setVisible(!ok);
-	}
-	
-	public JTable returnTable() {
-		return table;
 	}
 	
 }

@@ -157,8 +157,8 @@ public class MetaforeasController {
 					
 					int[] dim = new int[2];
 					dim = gui.getGmapSize();
-					String x = Integer.toString(dim[0]);
-					String y = Integer.toString(dim[1]); 
+					String x = Integer.toString(dim[0]-10);
+					String y = Integer.toString(dim[1]-10); 
 					
 					String sqldiavasmaid = "select * from metaforiki where id="+id;
 					ResultSet rs = stm.executeQuery(sqldiavasmaid);

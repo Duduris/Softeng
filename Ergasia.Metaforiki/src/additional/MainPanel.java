@@ -38,7 +38,7 @@ public class MainPanel {
 		  menuBar = new JMenuBar();
 		  frame.setJMenuBar(menuBar);
 		  
-		  btnNewButton = new JButton("Back");
+		  btnNewButton = new JButton("Logout");
 		  menuBar.add(btnNewButton);
 		  frame.getContentPane().setLayout(new CardLayout(0, 0));
 		  
@@ -56,7 +56,7 @@ public class MainPanel {
 		  
 		  
 		  frame.getContentPane().add(login, "Log");
-		  frame.getContentPane().add(ipalilos, "Clerk");
+		  frame.getContentPane().add(ipalilos, "Employee");
 		  frame.getContentPane().add(metaforeas, "Courier");
 		  frame.getContentPane().add(customer, "Customer");
 		  frame.getContentPane().add(admin, "Administrator");

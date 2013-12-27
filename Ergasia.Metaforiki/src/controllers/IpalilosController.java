@@ -10,8 +10,10 @@ import java.sql.ResultSet;
 import java.sql.Statement;
 import java.sql.Timestamp;
 import java.util.Random;
+
 import javax.swing.JFrame;
 import javax.swing.JTable;
+
 import additional.TableColumnAdjuster;
 import gui.IpalilosPanel;
 
@@ -20,6 +22,7 @@ public class IpalilosController {
 	private IpalilosPanel gui;
 	private JFrame frame;
 	private JTable table;
+	private JTable copytable;
 	
 	public IpalilosController(IpalilosPanel gui) {
 		this.gui = gui;
@@ -226,6 +229,8 @@ public class IpalilosController {
 					else 
 						gui.notFound(false);
 					
+					copytable = new JTable(gui.retTable());
+					
 
 				}catch(Exception e1){
 					e1.printStackTrace();
@@ -269,6 +274,21 @@ public class IpalilosController {
 			/*
 			 * Panels 2 Submit
 			 */
+			
+			table = new JTable(gui.retTable());
+			
+			Object tablecell;
+			Object table2cell;
+			
+			tablecell = copytable.getValueAt(0, 0);
+			table2cell = table.getValueAt(0, 0);
+			
+			System.out.println(tablecell+" "+table2cell);
+			
+			/*
+			 * To do
+			 */
+			
 		}
 	}
 	
