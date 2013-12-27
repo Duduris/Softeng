@@ -60,6 +60,12 @@ public class AdministratorPanel extends JPanel {
 		revalidate();
 	}
 	
+	public void clear() {
+		panel.removeAll();
+		comboBox.setSelectedIndex(0);
+		revalidate();
+	}
+	
 	
 
 }

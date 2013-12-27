@@ -143,5 +143,9 @@ public class AdministratorController {
 		}
 	}
 	
+	public void clear() {
+		gui.clear();
+	}
+	
 
 }

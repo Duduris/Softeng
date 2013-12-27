@@ -238,4 +238,7 @@ public class MetaforeasController {
 		}
 	}
 	
+	public void clear(){
+		gui.clearAll();
+	}
 }

@@ -89,5 +89,14 @@ public class CustomerPanel extends JPanel {
 		scrollPane.setVisible(false);
 		revalidate();
 	}
+	
+	public void clearAll() {
+		scrollPane.setVisible(false);
+		lblInputATracking.setVisible(false);
+		lblWrongFormatMust.setVisible(false);
+		textArea.setText("");
+		textField.setText("");
+		revalidate();
+	}
 
 }

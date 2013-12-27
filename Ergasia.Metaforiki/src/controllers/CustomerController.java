@@ -78,5 +78,8 @@ public class CustomerController {
 
 		}
 	}
+	public void clear() {
+		gui.clearAll();
+	}
 
 }

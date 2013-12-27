@@ -42,17 +42,17 @@ public class MainPanel {
 		  menuBar.add(btnNewButton);
 		  frame.getContentPane().setLayout(new CardLayout(0, 0));
 		  
-		  LoginPanel login = new LoginPanel();
-		  IpalilosPanel ipalilos = new IpalilosPanel();
-		  MetaforeasPanel metaforeas = new MetaforeasPanel();
-		  CustomerPanel customer = new CustomerPanel();
-		  AdministratorPanel admin = new AdministratorPanel();
+		  final LoginPanel login = new LoginPanel();
+		  final IpalilosPanel ipalilos = new IpalilosPanel();
+		  final MetaforeasPanel metaforeas = new MetaforeasPanel();
+		  final CustomerPanel customer = new CustomerPanel();
+		  final AdministratorPanel admin = new AdministratorPanel();
 		  
 		  final LoginController logcont = new LoginController(login);
-		  IpalilosController ipalcont = new IpalilosController(ipalilos);
-		  MetaforeasController metcont = new MetaforeasController(metaforeas);
-		  CustomerController custcont = new CustomerController(customer);
-		  AdministratorController admincont = new AdministratorController(admin);
+		  final IpalilosController ipalcont = new IpalilosController(ipalilos);
+		  final MetaforeasController metcont = new MetaforeasController(metaforeas);
+		  final CustomerController custcont = new CustomerController(customer);
+		  final AdministratorController admincont = new AdministratorController(admin);
 		  
 		  
 		  frame.getContentPane().add(login, "Log");
@@ -71,6 +71,10 @@ public class MainPanel {
 		  btnNewButton.addActionListener(new ActionListener() {
 			  public void actionPerformed(ActionEvent e) {
 				  card.show(frame.getContentPane(), "Log");
+				  ipalcont.clear();
+				  admincont.clear();
+				  custcont.clear();
+				  metcont.clear();
 				  menuBar.setVisible(false);
 			  }
 		  });

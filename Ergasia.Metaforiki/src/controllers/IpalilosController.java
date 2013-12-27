@@ -18,6 +18,7 @@ import gui.IpalilosPanel;
 public class IpalilosController {
 
 	private IpalilosPanel gui;
+	private JFrame frame;
 	
 	public IpalilosController(IpalilosPanel gui) {
 		this.gui = gui;
@@ -241,7 +242,7 @@ public class IpalilosController {
 			/*
 			 * Panel2 Export
 			 */
-			JFrame frame = new JFrame("Demata");
+			frame = new JFrame("Demata");
 			frame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 			JTable table = new JTable(gui.retTable());
 			TableColumnAdjuster tca = new TableColumnAdjuster(table);
@@ -252,6 +253,13 @@ public class IpalilosController {
 			frame.setVisible(true);
 
 		}
+	}
+	
+	public void clear() {
+		gui.clearTable();
+		gui.clearTextBoxesPacket();
+		gui.clearTextBoxesSearch();
+		//frame.dispose();
 	}
 	
 }

@@ -200,5 +200,13 @@ public class MetaforeasPanel extends JPanel {
 	public void clearMap(){
 		mappanel.removeAll();
 	}
+	
+	public void clearAll() {
+		mappanel.removeAll();
+		tm.setRowCount(0);
+		card.show(panel, "1");
+		textPane.setText("");
+		revalidate();
+	}
 		
 }
