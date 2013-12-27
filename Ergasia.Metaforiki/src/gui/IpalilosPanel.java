@@ -267,7 +267,25 @@ public class IpalilosPanel extends JPanel {
 		btnSearch = new JButton("Search");
 		panel_1.add(btnSearch, "cell 1 14,growy");
 		
-        tm = new DefaultTableModel(columnNames, 0);
+        tm = new DefaultTableModel(columnNames, 0) {
+			private static final long serialVersionUID = 1L;
+
+			@Override
+            public Class<?> getColumnClass(int column) {
+                return getValueAt(0, column).getClass();
+            }
+
+            @Override
+            public boolean isCellEditable(int row, int column) {
+            	/*
+            	 * To Tracking den einai editable column 7
+            	 */
+            	if (column == 7)
+            		return false;
+            	else
+            		return true;
+            }
+        };
 		
 		lblNotFound = new JLabel("Nothing was Found!");
 		lblNotFound.setFont(new Font("Tahoma", Font.PLAIN, 14));
@@ -431,6 +449,7 @@ public class IpalilosPanel extends JPanel {
 		lblSearchWarnig7.setVisible(false);
 		btnExport.setVisible(false);
 		btnSubmitTable.setVisible(false);
+		lblNotFound.setVisible(false);
 		revalidate();
 	}
 	

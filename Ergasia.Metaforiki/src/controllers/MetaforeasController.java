@@ -12,6 +12,7 @@ import java.sql.Statement;
 
 import javax.swing.ImageIcon;
 
+import additional.GreekToGreeklish;
 import gui.MetaforeasPanel;
 
 public class MetaforeasController {
@@ -169,6 +170,8 @@ public class MetaforeasController {
 					String postalcode = rs.getString("postalcode");
 					String country = rs.getString("country").replaceAll(" ", "+");;
 					
+					address = GreekToGreeklish.convert(address);
+					country = GreekToGreeklish.convert(country);
 					
 					String imageUrl = "http://maps.googleapis.com/maps/api/staticmap?";
 					imageUrl += "center="+address+","+postalcode+","+country;
