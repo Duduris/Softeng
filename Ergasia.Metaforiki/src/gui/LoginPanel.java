@@ -29,7 +29,7 @@ public class LoginPanel extends JPanel {
 		setOpaque(false);
 		setLayout(new MigLayout("", "[grow][200][grow]", "[grow][40][40][40][40][40][grow]"));
 		
-		ImageIcon image = new ImageIcon("D:/a.png"); 
+		ImageIcon image = new ImageIcon("image/a.png"); 
 		
 		JLabel lblMetaforikiLogin = new JLabel(image);
 		lblMetaforikiLogin.setBackground(Color.WHITE);
