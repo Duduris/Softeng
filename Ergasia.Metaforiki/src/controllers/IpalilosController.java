@@ -274,20 +274,50 @@ public class IpalilosController {
 			/*
 			 * Panels 2 Submit
 			 */
-			
-			table = new JTable(gui.retTable());
-			
-			Object tablecell;
-			Object table2cell;
-			
-			tablecell = copytable.getValueAt(0, 0);
-			table2cell = table.getValueAt(0, 0);
-			
-			System.out.println(tablecell+" "+table2cell);
-			
-			/*
-			 * To do
-			 */
+			try {
+				Class.forName("com.mysql.jdbc.Driver").newInstance();
+
+				String url = "jdbc:mysql://83.212.109.15/db1?characterEncoding=UTF-8";
+				String username = "root";
+				String pass = "36966";
+				
+				Connection conn = DriverManager.getConnection(url, username, pass);
+				Statement stm = conn.createStatement();
+
+				String x = "update metaforiki set";
+				String y = " where tracking=";
+				String database[] = { " name="," surname="," address="," postalcode="," country="," phone="," fragile="," tracking="," comments="," status=" };
+				int count;
+				String response = "";
+				
+				table = new JTable(gui.retTable());
+
+				Object tablecell;
+				Object table2cell;
+				
+
+				for (int i = 0; i < table.getRowCount(); i++ ) {
+					response ="";
+					response += x;
+					count = 0;
+					for (int j = 0 ; j < 10; j++) {
+						tablecell = copytable.getValueAt(i, j);
+						table2cell = table.getValueAt(i, j); // to kenourio
+						if (tablecell != table2cell) {
+							count++;
+							if (count == 1)
+								response += database[j] +"'"+table2cell+"'";
+							else 
+								response += "," + database[j] +"'"+table2cell+"'";
+						}
+					}
+					response += y +"'"+ table.getValueAt(i, 7)+"'";
+					if (count > 0)
+						stm.executeUpdate(response);
+				}
+			}catch(Exception e1){
+				e1.printStackTrace();
+			}
 			
 		}
 	}

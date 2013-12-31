@@ -309,7 +309,7 @@ public class IpalilosPanel extends JPanel {
 		btnExport = new JButton("Export");
 		panel_1.add(btnExport, "cell 1 14,growy");
 		
-		btnSubmitTable = new JButton("Submit");
+		btnSubmitTable = new JButton("Submit Changes");
 		panel_1.add(btnSubmitTable, "cell 1 17,alignx right,growy");
 		btnExport.setVisible(false);
 		
