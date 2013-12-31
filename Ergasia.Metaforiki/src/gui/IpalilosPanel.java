@@ -17,9 +17,6 @@ import javax.swing.ScrollPaneConstants;
 import java.awt.Font;
 import java.awt.event.ActionListener;
 import java.awt.Color;
-import java.util.Timer;
-import java.util.TimerTask;
-import java.util.concurrent.TimeUnit;
 
 import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
@@ -518,9 +515,18 @@ public class IpalilosPanel extends JPanel {
 		btnExport.setVisible(!ok);
 		btnSubmitTable.setVisible(!ok);
 	}
-	public void submmited (boolean ok) throws InterruptedException{	
+	public void submmited (boolean ok){	
 		lblSuccessful.setVisible(ok);
-			
+		new Thread(new Runnable(){
+			public void run(){
+				try{
+					Thread.sleep(1500);
+				}catch(InterruptedException ex){
+					ex.printStackTrace();
+				}
+				lblSuccessful.setVisible(false);
+			}
+		}).start();
 	}
 
 }
