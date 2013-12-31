@@ -314,6 +314,7 @@ public class IpalilosController {
 					response += y +"'"+ table.getValueAt(i, 7)+"'";
 					if (count > 0)
 						stm.executeUpdate(response);
+						gui.submmited(true);
 				}
 			}catch(Exception e1){
 				e1.printStackTrace();

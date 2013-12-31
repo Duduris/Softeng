@@ -3,7 +3,9 @@ package gui;
 import javax.swing.JPanel;
 import javax.swing.BoxLayout;
 import javax.swing.JTabbedPane;
+
 import net.miginfocom.swing.MigLayout;
+
 import javax.swing.JLabel;
 import javax.swing.JFormattedTextField;
 import javax.swing.JCheckBox;
@@ -11,9 +13,14 @@ import javax.swing.JTextArea;
 import javax.swing.JButton;
 import javax.swing.JScrollPane;
 import javax.swing.ScrollPaneConstants;
+
 import java.awt.Font;
 import java.awt.event.ActionListener;
 import java.awt.Color;
+import java.util.Timer;
+import java.util.TimerTask;
+import java.util.concurrent.TimeUnit;
+
 import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
 
@@ -69,6 +76,7 @@ public class IpalilosPanel extends JPanel {
 	private JButton btnExport;
 	private JLabel lblNotFound;
 	private JButton btnSubmitTable;
+	private JLabel lblSuccessful;
 	
 
 	public IpalilosPanel() {
@@ -309,6 +317,10 @@ public class IpalilosPanel extends JPanel {
 		btnExport = new JButton("Export");
 		panel_1.add(btnExport, "cell 1 14,growy");
 		
+		lblSuccessful = new JLabel("Successful");
+		lblSuccessful.setForeground(Color.BLUE);
+		panel_1.add(lblSuccessful, "flowx,cell 1 17,alignx right,growy");
+		
 		btnSubmitTable = new JButton("Submit Changes");
 		panel_1.add(btnSubmitTable, "cell 1 17,alignx right,growy");
 		btnExport.setVisible(false);
@@ -320,7 +332,7 @@ public class IpalilosPanel extends JPanel {
 		lblSearchWarnig5.setVisible(false);
 		lblSearchWarnig6.setVisible(false);
 		lblSearchWarnig7.setVisible(false);
-		
+		lblSuccessful.setVisible(false);
 		lblNotFound.setVisible(false);
 		btnSubmitTable.setVisible(false);
 
@@ -450,6 +462,7 @@ public class IpalilosPanel extends JPanel {
 		btnExport.setVisible(false);
 		btnSubmitTable.setVisible(false);
 		lblNotFound.setVisible(false);
+		lblSuccessful.setVisible(false);
 		revalidate();
 	}
 	
@@ -476,6 +489,7 @@ public class IpalilosPanel extends JPanel {
 		scrollPane_1.setVisible(false);
 		btnSubmitTable.setVisible(false);
 		tm.setRowCount(0);
+		lblSuccessful.setVisible(false);
 		revalidate();
 	}
 	
@@ -496,6 +510,7 @@ public class IpalilosPanel extends JPanel {
 		tabbedPane.setSelectedIndex(0);
 		lblNotFound.setVisible(false);
 		btnSubmitTable.setVisible(false);
+		lblSuccessful.setVisible(false);
 	}
 	
 	public void notFound(boolean ok){
@@ -503,5 +518,9 @@ public class IpalilosPanel extends JPanel {
 		btnExport.setVisible(!ok);
 		btnSubmitTable.setVisible(!ok);
 	}
-	
+	public void submmited (boolean ok) throws InterruptedException{	
+		lblSuccessful.setVisible(ok);
+			
+	}
+
 }
