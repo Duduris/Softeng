@@ -217,7 +217,7 @@ public class MetaforeasController {
 				
 				//kanonika o kathe metaforeas den tha kanei select ola.. alla analoga me to postal code
 				
-				String sqldiavasmaid = "select * from metaforiki order by id";
+				String sqldiavasmaid = "select * from metaforiki where status!=\'delivered\' order by id";
 				ResultSet rs = stm.executeQuery(sqldiavasmaid);
 				
 				gui.clearTable();
