@@ -16,9 +16,7 @@ public class CustomerModel extends Observable {
 	
 	//private ObservableEvent warn = new ObservableEvent();
 	
-	public CustomerModel() {
-
-	}
+	public CustomerModel() { }
 	
 	public void Search(String tracking){
 		

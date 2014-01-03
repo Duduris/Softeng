@@ -13,6 +13,7 @@ import javax.swing.JFrame;
 import javax.swing.JMenuBar;
 import javax.swing.JButton;
 
+import models.AdministratorModel;
 import models.CustomerModel;
 import controllers.AdministratorController;
 import controllers.CustomerController;
@@ -54,12 +55,13 @@ public class MainPanel {
 		  final AdministratorPanel admin = new AdministratorPanel();
 		  
 		  final CustomerModel logmod = new CustomerModel();
+		  final AdministratorModel adminmod = new AdministratorModel();
 		  
 		  final LoginController logcont = new LoginController(login);
 		  final IpalilosController ipalcont = new IpalilosController(ipalilos);
 		  final MetaforeasController metcont = new MetaforeasController(metaforeas);
 		  final CustomerController custcont = new CustomerController(customer, logmod);
-		  final AdministratorController admincont = new AdministratorController(admin);
+		  final AdministratorController admincont = new AdministratorController(admin ,adminmod);
 		  
 		  
 		  frame.getContentPane().add(login, "Log");
