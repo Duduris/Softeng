@@ -15,6 +15,7 @@ import javax.swing.JButton;
 
 import models.AdministratorModel;
 import models.CustomerModel;
+import models.MetaforeasModel;
 import controllers.AdministratorController;
 import controllers.CustomerController;
 import controllers.IpalilosController;
@@ -54,12 +55,13 @@ public class MainPanel {
 		  final CustomerPanel customer = new CustomerPanel();
 		  final AdministratorPanel admin = new AdministratorPanel();
 		  
+		  final MetaforeasModel metmod = new MetaforeasModel();
 		  final CustomerModel logmod = new CustomerModel();
 		  final AdministratorModel adminmod = new AdministratorModel();
 		  
 		  final LoginController logcont = new LoginController(login);
 		  final IpalilosController ipalcont = new IpalilosController(ipalilos);
-		  final MetaforeasController metcont = new MetaforeasController(metaforeas);
+		  final MetaforeasController metcont = new MetaforeasController(metaforeas, metmod);
 		  final CustomerController custcont = new CustomerController(customer, logmod);
 		  final AdministratorController admincont = new AdministratorController(admin ,adminmod);
 		  

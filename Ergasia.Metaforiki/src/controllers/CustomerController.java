@@ -30,7 +30,7 @@ public class CustomerController {
 	
 	class WarningObserver implements Observer {
 		public void update(Observable obs, Object arg) {
-			gui.showWarning(model.sendWarning());;
+			gui.showWarning(model.sendWarning());
 		}
 	}
 	
