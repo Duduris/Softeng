@@ -5,16 +5,21 @@ import gui.CustomerPanel;
 import gui.IpalilosPanel;
 import gui.LoginPanel;
 import gui.MetaforeasPanel;
+
 import java.awt.Dimension;
 import java.awt.Toolkit;
+
 import javax.swing.JFrame;
 import javax.swing.JMenuBar;
 import javax.swing.JButton;
+
+import models.CustomerModel;
 import controllers.AdministratorController;
 import controllers.CustomerController;
 import controllers.IpalilosController;
 import controllers.LoginController;
 import controllers.MetaforeasController;
+
 import java.awt.CardLayout;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
@@ -48,10 +53,12 @@ public class MainPanel {
 		  final CustomerPanel customer = new CustomerPanel();
 		  final AdministratorPanel admin = new AdministratorPanel();
 		  
+		  final CustomerModel logmod = new CustomerModel();
+		  
 		  final LoginController logcont = new LoginController(login);
 		  final IpalilosController ipalcont = new IpalilosController(ipalilos);
 		  final MetaforeasController metcont = new MetaforeasController(metaforeas);
-		  final CustomerController custcont = new CustomerController(customer);
+		  final CustomerController custcont = new CustomerController(customer, logmod);
 		  final AdministratorController admincont = new AdministratorController(admin);
 		  
 		  
