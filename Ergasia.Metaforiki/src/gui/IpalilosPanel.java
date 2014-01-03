@@ -3,9 +3,7 @@ package gui;
 import javax.swing.JPanel;
 import javax.swing.BoxLayout;
 import javax.swing.JTabbedPane;
-
 import net.miginfocom.swing.MigLayout;
-
 import javax.swing.JLabel;
 import javax.swing.JFormattedTextField;
 import javax.swing.JCheckBox;
@@ -13,14 +11,11 @@ import javax.swing.JTextArea;
 import javax.swing.JButton;
 import javax.swing.JScrollPane;
 import javax.swing.ScrollPaneConstants;
-
 import java.awt.Font;
 import java.awt.event.ActionListener;
 import java.awt.Color;
-
 import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
-
 import additional.TableColumnAdjuster;
 
 public class IpalilosPanel extends JPanel {
@@ -397,10 +392,12 @@ public class IpalilosPanel extends JPanel {
 	}
 	
 	public void setTrackingNumb(String track) {
-		formattedTextField_6.setText(track);
-		lblTrackNum.setVisible(true);
-		formattedTextField_6.setVisible(true);
-		revalidate();
+		if (track != null) {
+			formattedTextField_6.setText(track);
+			lblTrackNum.setVisible(true);
+			formattedTextField_6.setVisible(true);
+			revalidate();
+		}
 	}
 
 	/*

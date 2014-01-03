@@ -65,6 +65,7 @@ public class MetaforeasController {
 			 * Connect
 			 */
 			gui.switchPanel(1);
+			model.resetPanel();
 			gui.clearMap();
 			gui.clearTable();
 			model.Connect();

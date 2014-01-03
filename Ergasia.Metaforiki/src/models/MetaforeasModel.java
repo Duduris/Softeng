@@ -7,15 +7,14 @@ import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.Statement;
+import java.util.Observable;
 import java.util.Observer;
-
 import javax.swing.ImageIcon;
-
 import additional.GreekToGreeklish;
 import additional.ObservableInt;
 import additional.ObservableStringArray;
 
-public class MetaforeasModel {
+public class MetaforeasModel extends Observable{
 	
 	private ObservableInt switchpa = new ObservableInt();
 	private ObservableStringArray tbrow = new ObservableStringArray();
@@ -202,6 +201,10 @@ public class MetaforeasModel {
 	
 	public int getPanel() {
 		return switchpa.get();
+	}
+	
+	public void resetPanel() {
+		switchpa.set(1);
 	}
 	
     public void addPanelObserver(Observer controller) {
