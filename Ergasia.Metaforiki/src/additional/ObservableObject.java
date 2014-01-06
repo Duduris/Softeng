@@ -2,20 +2,20 @@ package additional;
 
 import java.util.Observable;
 
-public class ObservableBoolArray extends Observable {
-  private boolean[] value;
+public class ObservableObject<T> extends Observable {
+  private T value;
  
-  public ObservableBoolArray() {}
+  public ObservableObject() {}
  
-  public ObservableBoolArray(boolean[] startingValue) {
+  public ObservableObject(T startingValue) {
     value = startingValue;
   }
  
-  public boolean[] get(){
+  public T get(){
     return value;
   }
  
-  public void set(boolean[] newValue){
+  public void set(T newValue){
       value = newValue;
       notifyChange(); 
   }

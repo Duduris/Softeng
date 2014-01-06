@@ -10,16 +10,14 @@ import java.util.Observer;
 import java.util.Random;
 import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
-import additional.ObservableBool;
-import additional.ObservableBoolArray;
-import additional.ObservableStringArray;
+import additional.ObservableObject;
 
 public class IpalilosModel {
 	
-	private ObservableBoolArray warnP1 = new ObservableBoolArray();
-	private ObservableBoolArray warnP2 = new ObservableBoolArray();
-	private ObservableStringArray tbrP2 = new ObservableStringArray();
-	private ObservableBool foundP2 = new ObservableBool();
+	private ObservableObject<boolean[]> warnP1 = new ObservableObject<>();
+	private ObservableObject<boolean[]> warnP2 = new ObservableObject<>();
+	private ObservableObject<String[]> tbrP2 = new ObservableObject<>();
+	private ObservableObject<Boolean> foundP2 = new ObservableObject<>();
 	private JTable table;
 	private JTable copytable;
 	

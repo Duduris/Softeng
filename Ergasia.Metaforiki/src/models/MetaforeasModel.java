@@ -11,13 +11,12 @@ import java.util.Observable;
 import java.util.Observer;
 import javax.swing.ImageIcon;
 import additional.GreekToGreeklish;
-import additional.ObservableInt;
-import additional.ObservableStringArray;
+import additional.ObservableObject;
 
 public class MetaforeasModel extends Observable{
 	
-	private ObservableInt switchpa = new ObservableInt();
-	private ObservableStringArray tbrow = new ObservableStringArray();
+	private ObservableObject<Integer> switchpa = new ObservableObject<>();
+	private ObservableObject<String[]> tbrow = new ObservableObject<>();
 	
 	public MetaforeasModel() {}
 	

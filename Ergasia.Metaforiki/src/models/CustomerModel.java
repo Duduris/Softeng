@@ -6,15 +6,12 @@ import java.sql.ResultSet;
 import java.sql.Statement;
 import java.util.Observable;
 import java.util.Observer;
-import additional.ObservableInt;
-import additional.ObservableString;
+import additional.ObservableObject;
 
 public class CustomerModel extends Observable {
-	
-	private ObservableInt warning = new ObservableInt();
-	private ObservableString trackinginfo = new ObservableString();
-	
-	//private ObservableEvent warn = new ObservableEvent();
+		
+	private ObservableObject<Integer> warning = new ObservableObject<>();
+	private ObservableObject<String> trackinginfo = new ObservableObject<>();
 	
 	public CustomerModel() { }
 	

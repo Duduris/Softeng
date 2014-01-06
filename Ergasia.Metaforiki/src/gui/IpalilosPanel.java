@@ -191,7 +191,7 @@ public class IpalilosPanel extends JPanel {
 		tabbedPane.addTab("Search", null, panel_1, null);
 		panel_1.setLayout(new MigLayout("hidemode 3", "[125.00][100.00,grow]", "[30]2[]2[30]2[]2[30]2[]2[30][30]2[]2[30]2[]2[30][][][30]2[]2[grow][]"));
 		
-		lblSearchWarnig1 = new JLabel("Tracking Warning");
+		lblSearchWarnig1 = new JLabel("Wrong tracking format: must be RBxxxxxxxxxGR");
 		lblSearchWarnig1.setForeground(Color.RED);
 		panel_1.add(lblSearchWarnig1, "cell 1 1");
 
