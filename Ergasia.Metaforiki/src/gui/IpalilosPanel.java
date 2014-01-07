@@ -476,6 +476,8 @@ public class IpalilosPanel extends JPanel {
 		lblSearchWarnig5.setVisible(warning[5]);
 		lblSearchWarnig6.setVisible(warning[6]);
 		lblSearchWarnig7.setVisible(warning[7]);
+		btnSubmitTable.setVisible(false);
+		btnExport.setVisible(false);
 		revalidate();
 	}
 	
