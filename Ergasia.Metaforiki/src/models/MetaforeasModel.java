@@ -15,8 +15,8 @@ import additional.ObservableObject;
 
 public class MetaforeasModel extends Observable{
 	
-	private ObservableObject<Integer> switchpa = new ObservableObject<>();
-	private ObservableObject<String[]> tbrow = new ObservableObject<>();
+	public ObservableObject<Integer> switchpanel = new ObservableObject<>();
+	public ObservableObject<String[]> tbrow = new ObservableObject<>();
 	
 	public MetaforeasModel() {}
 	
@@ -56,7 +56,7 @@ public class MetaforeasModel extends Observable{
 		
 		pa = (pa > 2)? 1: 3;
 		if (pa != 3)
-			switchpa.set(pa);
+			switchpanel.set(pa);
 		
 		if (pa == 3 && id >= 0){
 			try {
@@ -69,7 +69,7 @@ public class MetaforeasModel extends Observable{
 				Connection conn = DriverManager.getConnection(url, username, pass);
 				Statement stm = conn.createStatement();
 				
-				switchpa.set(pa);
+				switchpanel.set(pa);
 				id++;
 				
 				String sqldiavasmaid = "select * from metaforiki where id="+id;
@@ -107,7 +107,7 @@ public class MetaforeasModel extends Observable{
 		
 		pa = (pa == 2)? 1: 2;
 		if (pa != 2)
-			switchpa.set(pa);
+			switchpanel.set(pa);
 		
 		if (pa == 2 && id >= 0){
 			try {
@@ -120,7 +120,7 @@ public class MetaforeasModel extends Observable{
 				Connection conn = DriverManager.getConnection(url, username, pass);
 				Statement stm = conn.createStatement();
 
-				switchpa.set(pa);
+				switchpanel.set(pa);
 				id++;
 				
 				String x = Integer.toString(dim[0]-10);
@@ -197,21 +197,8 @@ public class MetaforeasModel extends Observable{
 
 	}
 	
-	
-	public int getPanel() {
-		return switchpa.get();
-	}
-	
-	public void resetPanel() {
-		switchpa.set(1);
-	}
-	
     public void addPanelObserver(Observer controller) {
-    	switchpa.addObserver(controller);
-    }
-    
-    public String[] getTableRow() {
-    	return tbrow.get();
+    	switchpanel.addObserver(controller);
     }
     
     public void addTBRObserver(Observer controller) {

@@ -112,25 +112,25 @@ public class IpalilosController {
 	
 	class Panel1WarningObserver implements Observer {
 		public void update(Observable obs, Object arg) {
-			gui.displayWarningsP1(model.sendPanel1Warning());
+			gui.displayWarningsP1(model.warningP1.get());
 		}
 	}
 	
 	class Panel2WarningObserver implements Observer {
 		public void update(Observable obs, Object arg) {
-			gui.displayWarningsP2(model.sendPanel2Warning());
+			gui.displayWarningsP2(model.warningP2.get());
 		}
 	}
 	
 	class Panel2SearchObserver implements Observer {
 		public void update(Observable obs, Object arg) {
-			gui.updateStatus(model.sendPanel2TBR());
+			gui.updateStatus(model.tbrP2.get());
 		}
 	}
 	
 	class Panel2FoundObserver implements Observer {
 		public void update(Observable obs, Object arg) {
-			gui.notFound(model.sendPanel2Found());
+			gui.notFound(model.foundP2.get());
 		}
 	}
 	

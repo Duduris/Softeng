@@ -10,8 +10,8 @@ import additional.ObservableObject;
 
 public class CustomerModel extends Observable {
 		
-	private ObservableObject<Integer> warning = new ObservableObject<>();
-	private ObservableObject<String> trackinginfo = new ObservableObject<>();
+	public ObservableObject<Integer> warning = new ObservableObject<>();
+	public ObservableObject<String> trackinginfo = new ObservableObject<>();
 	
 	public CustomerModel() { }
 	
@@ -62,14 +62,6 @@ public class CustomerModel extends Observable {
 				e1.printStackTrace();
 			}
 		}
-	}
-	
-	public int sendWarning() {
-		return warning.get();
-	}
-	
-	public String sendTrackingInfo() {
-		return trackinginfo.get();
 	}
 	
 	

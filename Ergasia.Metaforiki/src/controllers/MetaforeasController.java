@@ -65,7 +65,7 @@ public class MetaforeasController {
 			 * Connect
 			 */
 			gui.switchPanel(1);
-			model.resetPanel();
+			model.switchpanel.set(1);;
 			gui.clearMap();
 			gui.clearTable();
 			model.Connect();
@@ -75,13 +75,13 @@ public class MetaforeasController {
 	
 	class PanelObserver implements Observer {
 		public void update(Observable obs, Object arg) {
-			gui.switchPanel(model.getPanel());
+			gui.switchPanel(model.switchpanel.get());
 		}
 	}
 	
 	class TBRObserver implements Observer {
 		public void update(Observable obs, Object arg) {
-			gui.setTableData(model.getTableRow());
+			gui.setTableData(model.tbrow.get());
 		}
 	}
 	

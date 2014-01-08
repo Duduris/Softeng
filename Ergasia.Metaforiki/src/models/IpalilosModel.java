@@ -14,10 +14,10 @@ import additional.ObservableObject;
 
 public class IpalilosModel {
 	
-	private ObservableObject<boolean[]> warnP1 = new ObservableObject<>();
-	private ObservableObject<boolean[]> warnP2 = new ObservableObject<>();
-	private ObservableObject<String[]> tbrP2 = new ObservableObject<>();
-	private ObservableObject<Boolean> foundP2 = new ObservableObject<>();
+	public ObservableObject<boolean[]> warningP1 = new ObservableObject<>();
+	public ObservableObject<boolean[]> warningP2 = new ObservableObject<>();
+	public ObservableObject<String[]> tbrP2 = new ObservableObject<>();
+	public ObservableObject<Boolean> foundP2 = new ObservableObject<>();
 	private JTable table;
 	private JTable copytable;
 	
@@ -37,7 +37,7 @@ public class IpalilosModel {
 		 warning[3] = !text[4].matches("[a-zA-Zá-ùÁ-Ù\\s]*");
 		 warning[4] = !text[5].matches("\\d{10}|\\d{7}");
 		
-		 warnP1.set(warning);
+		 warningP1.set(warning);
 		 
 		 boolean ready = true;
 		 
@@ -140,7 +140,7 @@ public class IpalilosModel {
 			warning[6] = !text[6].matches("\\d{10}|\\d{0}");
 		}
 		
-		warnP2.set(warning);
+		warningP2.set(warning);
 		
 		boolean ready = true;
 		
@@ -252,32 +252,12 @@ public class IpalilosModel {
 		return false;
 	}
 	
-	
-	
-	
-	
-	public boolean[] sendPanel1Warning() {
-		return warnP1.get();
-	}
-	
-	public boolean[] sendPanel2Warning() {
-		return warnP2.get();
-	}
-	
-	public String[] sendPanel2TBR() {
-		return tbrP2.get();
-	}
-	
-	public boolean sendPanel2Found() {
-		return foundP2.get();
-	}
-	
     public void addPanel1WaringObserver(Observer controller) {
-    	warnP1.addObserver(controller);
+    	warningP1.addObserver(controller);
     }
     
     public void addPanel2WaringObserver(Observer controller) {
-    	warnP2.addObserver(controller);
+    	warningP2.addObserver(controller);
     }
     
     public void addPanel2SearchObserver(Observer controller) {
