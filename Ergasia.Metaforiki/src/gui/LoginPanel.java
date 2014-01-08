@@ -46,7 +46,7 @@ public class LoginPanel extends JPanel {
 		pwdPass = new JPasswordField();
 		add(pwdPass, "cell 1 4,grow");
 		
-		btnSingIn = new JButton("Sing In");
+		btnSingIn = new JButton("Sign In");
 
 		add(btnSingIn, "cell 1 5,grow");
 		
