@@ -42,8 +42,6 @@ public class CustomerModel extends Observable {
 					String name = rs.getString("name");
 					String surname = rs.getString("surname");
 					String country = rs.getString("country");
-					//String comments = rs.getString("comments");
-					//String status = rs.getString("status");
 					String date = rs.getString("date");
 
 					query = "To be delivered to:\t" + surname + " " + name
