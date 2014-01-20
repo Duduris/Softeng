@@ -65,6 +65,11 @@ public class LoginPanel extends JPanel {
 		return formattedTextField.getText();
 	}
 	
+	public void clear() {
+		formattedTextField.setText("");
+		pwdPass.setText("");
+	}
+	
 	@SuppressWarnings("deprecation")
 	public String getPass() {
 		//return pwdPass.getPassword();
