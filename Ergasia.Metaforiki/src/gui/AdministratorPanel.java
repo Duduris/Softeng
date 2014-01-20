@@ -21,6 +21,7 @@ public class AdministratorPanel extends JPanel {
 	private JPanel panel;
 	private JFreeChart chart;
 	private DefaultPieDataset pieDataset;
+	private ChartPanel chpan;
 	
 
 	public AdministratorPanel() {
@@ -52,12 +53,14 @@ public class AdministratorPanel extends JPanel {
 	}
 	
 	public void setChart(DefaultPieDataset dataset) {
-	    panel.removeAll(); 
-		pieDataset = dataset;
-		chart = ChartFactory.createPieChart3D("Statistics",pieDataset, true, true, true);
-		ChartPanel chpan = new ChartPanel(chart);
-		panel.add(chpan);
-		revalidate();
+		if (dataset != null) {
+		    panel.removeAll(); 
+			pieDataset = dataset;
+			chart = ChartFactory.createPieChart3D("Statistics",pieDataset, true, true, true);
+			chpan = new ChartPanel(chart);
+			panel.add(chpan);
+			revalidate();
+		}
 	}
 	
 	public void clear() {
