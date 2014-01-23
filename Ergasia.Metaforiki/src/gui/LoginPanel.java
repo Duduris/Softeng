@@ -1,16 +1,13 @@
 package gui;
 
 import javax.swing.JPanel;
-
 import net.miginfocom.swing.MigLayout;
-
 import javax.swing.ImageIcon;
 import javax.swing.JPasswordField;
 import javax.swing.JFormattedTextField;
 import javax.swing.JLabel;
 import javax.swing.JButton;
 import javax.swing.JComboBox;
-
 import java.awt.Font;
 import java.awt.event.ActionListener;
 import java.awt.Color;
